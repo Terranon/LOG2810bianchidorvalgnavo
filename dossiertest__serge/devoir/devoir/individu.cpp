@@ -38,6 +38,19 @@ string Individu::getNom() const {
 string Individu::getGenie() const {
 	return genie_;
 }
+int Individu::getRelation(string nom) const {
+
+	
+	for (pair<string,int> item: relation_) {
+		if (item.first == nom)//si l'element en question dont on cherche le nom est dans le conteneur 
+			return item.second; //on retourne sa relation 
+		
+	}
+	 return 0; //sinon on retourne 0 (pour signifier une absence de relation)
+	
+	
+
+}
 
 void Individu::setCouleurYeux( char couleur) {
 	couleurYeux_ = couleur;
@@ -52,12 +65,13 @@ void Individu::setNom(string nom) {
 void Individu::setGenie(string genie) {
 	genie_ = genie;
 }
-void Individu::setVoisin(Individu& voisin) {
-	voisin_.push_back(voisin);
+void Individu::setRelation(string nom_voisin,int valeur_relation) {//set relation au lieu de set voisin
+	
+	relation_.insert(make_pair(nom_voisin, valeur_relation)); 
 }
 
 //operator=
-Individu& Individu::operator=(const Individu& individu) {
+Individu& Individu::operator=(const Individu& individu) {//rajouter set relations
 	if (this != &individu) {
 		setCouleurYeux(individu.getCouleurYeux());
 		setCouleurCheveux(individu.getCouleurCheveux());

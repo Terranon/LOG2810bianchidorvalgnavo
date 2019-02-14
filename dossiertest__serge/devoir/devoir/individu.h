@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <map>
 
 using namespace std;
 
@@ -16,12 +17,13 @@ public:
 	char getCouleurCheveux()const;
 	string getNom()const;
 	string getGenie()const;
+	int getRelation(string nom) const;
 
 	void setCouleurYeux(char couleur);
 	void setCouleurCheveux(char couleur);
 	void setGenie(string genie);
 	void setNom(string nom);
-	void setVoisin(Individu& voisin);
+	void setRelation(string nom_voisin,int valeur_relation);
 
 	Individu& operator=(const Individu& individu);
 
@@ -32,7 +34,7 @@ private:
 	char couleurCheveux_;
 	string nom_;
 	string genie_;
-	vector<Individu>voisin_;
+	map<string,int>relation_;//la map est constitué de paire ou la clé est le nom du voisin
 };
 
 #endif
