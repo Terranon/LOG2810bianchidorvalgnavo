@@ -1,0 +1,3 @@
+﻿  Source.cpp
+c:\users\serge\source\repos\devoir\devoir\source.cpp(93): warning C4101: 'e' : variable locale non référencée
+  devoir.vcxproj -> C:\Users\serge\source\repos\devoir\Debug\devoir.exe
