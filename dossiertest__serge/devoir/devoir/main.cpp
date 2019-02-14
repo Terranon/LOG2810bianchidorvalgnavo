@@ -18,15 +18,9 @@ int main() {
 
 	while (conditionboucle) {
 
-		char option;
-		cout << "(a) Créer le reseau social " << endl << "(b) Afficher le reseau social" << endl << "(c) Jouer à Qui est-ce?" << endl << "(d) Afficher le resultat" << endl << "(e) Quitter";
-
-		do {
-			cout << "Choissisez une option valide à l'aide de la lettre ; e pour quitter par exemple";
-			cin >> option;
-			/// vérifier toutees les combinaisons possibles que pourrait faire l'employer . le mieux serait de faire un bloc catch
-			
-		} while (option != 'a' && option != 'b' && option != 'c' && option != 'd' && option != 'e');
+		
+		char option = selectionneroption();//fonction permettant la saisie d'une option valide
+		
 		string nomfichier1,nomfichier2;
 	
 
@@ -41,7 +35,7 @@ int main() {
 		
 		}
 		if (option == 'e')
-			return 0;//terminer le programme
+			return 0;//terminer le programme-- si le programme retourne comment avoir la possibilité de reprendre correctement le jeu qui -est-ce?
 	
 	
 	}
