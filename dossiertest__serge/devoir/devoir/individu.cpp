@@ -38,7 +38,7 @@ string Individu::getNom() const {
 string Individu::getGenie() const {
 	return genie_;
 }
-int Individu::getRelation(string nom) const {
+int Individu::getValeurRelation(string nom) const {
 
 	
 	for (pair<string,int> item: relation_) {
@@ -49,6 +49,12 @@ int Individu::getRelation(string nom) const {
 	 return 0; //sinon on retourne 0 (pour signifier une absence de relation)
 	
 	
+
+}
+map<string, int>& Individu::getDonneesRelation() { //ne pas donner d'attribut constant
+
+	return relation_;
+
 
 }
 

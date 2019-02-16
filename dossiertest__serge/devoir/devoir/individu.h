@@ -17,7 +17,8 @@ public:
 	char getCouleurCheveux()const;
 	string getNom()const;
 	string getGenie()const;
-	int getRelation(string nom) const;
+	int getValeurRelation(string nom) const;
+	map<string, int>& getDonneesRelation();
 
 	void setCouleurYeux(char couleur);
 	void setCouleurCheveux(char couleur);

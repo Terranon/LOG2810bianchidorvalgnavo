@@ -55,7 +55,7 @@ fonction : lit les fichiers texte et  génere un individu, génère le réseau socia
 ////je pense a separer en deux la lecture du fichier de relation et la lecture du fichier individus
 void lirefichiertexte(string nomfichier) {
 	
-	ifstream fichier(nomfichier);//ouverture du fichier
+	ifstream fichier(nomfichier);//declaration du fichier en mode lecture et ouverture du fichier 
 
 	if (fichier.fail())
 		throw exception("le fichier n'a pas reussi à être ouvert");
@@ -111,7 +111,7 @@ void lirefichiertexte(string nomfichier) {
 					if (item->getNom() == nom1) {//parcourir le tableau d'individu a la recherche de l'individu portant le nom1
 						item->setRelation(nom2, nombre_relation);//mettre a jour la relation entre les deux individus
 					//creer un individu avec les caractéristiques ci dessus
-						cout << "l'individu " << item->getNom() << " ayant pour relation " << item->getRelation(nom2) << " et pour voisin " << nom2 << endl;
+						cout << "l'individu " << item->getNom() << " ayant pour relation " << item->getValeurRelation(nom2) << " et pour voisin " << nom2 << endl;
 					}
 
 				}
@@ -179,4 +179,29 @@ void creerReseauSocial(string fichier1, string fichier2) {
 
 }
 
+/*nom: afficherReseauSocial
+
+type parametre:void
+type retour : void
+fonction: affiche le reseau crée à partir du tableau d'individu de la partie
+
+
+*/
+void afficherReseauSocial() {
+
+	for (Individu* individu : table_Individu) {
+	
+		//pour chaque individu de ma tableIndividu  ---->  afficher l'individu et son voisin 
+
+		
+
+		auto i = individu->getDonneesRelation().begin();
+		auto fin = individu->getDonneesRelation().end();
+		for (i; i != fin; i++) {
+		
+			cout << "(" << individu->getNom() << "," << i->first << "," << "(" << i->second << ")" << ")" << endl;
+		
+		}
+	}
+};
 
