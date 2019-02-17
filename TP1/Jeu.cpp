@@ -31,13 +31,36 @@ class Jeu {
 	{
 			return item.cheveux != input;
 	}
+
+	bool predicatCheveuxU(const Individus& item, string input, string input2)
+	{
+		if (item.cheveux != input && item.cheveux != input2) {
+			return true;
+		}
+	}
+
 	bool predicat_yeux(const Individus& item, string input)
 	{
 		return item.yeux != input;
 	}
+
+	bool predicatYeuxU(const Individus& item, string input, string input2)
+	{
+		if (item.yeux != input && item.yeux != input2) {
+			return true;
+		}
+	}
+
 	bool predicat_genie(const Individus& item, string input)
 	{
 		return item.genie != input;
+	}
+
+	bool predicatGenieU(const Individus& item, string input, string input2)
+	{
+		if (item.genie != input && item.genie != input2) {
+			return true;
+		}
 	}
 
 	void IdentifierIndividus(string reponse, string input, string caracteristique) {
@@ -70,8 +93,7 @@ class Jeu {
 				caracteristique.push.back(input);
 
 				if (caracteristique.size() == 2) {
-					for (int i=0; i<caracteristique.size(); i++)
-						individu.erase(remove_if(individu.begin(), individu.end(), predicat_cheveux(caracteristique[i]), individu.end());
+					individu.erase(remove_if(individu.begin(), individu.end(), predicatCheveuxU(caracteristique[0], caracteristique[1])), individu.end());
 				}
 
 			}
@@ -81,8 +103,7 @@ class Jeu {
 				caracteristique.push.back(input);
 
 				if (caracteristique.size() == 2) {
-					for (int i = 0; i<caracteristique.size(); i++)
-						individu.erase(remove_if(individu.begin(), individu.end(), predicat_yeux(caracteristique[i]), individu.end());
+					individu.erase(remove_if(individu.begin(), individu.end(), predicatYeuxU(caracteristique[0], caracteristique[1])), individu.end());
 				}
 			}
 
@@ -91,8 +112,7 @@ class Jeu {
 				caracteristique.push.back(input);
 
 				if (caracteristique.size() == 2) {
-					for (int i = 0; i<caracteristique.size(); i++)
-						individu.erase(remove_if(individu.begin(), individu.end(), predicat_genie(caracteristique[i]), individu.end());
+					individu.erase(remove_if(individu.begin(), individu.end(), predicatGenieU(caracteristique[0], caracteristique[1])), individu.end());
 				}
 			}
 			questionCount+=1;
