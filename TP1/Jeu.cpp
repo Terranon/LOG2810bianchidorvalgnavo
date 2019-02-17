@@ -27,15 +27,15 @@ class Jeu {
 	}
 
 
-	bool predicat_cheveux(const Individus& item)
+	bool predicat_cheveux(const Individus& item, string input)
 	{
 			return item.cheveux != input;
 	}
-	bool predicat_yeux(const Individus& item)
+	bool predicat_yeux(const Individus& item, string input)
 	{
 		return item.yeux != input;
 	}
-	bool predicat_genie(const Individus& item)
+	bool predicat_genie(const Individus& item, string input)
 	{
 		return item.genie != input;
 	}
@@ -45,15 +45,15 @@ class Jeu {
 	Switch (reponse) {
 		case o: 
 			if (caracteristique == "cheveux") {					
-				individu.erase(remove_if(individu.begin(), individu.end(), predicat_cheveux, individu.end());	
+				individu.erase(remove_if(individu.begin(), individu.end(), predicat_cheveux(input), individu.end());	
 			}
 
 			if (caracteristique == "yeux") {
-				individu.erase(remove_if(individu.begin(), individu.end(), predicat_yeux, individu.end());
+				individu.erase(remove_if(individu.begin(), individu.end(), predicat_yeux(input), individu.end());
 			}
 
 			if (caracteristique == "genie") {
-				individu.erase(remove_if(individu.begin(), individu.end(), predicat_genie, individu.end());
+				individu.erase(remove_if(individu.begin(), individu.end(), predicat_genie(input), individu.end());
 			}
 
 			if (individu.size()==2) {
@@ -68,15 +68,15 @@ class Jeu {
 
 		case n:
 			if (caracteristique == "cheveux") {
-					individu.erase(remove_if(individu.begin(), individu.end(), !predicat_cheveux, individu.end());
+					individu.erase(remove_if(individu.begin(), individu.end(), !predicat_cheveux(input), individu.end());
 				}
 
 				if (caracteristique == "yeux") {
-					individu.erase(remove_if(individu.begin(), individu.end(), !predicat_yeux, individu.end());
+					individu.erase(remove_if(individu.begin(), individu.end(), !predicat_yeux(input), individu.end());
 				}
 
 				if (caracteristique == "genie") {
-					individu.erase(remove_if(individu.begin(), individu.end(), !predicat_genie, individu.end());
+					individu.erase(remove_if(individu.begin(), individu.end(), !predicat_genie(input), individu.end());
 				}
 
 				if (individu.size() == 2) {
