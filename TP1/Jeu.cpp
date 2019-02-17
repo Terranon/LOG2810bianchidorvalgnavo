@@ -65,6 +65,37 @@ class Jeu {
 			questionCount += 1;
 		
 		case u:
+			if (caracteristique == "cheveux") {
+				vector<string> caracteristique;
+				caracteristique.push.back(input);
+
+				if (caracteristique.size() == 2) {
+					for (int i=0; i<caracteristique.size(); i++)
+						individu.erase(remove_if(individu.begin(), individu.end(), predicat_cheveux(caracteristique[i]), individu.end());
+				}
+
+			}
+
+			if (caracteristique == "yeux") {
+				vector<string> caracteristique;
+				caracteristique.push.back(input);
+
+				if (caracteristique.size() == 2) {
+					for (int i = 0; i<caracteristique.size(); i++)
+						individu.erase(remove_if(individu.begin(), individu.end(), predicat_yeux(caracteristique[i]), individu.end());
+				}
+			}
+
+			if (caracteristique == "genie") {
+				vector<string> caracteristique;
+				caracteristique.push.back(input);
+
+				if (caracteristique.size() == 2) {
+					for (int i = 0; i<caracteristique.size(); i++)
+						individu.erase(remove_if(individu.begin(), individu.end(), predicat_genie(caracteristique[i]), individu.end());
+				}
+			}
+			questionCount+=1;
 
 		case n:
 			if (caracteristique == "cheveux") {
