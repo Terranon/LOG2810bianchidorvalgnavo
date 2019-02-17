@@ -41,8 +41,8 @@ string Individu::getGenie() const {
 int Individu::getValeurRelation(string nom) const {
 
 	
-	for (pair<string,int> item: relation_) {
-		if (item.first == nom)//si l'element en question dont on cherche le nom est dans le conteneur 
+	for (pair<Individu*,int> item: relation_) {
+		if (item.first->getNom() == nom)//si l'element en question dont on cherche le nom est dans le conteneur 
 			return item.second; //on retourne sa relation 
 		
 	}
@@ -51,7 +51,7 @@ int Individu::getValeurRelation(string nom) const {
 	
 
 }
-map<string, int>& Individu::getDonneesRelation() { //ne pas donner d'attribut constant
+map<Individu*, int>& Individu::getDonneesRelation() { //ne pas donner d'attribut constant
 
 	return relation_;
 
@@ -71,9 +71,11 @@ void Individu::setNom(string nom) {
 void Individu::setGenie(string genie) {
 	genie_ = genie;
 }
-void Individu::setRelation(string nom_voisin,int valeur_relation) {//set relation au lieu de set voisin
+void Individu::setRelation(Individu* voisin,int valeur_relation) {//set relation au lieu de set voisin
 	
-	relation_.insert(make_pair(nom_voisin, valeur_relation)); 
+	relation_.insert(make_pair(voisin, valeur_relation));
+	
+
 }
 
 //operator=
