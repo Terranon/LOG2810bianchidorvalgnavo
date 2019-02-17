@@ -69,6 +69,7 @@ class Jeu {
 		case n:
 			questionCount += 1;
 		case s:
+		cout << "Les susptect encore sur la liste sont: " << endl;
 			for (int i = 0; i < individu.size();i++) {
 				cout << individu[i].nom << endl;
 			}
