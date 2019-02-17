@@ -67,9 +67,27 @@ class Jeu {
 		case u:
 
 		case n:
+			if (caracteristique == "cheveux") {
+					individu.erase(remove_if(individu.begin(), individu.end(), !predicat_cheveux, individu.end());
+				}
+
+				if (caracteristique == "yeux") {
+					individu.erase(remove_if(individu.begin(), individu.end(), !predicat_yeux, individu.end());
+				}
+
+				if (caracteristique == "genie") {
+					individu.erase(remove_if(individu.begin(), individu.end(), !predicat_genie, individu.end());
+				}
+
+				if (individu.size() == 2) {
+					cout << "Les individus mystere sont: " << endl;
+					for (int i = 0; i < individu.size();i++) {
+						cout << individu[i].nom << endl;
+					}
+				}
 			questionCount += 1;
 		case s:
-		cout << "Les susptect encore sur la liste sont: " << endl;
+			cout << "Les susptect encore sur la liste sont: " << endl;
 			for (int i = 0; i < individu.size();i++) {
 				cout << individu[i].nom << endl;
 			}
