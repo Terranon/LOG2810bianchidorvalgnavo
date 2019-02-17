@@ -3,9 +3,12 @@ class Jeu {
 
 	public
 		void CreerStructure(string fichier);
-		bool predicat_cheveux(const Individus& item);
-		bool predicat_yeux(const Individus& item);
-		bool predicat_genie(const Individus& item);
+		bool predicat_cheveux(const Individus& item, string input);
+		bool predicat_yeux(const Individus& item, string input);
+		bool predicat_genie(const Individus& item, string input);
+		bool predicatCheveuxU(const Individus& item, string input, string input2);
+		bool predicatYeuxU(const Individus& item, string input, string input2);
+		bool predicatGenieU(const Individus& item string input, string input2);
 		void IdentifierIndividus(string reponse, string input, string caracteristique);
 
 		private
