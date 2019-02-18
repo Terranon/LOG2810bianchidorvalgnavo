@@ -18,13 +18,13 @@ public:
 	string getNom()const;
 	string getGenie()const;
 	int getValeurRelation(string nom) const;
-	map<string, int>& getDonneesRelation();
+	map<Individu*, int>& getDonneesRelation();
 
 	void setCouleurYeux(char couleur);
 	void setCouleurCheveux(char couleur);
 	void setGenie(string genie);
 	void setNom(string nom);
-	void setRelation(string nom_voisin,int valeur_relation);
+	void setRelation(Individu* voisin,int valeur_relation);
 
 	Individu& operator=(const Individu& individu);
 
@@ -35,7 +35,7 @@ private:
 	char couleurCheveux_;
 	string nom_;
 	string genie_;
-	map<string,int>relation_;//la map est constitué de paire ou la clé est le nom du voisin
+	map<Individu*,int>relation_;//la map est constitué de paire ou la clé est le nom du voisin
 };
 
 #endif

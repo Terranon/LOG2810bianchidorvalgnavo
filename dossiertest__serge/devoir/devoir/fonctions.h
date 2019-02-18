@@ -101,20 +101,30 @@ void lirefichiertexte(string nomfichier) {
 				fichier >> nombre_relation;
 				fichier >> nom2;
 
-
-
-				
-				//mettre a jour la table de relation
-				for (Individu* item : table_Individu) {//parcourir le tableau d'individu a la recherche de l'individu portant le nom2
-					if (item->getNom() == nom2)
-						item->setRelation(nom1, nombre_relation); //mettre a jour la relation entre les deux individus
-					if (item->getNom() == nom1) {//parcourir le tableau d'individu a la recherche de l'individu portant le nom1
-						item->setRelation(nom2, nombre_relation);//mettre a jour la relation entre les deux individus
-					//creer un individu avec les caractéristiques ci dessus
-						cout << "l'individu " << item->getNom() << " ayant pour relation " << item->getValeurRelation(nom2) << " et pour voisin " << nom2 << endl;
+			
+				Individu* individu1 = nullptr;
+				Individu* individu2 = nullptr;
+				for (Individu* item1 : table_Individu) { //rechercher l'individu portant le nom 1
+					if (item1->getNom() == nom1) {
+						individu1 = item1; 
+						break; //sortir de la boucle si on a trouvé l'individu
+				    }
+				}
+				for (Individu* item2 : table_Individu) { //rechercher l'individu portant le nom 2
+					if (item2->getNom() == nom2) {
+						individu2 = item2;
+						break;//sortir de la boucle si on a trouvé l'individu
 					}
+						
+				}
+
+				if (individu1->getNom() == nom1 and individu2->getNom() == nom2) {// trouver les individus correspondant aux noms 
+					individu1->setRelation(individu2, nombre_relation);//mettre a jour la relation entre les deux individus
+					individu2->setRelation(individu1, nombre_relation);//mettre a jour la relation entre les deux individus
+					cout << "l'individu " << individu1->getNom() << " ayant pour relation " << individu1->getValeurRelation(nom2) << " et pour voisin " << individu2->getNom() << endl;
 
 				}
+				
 			}
 				
 		}
@@ -199,7 +209,7 @@ void afficherReseauSocial() {
 		auto fin = individu->getDonneesRelation().end();
 		for (i; i != fin; i++) {
 		
-			cout << "(" << individu->getNom() << "," << i->first << "," << "(" << i->second << ")" << ")" << endl;
+			cout << "(" << individu->getNom() << "," << i->first->getNom() << "," << "(" << i->second << ")" << ")" << endl;
 		
 		}
 	}
