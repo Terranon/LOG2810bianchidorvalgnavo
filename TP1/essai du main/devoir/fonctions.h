@@ -215,7 +215,16 @@ void afficherReseauSocial() {
 	}
 };
 
-map<pair<Individu*, Individu*>, int> deepcopier() {
+vector<Individu*> deepCopierVector() {
+	vector<Individu*> deepCopyOfVector;
+	for (int i = 0; i < table_Individu.size(); i++) {
+		Individu* individuTemp = new Individu(*table_Individu[i]);
+		deepCopyOfVector[i] = individuTemp;
+	}
+	return deepCopyOfVector;
+};
+
+map<pair<Individu*, Individu*>, int> deepCopier() {
 	int nbrIndividus = table_Individu.size();
 	map<pair<Individu*, Individu*>, int> sousGraph;
 
@@ -232,9 +241,11 @@ map<pair<Individu*, Individu*>, int> deepcopier() {
 	return sousGraph;
 };
 
-map<pair<Individu*, Individu*>, int> enleverArcsIndesirables(char couleursCheveux, char couleursYeux, string genie) {
 
-	map<pair<Individu*, Individu*>, int> sousGraph = deepcopier();
+
+map<pair<Individu*, Individu*>, int> enleverArcsIndesirables(string couleursCheveux, string couleursYeux, string genie) {
+
+	map<pair<Individu*, Individu*>, int> sousGraph = deepCopier();
 
 	// cheveux indesirables
 	auto sousGraphIt = sousGraph.begin();
