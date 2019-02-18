@@ -24,7 +24,7 @@ fonction : instancie un objet de type individu à partir de ses caractéristiques 
 /*
 Nom:selectionneroption
 type Paramètre: void
-type retour: char
+type retour: string
 fonction : genere une boucle tant que l'usager ne saisit pas un caractere parmi ceux proposé par l'interface console
 
 */
@@ -65,11 +65,11 @@ void lirefichiertexte(string nomfichier) {
 
 		//si le fichier est un fichier de personnes --on peut manipuler cette partie de sorte les varaivle fichier de relation
 		if (nomfichier == "Individus.txt") {
-			char couleur_cheveux, couleur_yeux;
+			string couleur_cheveux, couleur_yeux;
 
 			string genie;
 			
-			//char genie[4];///on pourrait creer un tableau de char soit char genie[2]--mais cela génére un bug pour une raison que j,ignore alors j,AI PRÉFERER GARDER STRING
+			//string genie[4];///on pourrait creer un tableau de string soit string genie[2]--mais cela génére un bug pour une raison que j,ignore alors j,AI PRÉFERER GARDER STRING
 
 			string nom;
 		

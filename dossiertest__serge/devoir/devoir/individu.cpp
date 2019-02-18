@@ -10,7 +10,7 @@ All Rights Reserved, Maximilien Bianchi 2019 */
 
 using namespace std;
 
-Individu::Individu(string nom,char couleurCheveux, char couleurYeux,  string genie) :
+Individu::Individu(string nom,string couleurCheveux, string couleurYeux,  string genie) :
 	couleurCheveux_(couleurCheveux),
     genie_(genie),
 	couleurYeux_(couleurYeux),
@@ -24,10 +24,10 @@ Individu::Individu(const Individu& individu) :
 	
 }
 
-char Individu::getCouleurYeux() const {
+string Individu::getCouleurYeux() const {
 	return couleurYeux_;
 }
-char Individu::getCouleurCheveux() const {
+string Individu::getCouleurCheveux() const {
 	return couleurCheveux_;
 }
 
@@ -58,10 +58,10 @@ map<Individu*, int>& Individu::getDonneesRelation() { //ne pas donner d'attribut
 
 }
 
-void Individu::setCouleurYeux( char couleur) {
+void Individu::setCouleurYeux( string couleur) {
 	couleurYeux_ = couleur;
 }
-void Individu::setCouleurCheveux( char couleur) {
+void Individu::setCouleurCheveux( string couleur) {
 	couleurCheveux_ = couleur;
 }
 
