@@ -1,11 +1,11 @@
-#ifndef JEU_H
-#define JEU_H
+#ifndef AGENT_H
+#define AGENT_H
 
 #include <iostream>
 #include <vector>
 #include <string> 
 using namespace std;
-#include Jeu.h
+#include Agent.h
 
 class Agent {
 
