@@ -9,14 +9,10 @@
 #include "fonctions.h"
 
 using namespace std;
-class Agent{
-//struct Individus {
-//		string nom;
-//		string cheveux;
-//		string yeux;
-//		string genie;
-//	};
-	enum reponsepossible { u, o, n, s };
+class Agent {
+	
+	char reponsepossible[5] = { 'u','s','n','o' }; // une taille de 5 car le cinquième caractere est le caractere de fin 
+	
 public:
 	
 	    Agent();
@@ -27,7 +23,7 @@ public:
 		bool predicatCheveuxU(const Individu& item, string input, string input2);
 		bool predicatYeuxU(const Individu& item, string input, string input2);
 		bool predicatGenieU(const Individu& item, string input, string input2);
-		void IdentifierIndividus( reponsepossible reponse, string input, string caracteristique);
+		void IdentifierIndividus( char reponse, string input, string caracteristique);
 		void incrementerCount();
 
 private:

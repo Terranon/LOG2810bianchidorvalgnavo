@@ -14,7 +14,7 @@ using namespace std;
 Agent::Agent() {
 
 	questionCount = 0;
-	//tableauSuspect = table_Individu;//faire une deep copie du tableauSuspect 
+	deepCopierVector(tableauSuspect);// on copie tout les individu dans le tableau de suspect
 
 }
 
@@ -88,17 +88,17 @@ Agent::Agent() {
 	}
  ///------------ voir ici en cas de erreur d'exécution 
 	
-	void Agent::IdentifierIndividus(reponsepossible reponse, string input, string caracteristique) {
+	void Agent::IdentifierIndividus(char reponse, string input, string caracteristique) {
 		//caracteristiques : cheveux , yeux et génie  //input c'est le type particulier soit de cheveux, de yeux , de génie 
 
 		switch (reponse) {
-			case o:
+			case 'o':
 				if (caracteristique == "cheveux") {
 					//convertion du string input en string
 					auto debut = tableauSuspect.begin();
 					auto fin = tableauSuspect.end();
 					for (Individu* individu : tableauSuspect) {
-						tableauSuspect.erase(remove_if(debut, fin, predicat_cheveux(*individu, input)), fin);// --------------------si ça n'execute pas regarder ici
+						///tableauSuspect.erase(remove_if(debut, fin, predicat_cheveux(*individu, input)), fin);// --------------------si ça n'execute pas regarder ici
 
 					}
 					//mystere1.setCouleurCheveux(input);
@@ -110,7 +110,7 @@ Agent::Agent() {
 					auto debut = tableauSuspect.begin();
 					auto fin = tableauSuspect.end();
 					for (Individu* individu : tableauSuspect) {
-						tableauSuspect.erase(remove_if(debut, fin, predicat_yeux(*individu, input)), fin);// --------------------si ça n'execute pas regarder ici
+						////tableauSuspect.erase(remove_if(debut, fin, predicat_yeux(*individu, input)), fin);// --------------------si ça n'execute pas regarder ici
 
 					}
 
@@ -124,7 +124,7 @@ Agent::Agent() {
 					auto debut = tableauSuspect.begin();
 					auto fin = tableauSuspect.end();
 					for (Individu* individu : tableauSuspect) {
-						tableauSuspect.erase(remove_if(debut, fin, predicat_genie(*individu, input)), fin);// --------------------si ça n'execute pas regarder ici
+						////tableauSuspect.erase(remove_if(debut, fin, predicat_genie(*individu, input)), fin);// --------------------si ça n'execute pas regarder ici
 
 					}
 					/*
@@ -152,7 +152,7 @@ Agent::Agent() {
 				}
 				incrementerCount();
 		
-			case u:
+			case 'u':
 				if (caracteristique == "cheveux") {
 					vector<string> caracteristique;
 					caracteristique.push_back(input);
@@ -161,7 +161,7 @@ Agent::Agent() {
 					auto fin = tableauSuspect.end();
 					for (Individu* individu : tableauSuspect){
 						if (caracteristique.size() == 2) {
-							tableauSuspect.erase(remove_if(debut, fin, predicatCheveuxU(*individu, caracteristique[0], caracteristique[1])), fin);// --------------------si ça n'execute pas regarder ici
+							////tableauSuspect.erase(remove_if(debut, fin, predicatCheveuxU(*individu, caracteristique[0], caracteristique[1])), fin);// --------------------si ça n'execute pas regarder ici
 						}
 					}
 				 
@@ -175,7 +175,7 @@ Agent::Agent() {
 					auto fin = tableauSuspect.end();
 					for (Individu* individu : tableauSuspect){
 						if (caracteristique.size() == 2) {
-							tableauSuspect.erase(remove_if(debut, fin, predicatYeuxU(*individu, caracteristique[0], caracteristique[1])), fin);// --------------------si ça n'execute pas regarder ici
+							////tableauSuspect.erase(remove_if(debut, fin, predicatYeuxU(*individu, caracteristique[0], caracteristique[1])), fin);// --------------------si ça n'execute pas regarder ici
 						}
 					}
 				}
@@ -188,19 +188,19 @@ Agent::Agent() {
 					auto fin = tableauSuspect.end();
 					for (Individu* individu : tableauSuspect) {
 						if (caracteristique.size() == 2) {
-							tableauSuspect.erase(remove_if(debut, fin, predicatGenieU(*individu, caracteristique[0], caracteristique[1])), fin);// --------------------si ça n'execute pas regarder ici
+							////tableauSuspect.erase(remove_if(debut, fin, predicatGenieU(*individu, caracteristique[0], caracteristique[1])), fin);// --------------------si ça n'execute pas regarder ici
 						}
 					}
 				}
 				incrementerCount();
-			case n:
+			case 'n':
 		
 				if (caracteristique == "cheveux") {
 					//convertion du string input en string
 					auto debut = tableauSuspect.begin();
 					auto fin = tableauSuspect.end();
 					for (Individu* individu : tableauSuspect) {
-						tableauSuspect.erase(remove_if(debut, fin, !predicat_cheveux(*individu, input)), fin);// --------------------si ça n'execute pas regarder ici
+						////tableauSuspect.erase(remove_if(debut, fin, !predicat_cheveux(*individu, input)), fin);// --------------------si ça n'execute pas regarder ici
 
 					}
 					//mystere1.setCouleurCheveux(input);
@@ -212,7 +212,7 @@ Agent::Agent() {
 					auto debut = tableauSuspect.begin();
 					auto fin = tableauSuspect.end();
 					for (Individu* individu : tableauSuspect) {
-						tableauSuspect.erase(remove_if(debut, fin, !predicat_yeux(*individu, input)), fin);// --------------------si ça n'execute pas regarder ici
+						////tableauSuspect.erase(remove_if(debut, fin, !predicat_yeux(*individu, input)), fin);// --------------------si ça n'execute pas regarder ici
 
 					}
 
@@ -226,7 +226,7 @@ Agent::Agent() {
 					auto debut = tableauSuspect.begin();
 					auto fin = tableauSuspect.end();
 					for (Individu* individu : tableauSuspect) {
-						tableauSuspect.erase(remove_if(debut, fin, !predicat_genie(*individu, input)), fin);// --------------------si ça n'execute pas regarder ici
+						////tableauSuspect.erase(remove_if(debut, fin, !predicat_genie(*individu, input)), fin);// --------------------si ça n'execute pas regarder ici
 
 					}
 					/*
@@ -253,7 +253,7 @@ Agent::Agent() {
 
 				}
 				incrementerCount();
-			case s:
+			case 's':
 				cout << "Les suspect encore sur la liste sont: " << endl;
 				for (int i = 0; i < tableauSuspect.size(); i++) {
 					cout << tableauSuspect[i]->getNom() << endl;

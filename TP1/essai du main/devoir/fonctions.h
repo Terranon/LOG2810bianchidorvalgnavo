@@ -65,7 +65,7 @@ void lirefichiertexte(string nomfichier) {
 
 		//si le fichier est un fichier de personnes --on peut manipuler cette partie de sorte les varaivle fichier de relation
 		if (nomfichier == "Individus.txt") {
-			char couleur_cheveux, couleur_yeux;
+			string couleur_cheveux, couleur_yeux;
 
 			string genie;
 			
@@ -215,13 +215,20 @@ void afficherReseauSocial() {
 	}
 };
 
-vector<Individu*> deepCopierVector() {
-	vector<Individu*> deepCopyOfVector;
+/*
+nom: deepCopierVector
+paramètre: vector<Invidu*>&
+type retour : void
+fonction: effectue une deep copie d'un vecteur
+
+*/
+void  deepCopierVector(vector<Individu*>&deepCopyOfVector) {
+	
 	for (int i = 0; i < table_Individu.size(); i++) {
-		Individu* individuTemp = new Individu(*table_Individu[i]);
-		deepCopyOfVector[i] = individuTemp;
+		Individu* individuTemp = new Individu(*table_Individu[i]); 
+		deepCopyOfVector.push_back(individuTemp);//mise à jour du vector
 	}
-	return deepCopyOfVector;
+	
 };
 
 map<pair<Individu*, Individu*>, int> deepCopier() {
