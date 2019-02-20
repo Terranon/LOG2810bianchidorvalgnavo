@@ -1,4 +1,4 @@
-
+#pragma once
 #ifndef AGENT_H
 #define AGENT_H
 
@@ -6,7 +6,8 @@
 #include <string>
 #include <vector>
 
-#include "fonctions.h"
+#include "foncteur.h"
+
 
 using namespace std;
 class Agent {
@@ -15,7 +16,7 @@ class Agent {
 	
 public:
 	
-	    Agent();
+	    Agent(vector<Individu*>tab);
 		
 
 		void IdentifierIndividus( char reponse, string input, string caracteristique);
@@ -25,6 +26,7 @@ public:
 		void QuestionCheveux(char input, Agent agent);
 		void QuestionYeux(char input, Agent agent);
 		void QuestionGenie(char input, Agent agent);
+		void  deepCopierVector(vector<Individu*>&vector);
 
 private:
 		int questionCount ;

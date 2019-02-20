@@ -4,17 +4,17 @@
 
 #include <algorithm>
 
-#include"foncteur.h"
+
 using namespace std;
 
 
 
 
 //Constructeur d'agent 
-Agent::Agent() {
+Agent::Agent(vector<Individu*>tab) {
 
 	questionCount = 0;
-	deepCopierVector(tableauSuspect);// on copie tout les individu dans le tableau de suspect
+	deepCopierVector(tab);// on copie tout les individu dans le tableau de suspect
 
 }
 
@@ -34,7 +34,24 @@ Agent::Agent() {
 	
 	}
 
-	
+	/*
+		nom: deepCopierVector
+		paramètre: vector<Invidu*>&
+		type retour : void
+		fonction: effectue une deep copie d'un vecteur
+
+		*/
+	void  Agent::deepCopierVector(vector<Individu*>&vector) {
+
+
+		for (Individu* item : vector) {
+
+			Individu* individuTemp = new Individu(*item);
+			tableauSuspect.push_back(individuTemp);//mise à jour du vector
+		}
+
+	};
+
  ///------------ voir ici en cas de erreur d'exécution 
 
 	void Agent::IdentifierIndividus(char reponse, string input, string caracteristique) {

@@ -4,6 +4,7 @@
 #include <exception>
 
 #include "Agent.h"
+#include "Jeu.h"
 using namespace std;
 
 ///créer une classe partie??
@@ -13,26 +14,27 @@ using namespace std;
 
 
 int main() {
-
+	Jeu jeu;
 
 	bool conditionboucle = true;
 	bool conditionA = false;
 	while (conditionboucle) {
 
 		
-		char option = selectionneroption();//fonction permettant la saisie d'une option valide
+		char option = jeu.selectionneroption();//fonction permettant la saisie d'une option valide
 		
 		string nomfichier1,nomfichier2;
 	
 
 		if (option == 'a') { ///on peut utiliser des cases ici ou alors utiliser du polymorphisme option.faireoperation comportant des variables de selection afin d'ÉVITER LE IF OU LE CASE POUVANT ETRE DOTE DE BOOL OPTION VALIDER QUI SERA UNE VARIABLE PARTAGER PAR TOUTES LES CLASSES OPTIONS
-		
+			
+
 			cout << "Entrez le nom du premier fichier";
 			cin >> nomfichier1;
 			cout << "Entrez le nom du deuxième fichier";
 			cin >> nomfichier2;
-			creerReseauSocial(nomfichier1,nomfichier2);
-		
+			//creerReseauSocial(nomfichier1,nomfichier2);
+			jeu.creerReseauSocial(nomfichier1,nomfichier2);
 
 			conditionA = true;
 		
@@ -40,14 +42,14 @@ int main() {
 		if (option == 'b' ) {  //si l'option a  avait déja été sélectionner et l'option b 
 
 			if (conditionA)
-				afficherReseauSocial();
+				jeu.afficherReseauSocial(); //afficherReseauSocial();
 			else
 				cout << "L'option A doit avoir ete selectionner avant l'option B" << endl;
 		
 		}
 		if (option == 'c') {
 				
-				Agent agent;
+				Agent agent(jeu.gettableauIndividu());
 				agent.QuestionCheveux('N', agent);
 
 		}

@@ -1,6 +1,6 @@
+#pragma once
 
-#include <iostream>
-#include "individu.h"
+#include "fonctions.h"
 
 using namespace std;
 
