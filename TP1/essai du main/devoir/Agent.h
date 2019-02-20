@@ -21,6 +21,10 @@ public:
 		void IdentifierIndividus( char reponse, string input, string caracteristique);
 		void incrementerCount();
 		void Deviner();
+		char PoserQuestion(string input, string caracteristique, string type, Agent agent);
+		void QuestionCheveux(char input, Agent agent);
+		void QuestionYeux(char input, Agent agent);
+		void QuestionGenie(char input, Agent agent);
 
 private:
 		int questionCount ;

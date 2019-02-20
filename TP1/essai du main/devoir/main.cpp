@@ -46,22 +46,10 @@ int main() {
 		
 		}
 		if (option == 'c') {
-		
-
-
-			while (1) {
-			
+				
 				Agent agent;
-				
-				cout << "est ce que les individus ont les yeux bleux";
-				char rpnse;
-				cin >> rpnse;
+				agent.QuestionCheveux('N', agent);
 
-
-				agent.IdentifierIndividus(rpnse,"B","yeux");
-				
-			
-			}
 		}
 			
 		if (option == 'e')
