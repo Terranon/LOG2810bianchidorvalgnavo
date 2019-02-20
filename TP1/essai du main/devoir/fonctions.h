@@ -1,4 +1,7 @@
-#pragma once
+#pragma once 
+#ifndef FONCTION_H
+#define FONCTION_H
+
 #include<iostream>
 #include <exception>
 #include <string>
@@ -7,7 +10,7 @@
 #include <vector>
 using namespace std;
 
-static vector<Individu*>table_Individu;//declarer le tableau qui contiendra les individus 
+vector<Individu*>table_Individu;//declarer le tableau qui contiendra les individus 
 ///attribut de partie 
 
 /*
@@ -53,7 +56,7 @@ fonction : lit les fichiers texte et  génere un individu, génère le réseau socia
 
 
 ////je pense a separer en deux la lecture du fichier de relation et la lecture du fichier individus
-void lirefichiertexte(string nomfichier) {
+vector<Individu*> lirefichiertexte(string nomfichier) {
 	
 	ifstream fichier(nomfichier);//declaration du fichier en mode lecture et ouverture du fichier 
 
@@ -134,7 +137,7 @@ void lirefichiertexte(string nomfichier) {
 	}
 
 
-
+	return table_Individu;
 
 }
 /*
@@ -222,14 +225,14 @@ type retour : void
 fonction: effectue une deep copie d'un vecteur
 
 */
-void  deepCopierVector(vector<Individu*>&deepCopyOfVector) {
-	
-	for (int i = 0; i < table_Individu.size(); i++) {
-		Individu* individuTemp = new Individu(*table_Individu[i]); 
-		deepCopyOfVector.push_back(individuTemp);//mise à jour du vector
-	}
-	
-};
+//void  deepCopierVector(vector<Individu*>&deepCopyOfVector) {
+//	
+//	for (int i = 0; i < table_Individu.size(); i++) {
+//		Individu* individuTemp = new Individu(*table_Individu[i]); 
+//		deepCopyOfVector.push_back(individuTemp);//mise à jour du vector
+//	}
+//	
+//};
 /*
 map<pair<Individu*, Individu*>, int> deepCopier() {
 	int nbrIndividus = table_Individu.size();
@@ -299,3 +302,4 @@ void afficherSousGraph(map<pair<Individu*, Individu*>, int> sousGraph) {
 			<< "(" << mapIt->second << ")" << ")" << endl;
 	}
 };
+#endif
