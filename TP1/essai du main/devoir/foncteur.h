@@ -1,6 +1,11 @@
 #pragma once
 
+
 #include "fonctions.h"
+
+#include <iostream>
+#include "individu.h"
+
 
 using namespace std;
 

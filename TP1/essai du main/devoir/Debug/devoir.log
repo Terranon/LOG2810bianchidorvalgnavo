@@ -1,2 +1,9 @@
-﻿  main.cpp
+﻿  Agent.cpp
+c:\users\serge\desktop\git de tout les projet de cette session\log2810\log2810bianchidorvalgnavo\tp1\essai du main\devoir\agent.cpp(198): warning C4018: '<' : incompatibilité signed/unsigned
+c:\users\serge\desktop\git de tout les projet de cette session\log2810\log2810bianchidorvalgnavo\tp1\essai du main\devoir\agent.cpp(213): warning C4018: '<' : incompatibilité signed/unsigned
+c:\users\serge\desktop\git de tout les projet de cette session\log2810\log2810bianchidorvalgnavo\tp1\essai du main\devoir\agent.cpp(407): warning C4305: 'argument' : troncation de 'int' à 'char'
+c:\users\serge\desktop\git de tout les projet de cette session\log2810\log2810bianchidorvalgnavo\tp1\essai du main\devoir\agent.cpp(407): warning C4309: 'argument' : troncation de valeur de constante
+c:\users\serge\desktop\git de tout les projet de cette session\log2810\log2810bianchidorvalgnavo\tp1\essai du main\devoir\foncteur.h(37): warning C4715: 'Predicat::operator()' : les chemins de contrôle ne retournent pas tous une valeur
+c:\users\serge\desktop\git de tout les projet de cette session\log2810\log2810bianchidorvalgnavo\tp1\essai du main\devoir\foncteur.h(115): warning C4715: 'PredicatN::operator()' : les chemins de contrôle ne retournent pas tous une valeur
+c:\users\serge\desktop\git de tout les projet de cette session\log2810\log2810bianchidorvalgnavo\tp1\essai du main\devoir\foncteur.h(76): warning C4715: 'PredicatU::operator()' : les chemins de contrôle ne retournent pas tous une valeur
   devoir.vcxproj -> C:\Users\serge\Desktop\git de tout les projet de cette session\log2810\LOG2810bianchidorvalgnavo\TP1\essai du main\Debug\devoir.exe

@@ -1,7 +1,9 @@
-#pragma once
 
-#ifndef FONCTIONS_H
-#define FONCTIONS_H
+#pragma once 
+#ifndef FONCTION_H
+#define FONCTION_H
+
+
 #include<iostream>
 #include <exception>
 #include <string>
@@ -11,12 +13,37 @@
 using namespace std;
 
 
+/*nom: afficherReseauSocial
+
+type parametre:void
+type retour : void
+fonction: affiche le reseau crée à partir du tableau d'individu de la partie
+>>>>>>> d02c68a913824c19fb6e89eb05f9325c9d7a06cf
+
 ///attribut de partie 
 
 
 
 
 /*
+<<<<<<< HEAD
+=======
+nom: deepCopierVector
+paramètre: vector<Invidu*>&
+type retour : void
+fonction: effectue une deep copie d'un vecteur
+
+*/
+//void  deepCopierVector(vector<Individu*>&deepCopyOfVector) {
+//	
+//	for (int i = 0; i < table_Individu.size(); i++) {
+//		Individu* individuTemp = new Individu(*table_Individu[i]); 
+//		deepCopyOfVector.push_back(individuTemp);//mise à jour du vector
+//	}
+//	
+//};
+/*
+>>>>>>> d02c68a913824c19fb6e89eb05f9325c9d7a06cf
 map<pair<Individu*, Individu*>, int> deepCopier() {
 	int nbrIndividus = table_Individu.size();
 	map<pair<Individu*, Individu*>, int> sousGraph;
@@ -84,7 +111,12 @@ void afficherSousGraph(map<pair<Individu*, Individu*>, int> sousGraph) {
 	for (mapIt; mapIt != sousGraph.end(); mapIt++) {
 		cout << "(" << mapIt->first.first->getNom() << "," << mapIt->first.second->getNom() << ","
 			<< "(" << mapIt->second << ")" << ")" << endl;
+<<<<<<< HEAD
 	}*/
+
+
+
+	
 
 
 #endif
