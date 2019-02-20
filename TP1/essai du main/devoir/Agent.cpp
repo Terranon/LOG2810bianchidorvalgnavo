@@ -1,10 +1,10 @@
 
-#include <iostream>
-#include <vector>
-#include <string> 
+
 #include "Agent.h"
-#include <cstring>
+
 #include <algorithm>
+
+#include"foncteur.h"
 using namespace std;
 
 
@@ -33,60 +33,10 @@ Agent::Agent() {
 	
 	
 	}
-	/*void CreerStructure(string fichier) {
 
-		Individus temp;
-		ifstream in(fichier);
-		if (!in) {
-			cout << "The input file did not open.";
-		}
-		string line;
-		while (getline(in, line))
-			stringstream ss(line);
-			if (ss>>temp.nom>>temp.cheveux>>temp.yeux>>temp.genie) {
-				individu.push.back(temp);
-			}
-		in.close();
-	}*/
-
-
-	bool Agent::predicat_cheveux( const Individu& item, string input)
-	{
-			return item.getCouleurCheveux() != input;//retourne vrai si la couleur est différente de la valeur entrée (input)
-	}
-
-	bool Agent::predicatCheveuxU(const Individu& item, string input, string input2)
-	{
-		if (item.getCouleurCheveux() != input && item.getCouleurCheveux() != input2) {
-			return true;
-		}
-	}
-
-	bool Agent::predicat_yeux(const Individu& item, string input)
-	{
-		return item.getCouleurYeux() != input;
-	}
-
-	bool Agent::predicatYeuxU(const Individu& item, string input, string input2)
-	{
-		if (item.getCouleurCheveux() != input && item.getCouleurCheveux() != input2) {
-			return true;
-		}
-	}
-
-	bool Agent::predicat_genie(const Individu& item, string input)
-	{
-		return item.getGenie() != input;
-	}
-
-	bool Agent::predicatGenieU(const Individu& item, string input, string input2)
-	{
-		if (item.getGenie() != input && item.getGenie() != input2) {
-			return true;
-		}
-	}
- ///------------ voir ici en cas de erreur d'exécution 
 	
+ ///------------ voir ici en cas de erreur d'exécution 
+
 	void Agent::IdentifierIndividus(char reponse, string input, string caracteristique) {
 		//caracteristiques : cheveux , yeux et génie  //input c'est le type particulier soit de cheveux, de yeux , de génie 
 
@@ -97,11 +47,11 @@ Agent::Agent() {
 					auto debut = tableauSuspect.begin();
 					auto fin = tableauSuspect.end();
 					for (Individu* individu : tableauSuspect) {
-						tableauSuspect.erase(remove_if(debut, fin, predicat_cheveux(*individu, input)), fin);// --------------------si ça n'execute pas regarder ici
+						auto it = remove_if(debut,fin,Predicat(caracteristique,input));
+						tableauSuspect.erase(it, fin);// --------------------si ça n'execute pas regarder ici
 
 					}
-					//mystere1.setCouleurCheveux(input);
-					//mystere2.setCouleurCheveux(input);
+					
 				}
 
 				if (caracteristique == "yeux") {
@@ -109,13 +59,13 @@ Agent::Agent() {
 					auto debut = tableauSuspect.begin();
 					auto fin = tableauSuspect.end();
 					for (Individu* individu : tableauSuspect) {
-						tableauSuspect.erase(remove_if(debut, fin, predicat_yeux(*individu, input)), fin);// --------------------si ça n'execute pas regarder ici
+						auto it = remove_if(debut, fin, Predicat(caracteristique, input));
+						tableauSuspect.erase(it, fin);// --------------------si ça n'execute pas regarder ici
 
 					}
 
 
-					//mystere1.setCouleurYeux(input);
-					//mystere2.setCouleurYeux(input);
+				
 				}
 
 				if (caracteristique == "genie") {
@@ -123,12 +73,11 @@ Agent::Agent() {
 					auto debut = tableauSuspect.begin();
 					auto fin = tableauSuspect.end();
 					for (Individu* individu : tableauSuspect) {
-						tableauSuspect.erase(remove_if(debut, fin, predicat_genie(*individu, input)), fin);// --------------------si ça n'execute pas regarder ici
+						auto it = remove_if(debut, fin, Predicat(caracteristique, input));
+						tableauSuspect.erase(it, fin);// --------------------si ça n'execute pas regarder ici
 
 					}
-					/*
-					mystere1.setGenie(input);
-					mystere2.setGenie(input);*/
+					
 				}
 
 				Deviner();
@@ -136,41 +85,45 @@ Agent::Agent() {
 		
 			case 'u':
 				if (caracteristique == "cheveux") {
-					vector<string> caracteristique;
-					caracteristique.push_back(input);
+					vector<string> characteristic;
+					characteristic.push_back(input);
 
 					auto debut = tableauSuspect.begin();
 					auto fin = tableauSuspect.end();
 					for (Individu* individu : tableauSuspect){
 						if (caracteristique.size() == 2) {
-							tableauSuspect.erase(remove_if(debut, fin, predicatCheveuxU(*individu, caracteristique[0], caracteristique[1])), fin);// --------------------si ça n'execute pas regarder ici
+							tableauSuspect.erase(remove_if(debut, fin, PredicatU(caracteristique, characteristic[0], characteristic[1])), fin);// --------------------si ça n'execute pas regarder ici
 						}
 					}
 				 
 				}
 
 				if (caracteristique == "yeux") {
-					vector<string> caracteristique;
-					caracteristique.push_back(input);
+					vector<string> characteristic;
+					characteristic.push_back(input);
+
 
 					auto debut = tableauSuspect.begin();
 					auto fin = tableauSuspect.end();
 					for (Individu* individu : tableauSuspect){
 						if (caracteristique.size() == 2) {
-							tableauSuspect.erase(remove_if(debut, fin, predicatYeuxU(*individu, caracteristique[0], caracteristique[1])), fin);// --------------------si ça n'execute pas regarder ici
+							tableauSuspect.erase(remove_if(debut, fin, PredicatU(caracteristique, characteristic[0], characteristic[1])), fin);
+							
 						}
 					}
 				}
 
 				if (caracteristique == "genie") {
-					vector<string> caracteristique;
-					caracteristique.push_back(input);
+					vector<string> characteristic;
+					characteristic.push_back(input);
+
 
 					auto debut = tableauSuspect.begin();
 					auto fin = tableauSuspect.end();
 					for (Individu* individu : tableauSuspect) {
 						if (caracteristique.size() == 2) {
-							tableauSuspect.erase(remove_if(debut, fin, predicatGenieU(*individu, caracteristique[0], caracteristique[1])), fin);// --------------------si ça n'execute pas regarder ici
+							tableauSuspect.erase(remove_if(debut, fin, PredicatU(caracteristique, characteristic[0], characteristic[1])), fin);
+							
 						}
 					}
 				}
@@ -183,11 +136,11 @@ Agent::Agent() {
 					auto debut = tableauSuspect.begin();
 					auto fin = tableauSuspect.end();
 					for (Individu* individu : tableauSuspect) {
-						tableauSuspect.erase(remove_if(debut, fin, !predicat_cheveux(*individu, input)), fin);// --------------------si ça n'execute pas regarder ici
+						auto it = remove_if(debut, fin, PredicatN(caracteristique, input));
+						tableauSuspect.erase(it, fin);// --------------------si ça n'execute pas regarder ici
 
 					}
-					//mystere1.setCouleurCheveux(input);
-					//mystere2.setCouleurCheveux(input);
+					
 				}
 
 				if (caracteristique == "yeux") {
@@ -195,13 +148,12 @@ Agent::Agent() {
 					auto debut = tableauSuspect.begin();
 					auto fin = tableauSuspect.end();
 					for (Individu* individu : tableauSuspect) {
-						tableauSuspect.erase(remove_if(debut, fin, !predicat_yeux(*individu, input)), fin);// --------------------si ça n'execute pas regarder ici
+						auto it = remove_if(debut, fin, PredicatN(caracteristique, input));
+						tableauSuspect.erase(it, fin);// --------------------si ça n'execute pas regarder ici
 
 					}
 
 
-					//mystere1.setCouleurYeux(input);
-					//mystere2.setCouleurYeux(input);
 				}
 
 				if (caracteristique == "genie") {
@@ -209,12 +161,11 @@ Agent::Agent() {
 					auto debut = tableauSuspect.begin();
 					auto fin = tableauSuspect.end();
 					for (Individu* individu : tableauSuspect) {
-						tableauSuspect.erase(remove_if(debut, fin, !predicat_genie(*individu, input)), fin);// --------------------si ça n'execute pas regarder ici
+						auto it = remove_if(debut, fin, PredicatN(caracteristique, input));
+						tableauSuspect.erase(it, fin);// --------------------si ça n'execute pas regarder ici
 
 					}
-					/*
-					mystere1.setGenie(input);
-					mystere2.setGenie(input);*/
+				
 				}
 				Deviner();
 

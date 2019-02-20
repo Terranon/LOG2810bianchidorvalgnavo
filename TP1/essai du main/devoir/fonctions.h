@@ -7,7 +7,7 @@
 #include <vector>
 using namespace std;
 
-vector<Individu*>table_Individu;//declarer le tableau qui contiendra les individus 
+static vector<Individu*>table_Individu;//declarer le tableau qui contiendra les individus 
 ///attribut de partie 
 
 /*
@@ -118,7 +118,7 @@ void lirefichiertexte(string nomfichier) {
 						
 				}
 
-				if (individu1->getNom() == nom1 and individu2->getNom() == nom2) {// trouver les individus correspondant aux noms 
+				if (individu1->getNom() == nom1 && individu2->getNom() == nom2) {// trouver les individus correspondant aux noms 
 					individu1->setRelation(individu2, nombre_relation);//mettre a jour la relation entre les deux individus
 					individu2->setRelation(individu1, nombre_relation);//mettre a jour la relation entre les deux individus
 					cout << "l'individu " << individu1->getNom() << " ayant pour relation " << individu1->getValeurRelation(nom2) << " et pour voisin " << individu2->getNom() << endl;
@@ -230,7 +230,7 @@ void  deepCopierVector(vector<Individu*>&deepCopyOfVector) {
 	}
 	
 };
-
+/*
 map<pair<Individu*, Individu*>, int> deepCopier() {
 	int nbrIndividus = table_Individu.size();
 	map<pair<Individu*, Individu*>, int> sousGraph;
@@ -291,7 +291,7 @@ map<pair<Individu*, Individu*>, int> enleverArcsIndesirables(string couleursChev
 	}
 	return sousGraph;
 };
-
+*/
 void afficherSousGraph(map<pair<Individu*, Individu*>, int> sousGraph) {
 	auto mapIt = sousGraph.begin();
 	for (mapIt; mapIt != sousGraph.end(); mapIt++) {

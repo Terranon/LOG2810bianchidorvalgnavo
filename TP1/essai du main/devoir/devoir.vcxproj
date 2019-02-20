@@ -121,6 +121,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Agent.h" />
+    <ClInclude Include="foncteur.h" />
     <ClInclude Include="fonctions.h" />
     <ClInclude Include="individu.h" />
   </ItemGroup>

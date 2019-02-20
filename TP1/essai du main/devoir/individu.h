@@ -1,5 +1,6 @@
-#ifndef INDIVIDU
-#define INDIVIDU
+#pragma once 
+#ifndef INDIVIDU_H
+#define INDIVIDU_H
 
 #include <iostream>
 #include <string>

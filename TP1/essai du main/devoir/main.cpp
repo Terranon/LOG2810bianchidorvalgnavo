@@ -2,7 +2,8 @@
 #include <fstream>
 #include <string>
 #include <exception>
-#include "fonctions.h"
+
+#include "Agent.h"
 using namespace std;
 
 ///créer une classe partie??
@@ -46,6 +47,21 @@ int main() {
 		}
 		if (option == 'c') {
 		
+
+
+			while (1) {
+			
+				Agent agent;
+				
+				cout << "est ce que les individus ont les yeux bleux";
+				char rpnse;
+				cin >> rpnse;
+
+
+				agent.IdentifierIndividus(rpnse,"B","yeux");
+				
+			
+			}
 		}
 			
 		if (option == 'e')
