@@ -44,6 +44,9 @@ int main() {
 				cout << "L'option A doit avoir ete selectionner avant l'option B" << endl;
 		
 		}
+		if (option == 'c') {
+		
+		}
 			
 		if (option == 'e')
 			return 0;//terminer le programme-- si le programme retourne comment avoir la possibilité de reprendre correctement le jeu qui -est-ce?

@@ -19,7 +19,6 @@ Agent::Agent() {
 }
 
 
-
 	/*
 	nom : incrementerCount
 	retour : void 
@@ -98,7 +97,7 @@ Agent::Agent() {
 					auto debut = tableauSuspect.begin();
 					auto fin = tableauSuspect.end();
 					for (Individu* individu : tableauSuspect) {
-						///tableauSuspect.erase(remove_if(debut, fin, predicat_cheveux(*individu, input)), fin);// --------------------si ça n'execute pas regarder ici
+						tableauSuspect.erase(remove_if(debut, fin, predicat_cheveux(*individu, input)), fin);// --------------------si ça n'execute pas regarder ici
 
 					}
 					//mystere1.setCouleurCheveux(input);
@@ -110,7 +109,7 @@ Agent::Agent() {
 					auto debut = tableauSuspect.begin();
 					auto fin = tableauSuspect.end();
 					for (Individu* individu : tableauSuspect) {
-						////tableauSuspect.erase(remove_if(debut, fin, predicat_yeux(*individu, input)), fin);// --------------------si ça n'execute pas regarder ici
+						tableauSuspect.erase(remove_if(debut, fin, predicat_yeux(*individu, input)), fin);// --------------------si ça n'execute pas regarder ici
 
 					}
 
@@ -124,7 +123,7 @@ Agent::Agent() {
 					auto debut = tableauSuspect.begin();
 					auto fin = tableauSuspect.end();
 					for (Individu* individu : tableauSuspect) {
-						////tableauSuspect.erase(remove_if(debut, fin, predicat_genie(*individu, input)), fin);// --------------------si ça n'execute pas regarder ici
+						tableauSuspect.erase(remove_if(debut, fin, predicat_genie(*individu, input)), fin);// --------------------si ça n'execute pas regarder ici
 
 					}
 					/*
@@ -132,24 +131,7 @@ Agent::Agent() {
 					mystere2.setGenie(input);*/
 				}
 
-				if (tableauSuspect.size() == 2) {
-					cout << "Les individus mystere sont: " << endl;
-					for (int i = 0; i < tableauSuspect.size(); i++) {
-						cout << tableauSuspect[i]->getNom() << endl;
-					}
-					cout << "Est ce correct?" << endl;
-					char answer;
-
-					cin >> answer;  // faire une gestion de mauvaise réponse 
-
-					if (answer == 'n' || answer == 'u') {
-						cout << "Entrer les nom des deux individus mysteres" << endl;
-						string nomMystere1, nomMystere2;
-
-						cin >> nomMystere1 >> nomMystere2; // sauvegarder les noms dans une variable plus tard 
-					}
-
-				}
+				Deviner();
 				incrementerCount();
 		
 			case 'u':
@@ -161,7 +143,7 @@ Agent::Agent() {
 					auto fin = tableauSuspect.end();
 					for (Individu* individu : tableauSuspect){
 						if (caracteristique.size() == 2) {
-							////tableauSuspect.erase(remove_if(debut, fin, predicatCheveuxU(*individu, caracteristique[0], caracteristique[1])), fin);// --------------------si ça n'execute pas regarder ici
+							tableauSuspect.erase(remove_if(debut, fin, predicatCheveuxU(*individu, caracteristique[0], caracteristique[1])), fin);// --------------------si ça n'execute pas regarder ici
 						}
 					}
 				 
@@ -175,7 +157,7 @@ Agent::Agent() {
 					auto fin = tableauSuspect.end();
 					for (Individu* individu : tableauSuspect){
 						if (caracteristique.size() == 2) {
-							////tableauSuspect.erase(remove_if(debut, fin, predicatYeuxU(*individu, caracteristique[0], caracteristique[1])), fin);// --------------------si ça n'execute pas regarder ici
+							tableauSuspect.erase(remove_if(debut, fin, predicatYeuxU(*individu, caracteristique[0], caracteristique[1])), fin);// --------------------si ça n'execute pas regarder ici
 						}
 					}
 				}
@@ -188,10 +170,11 @@ Agent::Agent() {
 					auto fin = tableauSuspect.end();
 					for (Individu* individu : tableauSuspect) {
 						if (caracteristique.size() == 2) {
-							////tableauSuspect.erase(remove_if(debut, fin, predicatGenieU(*individu, caracteristique[0], caracteristique[1])), fin);// --------------------si ça n'execute pas regarder ici
+							tableauSuspect.erase(remove_if(debut, fin, predicatGenieU(*individu, caracteristique[0], caracteristique[1])), fin);// --------------------si ça n'execute pas regarder ici
 						}
 					}
 				}
+				Deviner();
 				incrementerCount();
 			case 'n':
 		
@@ -200,7 +183,7 @@ Agent::Agent() {
 					auto debut = tableauSuspect.begin();
 					auto fin = tableauSuspect.end();
 					for (Individu* individu : tableauSuspect) {
-						////tableauSuspect.erase(remove_if(debut, fin, !predicat_cheveux(*individu, input)), fin);// --------------------si ça n'execute pas regarder ici
+						tableauSuspect.erase(remove_if(debut, fin, !predicat_cheveux(*individu, input)), fin);// --------------------si ça n'execute pas regarder ici
 
 					}
 					//mystere1.setCouleurCheveux(input);
@@ -212,7 +195,7 @@ Agent::Agent() {
 					auto debut = tableauSuspect.begin();
 					auto fin = tableauSuspect.end();
 					for (Individu* individu : tableauSuspect) {
-						////tableauSuspect.erase(remove_if(debut, fin, !predicat_yeux(*individu, input)), fin);// --------------------si ça n'execute pas regarder ici
+						tableauSuspect.erase(remove_if(debut, fin, !predicat_yeux(*individu, input)), fin);// --------------------si ça n'execute pas regarder ici
 
 					}
 
@@ -226,32 +209,15 @@ Agent::Agent() {
 					auto debut = tableauSuspect.begin();
 					auto fin = tableauSuspect.end();
 					for (Individu* individu : tableauSuspect) {
-						////tableauSuspect.erase(remove_if(debut, fin, !predicat_genie(*individu, input)), fin);// --------------------si ça n'execute pas regarder ici
+						tableauSuspect.erase(remove_if(debut, fin, !predicat_genie(*individu, input)), fin);// --------------------si ça n'execute pas regarder ici
 
 					}
 					/*
 					mystere1.setGenie(input);
 					mystere2.setGenie(input);*/
 				}
+				Deviner();
 
-				if (tableauSuspect.size() == 2) {
-					cout << "Les individus mystere sont: " << endl;
-					for (int i = 0; i < tableauSuspect.size(); i++) {
-						cout << tableauSuspect[i]->getNom() << endl;
-					}
-					cout << "Est ce correct?" << endl;
-					char answer;
-
-					cin >> answer;  // faire une gestion de mauvaise réponse 
-
-					if (answer == 'n' || answer == 'u') {
-						cout << "Entrer les nom des deux individus mysteres" << endl;
-						string nomMystere1, nomMystere2;
-
-						cin >> nomMystere1 >> nomMystere2; // sauvegarder les noms dans une variable plus tard 
-					}
-
-				}
 				incrementerCount();
 			case 's':
 				cout << "Les suspect encore sur la liste sont: " << endl;
@@ -265,6 +231,26 @@ Agent::Agent() {
 				cin >> reponse;
 
 			}
+
+			
 	};
 
+	void Agent::Deviner() {
+		if (tableauSuspect.size() == 2) {
+			cout << "Les individus mystere sont: " << endl;
+			for (int i = 0; i < tableauSuspect.size(); i++) {
+				cout << tableauSuspect[i]->getNom() << endl;
+			}
+			cout << "Est ce correct?" << endl;
+			char answer;
 
+			cin >> answer;  // faire une gestion de mauvaise réponse 
+
+			if (answer == 'n' || answer == 'u') {
+				cout << "Entrer les nom des deux individus mysteres" << endl;
+				string nomMystere1, nomMystere2;
+
+				cin >> nomMystere1 >> nomMystere2; // sauvegarder les noms dans une variable plus tard 
+			}
+		}
+	}

@@ -25,6 +25,7 @@ public:
 		bool predicatGenieU(const Individu& item, string input, string input2);
 		void IdentifierIndividus( char reponse, string input, string caracteristique);
 		void incrementerCount();
+		void Deviner();
 
 private:
 		int questionCount ;
