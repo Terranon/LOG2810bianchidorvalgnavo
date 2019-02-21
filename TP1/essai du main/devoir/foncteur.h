@@ -55,8 +55,11 @@ public:
 
 	bool operator () (Individu* item) {
 	
-		if(caracteristique_=="cheveux")
-			return item->getCouleurCheveux() != input1_ && item->getCouleurCheveux()!=input2_;
+		if (caracteristique_ == "cheveux") {
+			if (item->getCouleurCheveux() != input1_ && item->getCouleurCheveux() != input2_) {
+				return true;
+			}
+		}
 
 		if (caracteristique_ == "yeux")
 			return item->getCouleurYeux() != input1_&& item->getCouleurYeux()!=input2_;

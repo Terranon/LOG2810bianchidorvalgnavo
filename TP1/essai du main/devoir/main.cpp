@@ -30,11 +30,14 @@ int main() {
 
 	bool conditionboucle = true;
 	bool conditionA = false;
+	reseauSociaux reseau;
+	Agent agent;
+	int gameNumber = 0;
 	while (conditionboucle) {
 
 
 		char option = selectionneroption();//fonction permettant la saisie d'une option valide
-		reseauSociaux reseau;
+		
 		string nomfichier1, nomfichier2;
 
 
@@ -60,9 +63,15 @@ int main() {
 		}
 		if (option == 'c') {
 
-			Agent agent;
+			if (gameNumber >= 1) {
+				Agent agent;
+			}
 			agent.QuestionCheveux('N', agent);
+			gameNumber += 1;
+		}
 
+		if (option == 'd') {
+			agent.affichage();
 		}
 
 		if (option == 'e')
