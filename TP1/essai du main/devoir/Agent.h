@@ -27,6 +27,7 @@ public:
 	void QuestionYeux(char input, Agent agent);
 	void QuestionGenie(char input, Agent agent);
 	void affichage();
+	void Corriger();
 
 private:
 	int questionCount;

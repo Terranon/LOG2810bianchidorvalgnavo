@@ -212,6 +212,31 @@ void Agent::IdentifierIndividus(char reponse, string input, string caracteristiq
 	}
 };
 
+void Agent::Corriger() {
+	cout << "Est ce correct?" << endl;
+	char answer;
+
+	cin >> answer;  // faire une gestion de mauvaise réponse 
+	if (answer == 'o') {
+		for (int i = 0; i < mystereGuess.size();i++) {
+			mystereVrai.push_back(mystereGuess[i]);
+		}
+	}
+	if (answer == 'n' || answer == 'u') {
+		cout << "Entrer les nom des deux individus mysteres" << endl;
+		string nomMystere1, nomMystere2;
+		cin >> nomMystere1 >> nomMystere2; // sauvegarder les noms dans une variable plus tard 
+		if (nomMystere1 != mystereGuess[0].getNom() && nomMystere1 != mystereGuess[1].getNom()) {
+			mystereNonDeviner.push_back(nomMystere1);
+		}
+		if (nomMystere2 != mystereGuess[0].getNom() && nomMystere2 != mystereGuess[1].getNom()) {
+			mystereNonDeviner.push_back(nomMystere2);
+		}
+		mystereVrai.push_back(nomMystere1);
+		mystereVrai.push_back(nomMystere2);
+	}
+}
+
 bool Agent::Deviner() {
 	bool aDeviner = false;
 	if (tableauSuspect.size() == 2) {
@@ -220,30 +245,9 @@ bool Agent::Deviner() {
 			cout << tableauSuspect[i]->getNom() << endl;
 			mystereGuess.push_back(tableauSuspect[i]->getNom());
 		}
-
-		cout << "Est ce correct?" << endl;
-		char answer;
-
-		cin >> answer;  // faire une gestion de mauvaise réponse 
-		if (answer == 'o') {
-			for (int i = 0; i < mystereGuess.size();i++) {
-				mystereVrai.push_back(mystereGuess[i]);
-			}
-		}
-		if (answer == 'n' || answer == 'u') {
-			cout << "Entrer les nom des deux individus mysteres" << endl;
-			string nomMystere1, nomMystere2;
-			cin >> nomMystere1 >> nomMystere2; // sauvegarder les noms dans une variable plus tard 
-			if (nomMystere1 != mystereGuess[0].getNom() && nomMystere1 != mystereGuess[1].getNom()) {
-				mystereNonDeviner.push_back(nomMystere1);
-			}
-			if (nomMystere2 != mystereGuess[0].getNom() && nomMystere2 != mystereGuess[1].getNom()) {
-				mystereNonDeviner.push_back(nomMystere2);
-			}
-			mystereVrai.push_back(nomMystere1);
-			mystereVrai.push_back(nomMystere2);
-		}
+		Corriger();
 		aDeviner = true;
+
 		cout << "Les deux individus mysteres sont: ";
 		for (int i = 0; i < mystereVrai.size();i++) {
 			cout << mystereVrai[i].getNom() << " ";
@@ -264,35 +268,15 @@ bool Agent::Deviner() {
 					cout << " " << tableauSuspect[i]->getNom()<<endl;
 				}
 			}
-			cout << "Est ce correct?" << endl;
-			char answer;
+		Corriger();
+		aDeviner = true;
 
-			cin >> answer;  // faire une gestion de mauvaise réponse 
-			if (answer == 'o') {
-				for (int i = 0; i < mystereGuess.size();i++) {
-					mystereVrai.push_back(mystereGuess[i]);
-				}
-			}
-			if (answer == 'n' || answer == 'u') {
-				cout << "Entrer les nom des deux individus mysteres" << endl;
-				string nomMystere1, nomMystere2;
-				cin >> nomMystere1 >> nomMystere2; // sauvegarder les noms dans une variable plus tard 
-				if (nomMystere1 != mystereGuess[0].getNom() && nomMystere1 != mystereGuess[1].getNom()) {
-					mystereNonDeviner.push_back(nomMystere1);
-				}
-				if (nomMystere2 != mystereGuess[0].getNom() && nomMystere2 != mystereGuess[1].getNom()) {
-					mystereNonDeviner.push_back(nomMystere2);
-				}
-				mystereVrai.push_back(nomMystere1);
-				mystereVrai.push_back(nomMystere2);
-			}
-			aDeviner = true;
-			cout << "Les deux individus mysteres sont: ";
-			for (int i = 0; i < mystereVrai.size();i++) {
-				cout << mystereVrai[i].getNom() << " ";
-			}
-			cout << endl;
+		cout << "Les deux individus mysteres sont: ";
+		for (int i = 0; i < mystereVrai.size();i++) {
+			cout << mystereVrai[i].getNom() << " ";
 		}
+		cout << endl;
+	}
 	return aDeviner;
 }
 
