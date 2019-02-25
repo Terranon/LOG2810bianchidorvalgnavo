@@ -18,6 +18,19 @@ Agent::Agent(vector<Individu*>tab) {
 
 	
 	questionCount = 0;
+<<<<<<< HEAD
+=======
+	Individu individuMystere1(" ", " ", " ", " ");
+	Individu individuMystere2(" ", " ", " ", " ");
+	vector<string> characteristic;
+	vector<string> characteristicGenie;
+	vector<string> characteristicYeux;
+	vector<Individu> mystereGuess;
+	vector<Individu> mystereNonDeviner;
+	vector<Individu> mystereVrai;
+
+}
+>>>>>>> fc9f10546ca531d7a5fc6c31ec9460c97b62d2f7
 
 	deepCopierVector(tab);// on copie tout les individu dans le tableau de suspect
 
@@ -66,27 +79,42 @@ void Agent::incrementerCount() {
 
 void Agent::IdentifierIndividus(char reponse, string input, string caracteristique) {
 	//caracteristiques : cheveux , yeux et génie  //input c'est le type particulier soit de cheveux, de yeux , de génie 
-
+	
 	switch (reponse) {
 	case 'o':
 		if (caracteristique == "cheveux") {
 			//convertion du string input en string
 			auto debut = tableauSuspect.begin();
 			auto fin = tableauSuspect.end();
+<<<<<<< HEAD
 			
 			tableauSuspect.erase(remove_if(debut, fin, Predicat(caracteristique, input)), fin);
 
+=======
+				auto it = remove_if(debut, fin, Predicat(caracteristique, input));
+				tableauSuspect.erase(it, fin);// --------------------si ça n'execute pas regarder ici
+				individuMystere1.setCouleurCheveux(input);
+				individuMystere2.setCouleurCheveux(input);
+>>>>>>> fc9f10546ca531d7a5fc6c31ec9460c97b62d2f7
 		}
 
 		if (caracteristique == "yeux") {
 
 			auto debut = tableauSuspect.begin();
 			auto fin = tableauSuspect.end();
+<<<<<<< HEAD
 			
 			tableauSuspect.erase(remove_if(debut, fin, Predicat(caracteristique, input)), fin);// --------------------si ça n'execute pas regarder ici
 											  //tableauSuspect.erase(remove_if(debut, fin, predicat_yeux(*individu, input)), fin);// --------------------si ça n'execute pas regarder ici
 			
 
+=======
+				auto it = remove_if(debut, fin, Predicat(caracteristique, input));
+				tableauSuspect.erase(it, fin);// --------------------si ça n'execute pas regarder ici
+											  //tableauSuspect.erase(remove_if(debut, fin, predicat_yeux(*individu, input)), fin);// --------------------si ça n'execute pas regarder ici
+				individuMystere1.setCouleurYeux(input);
+				individuMystere2.setCouleurYeux(input);
+>>>>>>> fc9f10546ca531d7a5fc6c31ec9460c97b62d2f7
 
 
 		}
@@ -95,65 +123,61 @@ void Agent::IdentifierIndividus(char reponse, string input, string caracteristiq
 
 			auto debut = tableauSuspect.begin();
 			auto fin = tableauSuspect.end();
+<<<<<<< HEAD
 			
 				tableauSuspect.erase(remove_if(debut, fin, Predicat(caracteristique, input)), fin);// --------------------si ça n'execute pas regarder ici
 			
+=======
+				auto it = remove_if(debut, fin, Predicat(caracteristique, input));
+				tableauSuspect.erase(it, fin);// --------------------si ça n'execute pas regarder ici
+				individuMystere1.setGenie(input);
+				individuMystere2.setGenie(input);
+>>>>>>> fc9f10546ca531d7a5fc6c31ec9460c97b62d2f7
 		}
 
-		Deviner();
+		deviner=Deviner();
 		incrementerCount();
 		break;
 	case 'u':
 		if (caracteristique == "cheveux") {
-			vector<string> characteristic;
 			characteristic.push_back(input);
-
-			auto debut = tableauSuspect.begin();
-			auto fin = tableauSuspect.end();
-			for (Individu* individu : tableauSuspect) {
-				if (caracteristique.size() == 2) {
-
-					tableauSuspect.erase(remove_if(debut, fin, PredicatU(caracteristique, characteristic[0], characteristic[1])), fin);// --------------------si ça n'execute pas regarder ici
-
-																																	   //tableauSuspect.erase(remove_if(debut, fin, predicatCheveuxU(*individu, caracteristique[0], caracteristique[1])), fin);// --------------------si ça n'execute pas regarder ici
-
-				}
+			if (characteristic.size() == 2) {
+				auto debut = tableauSuspect.begin();
+				auto fin = tableauSuspect.end();
+				tableauSuspect.erase(remove_if(debut, fin, PredicatU(caracteristique, characteristic[0], characteristic[1])), fin);// --------------------si ça n'execute pas regarder ici
+				individuMystere1.setCouleurCheveux(characteristic[0]);
+				individuMystere2.setCouleurCheveux(characteristic[1]);
 			}
-
 		}
 
 		if (caracteristique == "yeux") {
-			vector<string> characteristic;
-			characteristic.push_back(input);
+			characteristicYeux.push_back(input);
 
 
 			auto debut = tableauSuspect.begin();
 			auto fin = tableauSuspect.end();
-			for (Individu* individu : tableauSuspect) {
-				if (caracteristique.size() == 2) {
-					tableauSuspect.erase(remove_if(debut, fin, PredicatU(caracteristique, characteristic[0], characteristic[1])), fin);
-
+				if (characteristicYeux.size() == 2) {
+					tableauSuspect.erase(remove_if(debut, fin, PredicatU(caracteristique, characteristicYeux[0], characteristicYeux[1])), fin);
+					individuMystere1.setCouleurYeux(characteristicYeux[0]);
+					individuMystere2.setCouleurYeux(characteristicYeux[1]);
 					//tableauSuspect.erase(remove_if(debut, fin, predicatYeuxU(*individu, caracteristique[0], caracteristique[1])), fin);// --------------------si ça n'execute pas regarder ici
 
 				}
-			}
 		}
 
 		if (caracteristique == "genie") {
-			vector<string> characteristic;
-			characteristic.push_back(input);
+			characteristicGenie.push_back(input);
 
 
 			auto debut = tableauSuspect.begin();
 			auto fin = tableauSuspect.end();
-			for (Individu* individu : tableauSuspect) {
-				if (caracteristique.size() == 2) {
-					tableauSuspect.erase(remove_if(debut, fin, PredicatU(caracteristique, characteristic[0], characteristic[1])), fin);
-
+				if (characteristicGenie.size() == 2) {
+					tableauSuspect.erase(remove_if(debut, fin, PredicatU(caracteristique, characteristicGenie[0], characteristicGenie[1])), fin);
+					individuMystere1.setGenie(characteristicGenie[0]);
+					individuMystere2.setGenie(characteristicGenie[1]);
 				}
-			}
 		}
-		Deviner();
+		deviner=Deviner();
 		incrementerCount();
 		break;
 	case 'n':
@@ -162,34 +186,26 @@ void Agent::IdentifierIndividus(char reponse, string input, string caracteristiq
 			//convertion du string input en string
 			auto debut = tableauSuspect.begin();
 			auto fin = tableauSuspect.end();
-			for (Individu* individu : tableauSuspect) {
 				auto it = remove_if(debut, fin, PredicatN(caracteristique, input));
 				tableauSuspect.erase(it, fin);// --------------------si ça n'execute pas regarder ici
-			}
-
 		}
 
 		if (caracteristique == "yeux") {
 
 			auto debut = tableauSuspect.begin();
 			auto fin = tableauSuspect.end();
-			for (Individu* individu : tableauSuspect) {
 				auto it = remove_if(debut, fin, PredicatN(caracteristique, input));
 				tableauSuspect.erase(it, fin);// --------------------si ça n'execute pas regarder ici
-
-			}
 		}
 
 		if (caracteristique == "genie") {
 
 			auto debut = tableauSuspect.begin();
 			auto fin = tableauSuspect.end();
-			for (Individu* individu : tableauSuspect) {
 				auto it = remove_if(debut, fin, PredicatN(caracteristique, input));
 				tableauSuspect.erase(it, fin);// --------------------si ça n'execute pas regarder ici
-			}
 		}
-		Deviner();
+		deviner=Deviner();
 
 		incrementerCount();
 		break;
@@ -207,32 +223,106 @@ void Agent::IdentifierIndividus(char reponse, string input, string caracteristiq
 	}
 };
 
-void Agent::Deviner() {
+void Agent::Corriger() {
+	cout << "Est ce correct?" << endl;
+	char answer;
+
+	cin >> answer;  // faire une gestion de mauvaise réponse 
+	if (answer == 'o') {
+		for (int i = 0; i < mystereGuess.size();i++) {
+			mystereVrai.push_back(mystereGuess[i]);
+		}
+	}
+	if (answer == 'n' || answer == 'u') {
+		cout << "Entrer les nom des deux individus mysteres" << endl;
+		string nomMystere1, nomMystere2;
+		cin >> nomMystere1 >> nomMystere2; // sauvegarder les noms dans une variable plus tard 
+		if (nomMystere1 != mystereGuess[0].getNom() && nomMystere1 != mystereGuess[1].getNom()) {
+			mystereNonDeviner.push_back(nomMystere1);
+		}
+		if (nomMystere2 != mystereGuess[0].getNom() && nomMystere2 != mystereGuess[1].getNom()) {
+			mystereNonDeviner.push_back(nomMystere2);
+		}
+		mystereVrai.push_back(nomMystere1);
+		mystereVrai.push_back(nomMystere2);
+	}
+}
+
+bool Agent::Deviner() {
+	bool aDeviner = false;
 	if (tableauSuspect.size() == 2) {
 		cout << "Les individus mystere sont: " << endl;
 		for (int i = 0; i < tableauSuspect.size(); i++) {
 			cout << tableauSuspect[i]->getNom() << endl;
+			mystereGuess.push_back(tableauSuspect[i]->getNom());
 		}
-		cout << "Est ce correct?" << endl;
-		char answer;
+		Corriger();
+		aDeviner = true;
 
-		cin >> answer;  // faire une gestion de mauvaise réponse 
+		cout << "Les deux individus mysteres sont: ";
+		for (int i = 0; i < mystereVrai.size();i++) {
+			cout << mystereVrai[i].getNom() << " ";
+		}
+		cout << endl;
+	}
+	if (individuMystere1.getGenie() != "" && individuMystere2.getGenie() != "" && tableauSuspect.size() != 2) {
+		cout << "Les individus mystere sont: " << endl;
+		for (int i = 0; i < tableauSuspect.size();i++) {
+				if (tableauSuspect[i]->getCouleurCheveux() == individuMystere1.getCouleurCheveux() && tableauSuspect[i]->getCouleurYeux() == individuMystere1.getCouleurYeux()
+					&& tableauSuspect[i]->getGenie() == individuMystere1.getGenie()) {
+					mystereGuess.push_back(tableauSuspect[i]->getNom());
+					cout << tableauSuspect[i]->getNom();
+				}
+				if (tableauSuspect[i]->getCouleurCheveux() == individuMystere2.getCouleurCheveux() && tableauSuspect[i]->getCouleurYeux() == individuMystere2.getCouleurYeux()
+					&& tableauSuspect[i]->getGenie() == individuMystere2.getGenie()) {
+					mystereGuess.push_back(tableauSuspect[i]->getNom());
+					cout << " " << tableauSuspect[i]->getNom()<<endl;
+				}
+			}
+		Corriger();
+		aDeviner = true;
 
-		if (answer == 'n' || answer == 'u') {
-			cout << "Entrer les nom des deux individus mysteres" << endl;
-			string nomMystere1, nomMystere2;
+		cout << "Les deux individus mysteres sont: ";
+		for (int i = 0; i < mystereVrai.size();i++) {
+			cout << mystereVrai[i].getNom() << " ";
+		}
+		cout << endl;
+	}
+	return aDeviner;
+}
 
-			cin >> nomMystere1 >> nomMystere2; // sauvegarder les noms dans une variable plus tard 
+void Agent::affichage() {
+	cout << "Le nombre de questions posees est: " << questionCount << endl;
+	cout << "Les deux individus mysteres sont: ";
+	for (int i = 0; i < mystereVrai.size();i++) {
+		cout << mystereVrai[i].getNom() << " "<<endl;
+	}
+	cout << "Les deux individus mysteres devinees sont: ";
+	for (int i = 0; i < mystereVrai.size();i++) {
+		cout << mystereGuess[i].getNom() << " " << endl;
+	}
+	cout << "Les individus mysteres non devinees sont: ";
+	if (mystereNonDeviner.size() != 0) {
+		for (int i = 0; i < mystereNonDeviner.size();i++) {
+			cout << mystereNonDeviner[i].getNom()<<" "<<endl;
 		}
 	}
+	else {
+		cout << "aucun"<<endl;
+	}
+	cout << endl;
 }
 
 char Agent::PoserQuestion(string input, string caracteristique, string type, Agent agent) {
-
-	cout << "Est ce que les individus ont les " << caracteristique << "    " << type << endl;
+	if (caracteristique == "cheveux" || caracteristique == "yeux") {
+		cout << "Est ce que les individus ont les " << caracteristique << " " << type << endl;
+	}
+	if (caracteristique == "genie") {
+		cout << "Est ce que les individus sont en " << caracteristique << " " << type << endl;
+	}
 	char rpnse;
 	cin >> rpnse;
-	agent.IdentifierIndividus(rpnse, input, caracteristique);
+	IdentifierIndividus(rpnse, input, caracteristique);
 	return rpnse;
 }
 
@@ -249,20 +339,37 @@ void Agent::QuestionCheveux(char input, Agent agent) {
 		else if (rep == 'n') {
 			input = 'M';
 		}
-		else {
+		else if(rep=='u'){
 			uOption.push_back('N');
 			input = 'M';
+		}
+		else {
+			input='N';
 		}
 		}
 		break;
 		case 'B':
+<<<<<<< HEAD
 			{char rep1 = PoserQuestion("B", "cheveux", "blond", agent);
 			if (rep1 == 'o') {
+=======
+		{char rep1 = PoserQuestion("B", "cheveux", "blond", agent);
+		if (rep1 == 'o') {
+			CheveuxTrouver = true;
+		}
+		else if (rep1 == 'n') {
+			input = 'R';
+		}
+		else if (rep1=='u'){
+			uOption.push_back('B');
+			if (uOption.size() == 2) {
+>>>>>>> fc9f10546ca531d7a5fc6c31ec9460c97b62d2f7
 				CheveuxTrouver = true;
 			}
 			else if (rep1 == 'n') {
 				input = 'R';
 			}
+<<<<<<< HEAD
 			else {
 				uOption.push_back('B');
 				if (uOption.size() == 2) {
@@ -277,11 +384,31 @@ void Agent::QuestionCheveux(char input, Agent agent) {
 		case 'M':
 			{char rep2 = PoserQuestion("M", "cheveux", "marron", agent);
 			if (rep2 == 'o') {
+=======
+		}
+		else {
+			input = 'B';
+		}
+		}
+		break;
+		case 'M':
+		{char rep2 = PoserQuestion("M", "cheveux", "marron", agent);
+		if (rep2 == 'o') {
+			CheveuxTrouver = true;
+		}
+		else if (rep2 == 'n') {
+			input = 'B';
+		}
+		else if (rep2=='u'){
+			uOption.push_back('M');
+			if (uOption.size() == 2) {
+>>>>>>> fc9f10546ca531d7a5fc6c31ec9460c97b62d2f7
 				CheveuxTrouver = true;
 			}
 			else if (rep2 == 'n') {
 				input = 'B';
 			}
+<<<<<<< HEAD
 			else {
 				uOption.push_back('M');
 				if (uOption.size() == 2) {
@@ -305,11 +432,36 @@ void Agent::QuestionCheveux(char input, Agent agent) {
 				}
 				CheveuxTrouver = true;
 			}
+=======
+		}
+		else {
+			input = 'M';
+		}
+		}
+		break;
+		case 'R':
+		{char rep3 = PoserQuestion("R", "cheveux", "roux", agent);
+		if (rep3 == 'o') {
+			CheveuxTrouver = true;
+		}
+		else if (rep3=='u'){
+			uOption.push_back('R');
+			if (uOption.size() == 2) {
+				CheveuxTrouver = true;
+			}
+			CheveuxTrouver = true;
+		}
+		else {
+			input = 'R';
+		}
+>>>>>>> fc9f10546ca531d7a5fc6c31ec9460c97b62d2f7
 		}
 		break;
 		}
-		QuestionYeux('N', agent);
-	}
+		if (deviner == true) {
+			return;
+		}
+	}QuestionYeux('N', agent);
 }
 
 void Agent::QuestionYeux(char input, Agent agent) {
@@ -321,13 +473,17 @@ void Agent::QuestionYeux(char input, Agent agent) {
 		{char rep = PoserQuestion("N", "yeux", "noir", agent);
 		if (rep == 'o') {
 			YeuxTrouver = true;
+			
 		}
 		else if (rep == 'n') {
 			input = 'B';
 		}
-		else {
+		else if (rep=='u'){
 			uOption.push_back('N');
 			input = 'B';
+		}
+		else {
+			input = 'N';
 		}
 		}
 		break;
@@ -339,7 +495,7 @@ void Agent::QuestionYeux(char input, Agent agent) {
 		else if (rep1 == 'n') {
 			input = 'M';
 		}
-		else {
+		else if(rep1=='u'){
 			uOption.push_back('B');
 			if (uOption.size() == 2) {
 				YeuxTrouver = true;
@@ -347,6 +503,9 @@ void Agent::QuestionYeux(char input, Agent agent) {
 			else {
 				input = 'M';
 			}
+		}
+		else {
+			input = 'B';
 		}
 		}
 		break;
@@ -358,7 +517,7 @@ void Agent::QuestionYeux(char input, Agent agent) {
 		else if (rep2 == 'n') {
 			input = 'R';
 		}
-		else {
+		else if(rep2=='u'){
 			uOption.push_back('M');
 			if (uOption.size() == 2) {
 				YeuxTrouver = true;
@@ -366,6 +525,9 @@ void Agent::QuestionYeux(char input, Agent agent) {
 			else {
 				input = 'R';
 			}
+		}
+		else {
+			input = 'M';
 		}
 		}
 		break;
@@ -377,7 +539,7 @@ void Agent::QuestionYeux(char input, Agent agent) {
 		else if (rep3 == 'n') {
 			input = 'V';
 		}
-		else {
+		else if (rep3=='u') {
 			uOption.push_back('R');
 			if (uOption.size() == 2) {
 				YeuxTrouver = true;
@@ -386,6 +548,9 @@ void Agent::QuestionYeux(char input, Agent agent) {
 				input = 'V';
 			}
 		}
+		else {
+			input = 'R';
+		}
 		}
 		break;
 		case 'V':
@@ -393,19 +558,24 @@ void Agent::QuestionYeux(char input, Agent agent) {
 		if (rep4 == 'o') {
 			YeuxTrouver = true;
 		}
-		else {
+		else if (rep4=='u') {
 			uOption.push_back('V');
 			if (uOption.size() == 2) {
 				YeuxTrouver = true;
 			}
 			YeuxTrouver = true;
 		}
+		else {
+			input = 'V';
+		}
+
 		}
 		break;
 		}
-
-		QuestionGenie('GE', agent);
-	}
+		if (deviner == true) {
+			return;
+		}
+	}QuestionGenie('GE', agent);
 }
 
 void Agent::QuestionGenie(char input, Agent agent) {
@@ -421,9 +591,12 @@ void Agent::QuestionGenie(char input, Agent agent) {
 		else if (rep == 'n') {
 			input = 'I';
 		}
-		else {
+		else if(rep=='u'){
 			uOption.push_back('E');
 			input = 'I';
+		}
+		else {
+			input = 'E';
 		}
 		}
 		break;
@@ -435,7 +608,7 @@ void Agent::QuestionGenie(char input, Agent agent) {
 		else if (rep1 == 'n') {
 			input = 'P';
 		}
-		else {
+		else if(rep1=='u'){
 			uOption.push_back('I');
 			if (uOption.size() == 2) {
 				GenieTrouver = true;
@@ -443,6 +616,9 @@ void Agent::QuestionGenie(char input, Agent agent) {
 			else {
 				input = 'P';
 			}
+		}
+		else {
+			input = 'I';
 		}
 		}
 		break;
@@ -454,7 +630,7 @@ void Agent::QuestionGenie(char input, Agent agent) {
 		else if (rep2 == 'n') {
 			input = 'C';
 		}
-		else {
+		else if(rep2=='u'){
 			uOption.push_back('P');
 			if (uOption.size() == 2) {
 				GenieTrouver = true;
@@ -462,6 +638,9 @@ void Agent::QuestionGenie(char input, Agent agent) {
 			else {
 				input = 'C';
 			}
+		}
+		else {
+			input = 'P';
 		}
 		}
 		break;
@@ -473,7 +652,7 @@ void Agent::QuestionGenie(char input, Agent agent) {
 		else if (rep3 == 'n') {
 			input = 'A';
 		}
-		else {
+		else if(rep3=='u') {
 			uOption.push_back('C');
 			if (uOption.size() == 2) {
 				GenieTrouver = true;
@@ -481,6 +660,9 @@ void Agent::QuestionGenie(char input, Agent agent) {
 			else {
 				input = 'A';
 			}
+		}
+		else {
+			input = 'C';
 		}
 		}
 		break;
@@ -492,7 +674,7 @@ void Agent::QuestionGenie(char input, Agent agent) {
 		else if (rep4 == 'n') {
 			input = 'B';
 		}
-		else {
+		else if(rep4=='u'){
 			uOption.push_back('A');
 			if (uOption.size() == 2) {
 				GenieTrouver = true;
@@ -500,6 +682,9 @@ void Agent::QuestionGenie(char input, Agent agent) {
 			else {
 				input = 'B';
 			}
+		}
+		else {
+			input = 'A';
 		}
 		}
 		break;
@@ -511,7 +696,7 @@ void Agent::QuestionGenie(char input, Agent agent) {
 		else if (rep5 == 'n') {
 			input = 'M';
 		}
-		else {
+		else if(rep5=='u'){
 			uOption.push_back('B');
 			if (uOption.size() == 2) {
 				GenieTrouver = true;
@@ -519,6 +704,9 @@ void Agent::QuestionGenie(char input, Agent agent) {
 			else {
 				input = 'M';
 			}
+		}
+		else {
+			input = 'B';
 		}
 		}
 		break;
@@ -530,7 +718,7 @@ void Agent::QuestionGenie(char input, Agent agent) {
 		else if (rep6 == 'n') {
 			input = 'N';
 		}
-		else {
+		else if(rep6=='u'){
 			uOption.push_back('M');
 			if (uOption.size() == 2) {
 				GenieTrouver = true;
@@ -538,6 +726,9 @@ void Agent::QuestionGenie(char input, Agent agent) {
 			else {
 				input = 'N';
 			}
+		}
+		else {
+			input = 'M';
 		}
 		}
 		break;
@@ -549,7 +740,7 @@ void Agent::QuestionGenie(char input, Agent agent) {
 		else if (rep7 == 'n') {
 			input = 'R';
 		}
-		else {
+		else if(rep7=='u'){
 			uOption.push_back('N');
 			if (uOption.size() == 2) {
 				GenieTrouver = true;
@@ -558,6 +749,9 @@ void Agent::QuestionGenie(char input, Agent agent) {
 				input = 'R';
 			}
 		}
+		else {
+			input = 'N';
+		}
 		}
 		break;
 		case 'R':
@@ -565,16 +759,21 @@ void Agent::QuestionGenie(char input, Agent agent) {
 		if (rep8 == 'o') {
 			GenieTrouver = true;
 		}
-		else {
+		else if(rep8=='u'){
 			uOption.push_back('R');
 			if (uOption.size() == 2) {
 				GenieTrouver = true;
 			}
 			GenieTrouver = true;
 		}
+		else {
+			input = 'R';
+		}
 		}
 		break;
 		}
-
+		if (deviner == true) {
+			return;
+		}
 	}
 }

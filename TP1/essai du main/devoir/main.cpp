@@ -32,11 +32,19 @@ int main() {
 
 	bool conditionboucle = true;
 	bool conditionA = false;
+	reseauSociaux reseau;
+	Agent agent;
+	int gameNumber = 0;
 	while (conditionboucle) {
 
 
+<<<<<<< HEAD
 		char option = jeu.selectionneroption();//fonction permettant la saisie d'une option valide
 
+=======
+		char option = selectionneroption();//fonction permettant la saisie d'une option valide
+		
+>>>>>>> fc9f10546ca531d7a5fc6c31ec9460c97b62d2f7
 		string nomfichier1, nomfichier2;
 
 			if (option == 'a') { ///on peut utiliser des cases ici ou alors utiliser du polymorphisme option.faireoperation comportant des variables de selection afin d'ÉVITER LE IF OU LE CASE POUVANT ETRE DOTE DE BOOL OPTION VALIDER QUI SERA UNE VARIABLE PARTAGER PAR TOUTES LES CLASSES OPTIONS
@@ -59,6 +67,7 @@ int main() {
 
 					jeu.afficherReseauSocial(); //afficherReseauSocial();
 
+<<<<<<< HEAD
 				else
 					cout << "L'option A doit avoir ete selectionner avant l'option B" << endl;
 
@@ -68,6 +77,18 @@ int main() {
 				Agent agent(jeu.gettableauIndividu());
 				agent.QuestionCheveux('N', agent);
 
+=======
+			if (gameNumber >= 1) {
+				Agent agent;
+			}
+			agent.QuestionCheveux('N', agent);
+			gameNumber += 1;
+		}
+
+		if (option == 'd') {
+			agent.affichage();
+		}
+>>>>>>> fc9f10546ca531d7a5fc6c31ec9460c97b62d2f7
 
 			}
 
