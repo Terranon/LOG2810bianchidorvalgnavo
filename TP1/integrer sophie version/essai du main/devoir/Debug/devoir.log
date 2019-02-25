@@ -1,0 +1,19 @@
+﻿  Agent.cpp
+c:\users\serge\desktop\dossiertest__serge\integrer sophie version\essai du main\devoir\agent.cpp(170): warning C4018: '<' : incompatibilité signed/unsigned
+c:\users\serge\desktop\dossiertest__serge\integrer sophie version\essai du main\devoir\agent.cpp(193): warning C4018: '<' : incompatibilité signed/unsigned
+c:\users\serge\desktop\dossiertest__serge\integrer sophie version\essai du main\devoir\agent.cpp(217): warning C4018: '<' : incompatibilité signed/unsigned
+c:\users\serge\desktop\dossiertest__serge\integrer sophie version\essai du main\devoir\agent.cpp(225): warning C4018: '<' : incompatibilité signed/unsigned
+c:\users\serge\desktop\dossiertest__serge\integrer sophie version\essai du main\devoir\agent.cpp(232): warning C4018: '<' : incompatibilité signed/unsigned
+c:\users\serge\desktop\dossiertest__serge\integrer sophie version\essai du main\devoir\agent.cpp(248): warning C4018: '<' : incompatibilité signed/unsigned
+c:\users\serge\desktop\dossiertest__serge\integrer sophie version\essai du main\devoir\agent.cpp(260): warning C4018: '<' : incompatibilité signed/unsigned
+c:\users\serge\desktop\dossiertest__serge\integrer sophie version\essai du main\devoir\agent.cpp(265): warning C4018: '<' : incompatibilité signed/unsigned
+c:\users\serge\desktop\dossiertest__serge\integrer sophie version\essai du main\devoir\agent.cpp(522): warning C4305: 'argument' : troncation de 'int' à 'char'
+c:\users\serge\desktop\dossiertest__serge\integrer sophie version\essai du main\devoir\agent.cpp(522): warning C4309: 'argument' : troncation de valeur de constante
+  Jeu.cpp
+c:\users\serge\desktop\dossiertest__serge\integrer sophie version\essai du main\devoir\jeu.cpp(78): warning C4101: 'e' : variable locale non référencée
+  main.cpp
+  Génération de code en cours...
+c:\users\serge\desktop\dossiertest__serge\integrer sophie version\essai du main\devoir\foncteur.h(37): warning C4715: 'Predicat::operator()' : les chemins de contrôle ne retournent pas tous une valeur
+c:\users\serge\desktop\dossiertest__serge\integrer sophie version\essai du main\devoir\foncteur.h(116): warning C4715: 'PredicatN::operator()' : les chemins de contrôle ne retournent pas tous une valeur
+c:\users\serge\desktop\dossiertest__serge\integrer sophie version\essai du main\devoir\foncteur.h(77): warning C4715: 'PredicatU::operator()' : les chemins de contrôle ne retournent pas tous une valeur
+  devoir.vcxproj -> C:\Users\serge\Desktop\dossiertest__serge\integrer sophie version\essai du main\Debug\devoir.exe

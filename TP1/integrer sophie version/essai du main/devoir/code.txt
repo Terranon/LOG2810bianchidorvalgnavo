@@ -1,0 +1,49 @@
+comprendre le code en 20 mins
+un tableau qui comporte 20 valeurs
+//une fois que le tableau 
+le petit tableau prend 20 valeurs 
+
+une fois qu'il atteint 20 valeurs on met dans le tableau generale la valeur moyenne contenu dans le petit tableau .
+
+
+pour connaitre les valeurs totales envoyes par le robot .on compte 
+puis on fera le nombre de valeurs diviser par192 caracer
+
+
+exemple le robot au cours du parcours lit 2000 valeurs 
+
+
+
+
+0n veut representer ses 2000 valeurs en un tableau de 200 caractères 
+-
+un caractere sera representer par (2000/200=10) valeurs
+on fera la moyenne de ces 10 valeurs qu'on gardera dans un tableau 
+
+
+
+2000 valeurs -> 100 caracteres
+avec chaque caractère etant la valeur moyenne de 10 valeurs .
+
+
+
+--comprendre le modele de fonctionnement 7
+
+
+//a 20 heures je dois pouvoir faire l'affichage avec les valeurs pour le capteurs gauche
+
+
+//verifier si les changements dans le tableau se font par valeur ou par copie ..elle se font par copie car en passage par copie , ce qui est copié est un shallow copy
+
+
+
+
+//comprendre le code lire distance --ou etre sur qu'il fonctiionne comme il faut 
+--pourquoi attendre 50ms avant de reprendre la route ....
+-30 im plique que 255-30=215
+les distances en cm est 72 cm 
+la premier valeurs est 7,2 
+//comprendre comment il a été intégrer au code puis faire l'affichage représentatif des valeurs qui ont été captés.
+
+
+///---
