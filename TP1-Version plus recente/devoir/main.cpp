@@ -71,6 +71,7 @@ int main() {
 						jeu.resetAgent();
 					}
 					Agent & agent = jeu.getAgent();
+					
 					agent.setTable(jeu.gettableauIndividu());
 					jeu.incrementer();
 					agent.QuestionCheveux('N');
