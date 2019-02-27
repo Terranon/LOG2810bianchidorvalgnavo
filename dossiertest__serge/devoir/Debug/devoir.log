@@ -1,0 +1,38 @@
+﻿  Agent.cpp
+c:\users\serge\desktop\git de tout les projet de cette session\log2810\log2810bianchidorvalgnavo\tp1\integrer sophie version\essai du main\devoir\agent.cpp(533): warning C4305: 'argument' : troncation de 'int' à 'char'
+c:\users\serge\desktop\git de tout les projet de cette session\log2810\log2810bianchidorvalgnavo\tp1\integrer sophie version\essai du main\devoir\agent.cpp(533): warning C4309: 'argument' : troncation de valeur de constante
+  chemin.cpp
+c:\users\serge\desktop\git de tout les projet de cette session\log2810\log2810bianchidorvalgnavo\tp1\integrer sophie version\essai du main\devoir\chemin.cpp(103): error C3867: 'std::_Tree<std::_Tmap_traits<_Kty,_Ty,_Pr,_Alloc,false>>::end' : syntaxe non-standard ; utilisez '&' pour créer un pointeur vers un membre
+          with
+          [
+              _Kty=std::pair<Individu *,Individu *>,
+              _Ty=int,
+              _Pr=std::less<std::pair<Individu *,Individu *>>,
+              _Alloc=std::allocator<std::pair<const std::pair<Individu *,Individu *>,int>>
+          ]
+c:\users\serge\desktop\git de tout les projet de cette session\log2810\log2810bianchidorvalgnavo\tp1\integrer sophie version\essai du main\devoir\chemin.cpp(103): error C2678: '!=' binaire : aucun opérateur trouvé qui accepte un opérande de partie gauche de type 'std::_Tree_iterator<std::_Tree_val<std::_Tree_simple_types<_Ty>>>' (ou il n'existe pas de conversion acceptable)
+          with
+          [
+              _Ty=std::pair<const std::pair<Individu *,Individu *>,int>
+          ]
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.15.26726\include\xtree(281): note: est peut-être 'bool std::_Tree_const_iterator<std::_Tree_val<std::_Tree_simple_types<_Ty>>>::operator !=(const std::_Tree_const_iterator<std::_Tree_val<std::_Tree_simple_types<_Ty>>> &) const'
+          with
+          [
+              _Ty=std::pair<const std::pair<Individu *,Individu *>,int>
+          ]
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.15.26726\include\system_error(306): note: ou       'bool std::operator !=(const std::error_condition &,const std::error_condition &) noexcept'
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.15.26726\include\system_error(301): note: ou       'bool std::operator !=(const std::error_condition &,const std::error_code &) noexcept'
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.15.26726\include\system_error(296): note: ou       'bool std::operator !=(const std::error_code &,const std::error_condition &) noexcept'
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.15.26726\include\system_error(291): note: ou       'bool std::operator !=(const std::error_code &,const std::error_code &) noexcept'
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.15.26726\include\exception(346): note: ou       'bool std::operator !=(const std::exception_ptr &,std::nullptr_t) noexcept'
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.15.26726\include\exception(341): note: ou       'bool std::operator !=(std::nullptr_t,const std::exception_ptr &) noexcept'
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.15.26726\include\exception(336): note: ou       'bool std::operator !=(const std::exception_ptr &,const std::exception_ptr &) noexcept'
+  c:\users\serge\desktop\git de tout les projet de cette session\log2810\log2810bianchidorvalgnavo\tp1\integrer sophie version\essai du main\devoir\chemin.cpp(103): note: lors de la tentative de mise en correspondance de la liste des arguments '(std::_Tree_iterator<std::_Tree_val<std::_Tree_simple_types<_Ty>>>, overloaded-function)'
+          with
+          [
+              _Ty=std::pair<const std::pair<Individu *,Individu *>,int>
+          ]
+  Génération de code en cours...
+c:\users\serge\desktop\git de tout les projet de cette session\log2810\log2810bianchidorvalgnavo\tp1\integrer sophie version\essai du main\devoir\foncteur.h(37): warning C4715: 'Predicat::operator()' : les chemins de contrôle ne retournent pas tous une valeur
+c:\users\serge\desktop\git de tout les projet de cette session\log2810\log2810bianchidorvalgnavo\tp1\integrer sophie version\essai du main\devoir\foncteur.h(116): warning C4715: 'PredicatN::operator()' : les chemins de contrôle ne retournent pas tous une valeur
+c:\users\serge\desktop\git de tout les projet de cette session\log2810\log2810bianchidorvalgnavo\tp1\integrer sophie version\essai du main\devoir\foncteur.h(77): warning C4715: 'PredicatU::operator()' : les chemins de contrôle ne retournent pas tous une valeur
