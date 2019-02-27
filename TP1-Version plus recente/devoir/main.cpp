@@ -32,6 +32,7 @@ int main() {
 
 	bool conditionboucle = true;
 	bool conditionA = false;
+	bool conditionC = false;
 	while (conditionboucle) {
 		Agent agent(jeu.gettableauIndividu());
 
@@ -65,25 +66,29 @@ int main() {
 			}
 			if (option == 'c') {
 
-				if (jeu.getnombrepartie() >= 1) {
-					jeu.resetAgent();
-					
+				if (conditionA) {
+					if (jeu.getnombrepartie() >= 1) {
+						jeu.resetAgent();
+					}
+					Agent & agent = jeu.getAgent();
+					agent.setTable(jeu.gettableauIndividu());
+					jeu.incrementer();
+					agent.QuestionCheveux('N');
+					conditionC = true;
 				}
-				Agent & agent = jeu.getAgent();
-				agent.setTable(jeu.gettableauIndividu());
-				jeu.incrementer();
-
-				//
-				//
-				//Agent agent(jeu.gettableauIndividu());
-				agent.QuestionCheveux('N');
-
+				else
+					cout << "L'option A doit avoir ete selectionner avant l'option C" << endl;
 				
 
 			}
 			if (option == 'd') {
-			
-				jeu.afficherResultat();
+
+				if (conditionC) {
+					jeu.afficherResultat();
+				}
+				else {
+					cout << "L'option C doit avoir ete selectionner avant l'option d" << endl;
+				}
 				
 			
 			}

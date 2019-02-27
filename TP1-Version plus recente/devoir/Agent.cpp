@@ -195,6 +195,30 @@ void Agent::ReduireListeSuspects(char reponse, string input, string caracteristi
 	}
 };
 
+bool Agent::verifierCorrection(string nom1, string nom2) {
+	ifstream fichier("Individus.txt");
+	if (fichier.fail()) {
+		throw exception("le fichier n'a pas reussi à être ouvert");
+	}
+	else {
+		string nom;
+		int count=0;
+
+		while (getline(fichier, nom)) {//tant qu'il reste autre chose que des espaces
+
+			if (nom1.compare(nom) == 0 || nom2.compare(nom)==0){
+				count++;
+			}
+		}
+		if (count == 2) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+}
+
 void Agent::Corriger() {
 	
 	cout << "Est ce correct?" << endl;
@@ -210,11 +234,17 @@ void Agent::Corriger() {
 		cout << "Entrer les nom des deux individus mysteres" << endl;
 		string nomMystere1 , nomMystere2;
 		cin >> nomMystere1 >> nomMystere2; // sauvegarder les noms dans une variable plus tard 
-		if (nomMystere1 != mystereGuess[0].getNom() && nomMystere1 != mystereGuess[1].getNom()) {
-			mystereNonDeviner.push_back(nomMystere1);
+		if (verifierCorrection(nomMystere1, nomMystere2)) {
+			if (nomMystere1 != mystereGuess[0].getNom() && nomMystere1 != mystereGuess[1].getNom()) {
+				mystereNonDeviner.push_back(nomMystere1);
+			}
+			if (nomMystere2 != mystereGuess[0].getNom() && nomMystere2 != mystereGuess[1].getNom()) {
+				mystereNonDeviner.push_back(nomMystere2);
+			}
 		}
-		if (nomMystere2 != mystereGuess[0].getNom() && nomMystere2 != mystereGuess[1].getNom()) {
-			mystereNonDeviner.push_back(nomMystere2);
+		else {
+			cout << ("Les noms des deux individus mysteres entres ne sont pas dans la liste d individus") << endl;
+			cin >> nomMystere1 >> nomMystere2;
 		}
 		mystereVrai.push_back(nomMystere1);
 		mystereVrai.push_back(nomMystere2);

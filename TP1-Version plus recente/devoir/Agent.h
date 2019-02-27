@@ -38,6 +38,7 @@ public:
 
 		void  deepCopierVector(vector<Individu*>&vector);
 
+		bool verifierCorrection(string nom1, string nom2);
 	
 
 	
