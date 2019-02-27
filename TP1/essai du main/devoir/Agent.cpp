@@ -1,21 +1,25 @@
 #include "Agent.h"
 #include <algorithm>
+
 #include<iostream>
 #include <exception>
 #include <string>
 #include <fstream>
 #include "individu.h"
 #include <vector>
+
 using namespace std;
 
 
 
 
 //Constructeur d'agent 
-Agent::Agent() {
+Agent::Agent(vector<Individu*>tab) {
 
-	tableauSuspect = lirefichiertexte("Individus.txt");
+	
 	questionCount = 0;
+<<<<<<< HEAD
+=======
 	Individu individuMystere1(" ", " ", " ", " ");
 	Individu individuMystere2(" ", " ", " ", " ");
 	vector<string> characteristic;
@@ -26,47 +30,34 @@ Agent::Agent() {
 	vector<Individu> mystereVrai;
 
 }
+>>>>>>> fc9f10546ca531d7a5fc6c31ec9460c97b62d2f7
 
-vector<Individu*> Agent::lirefichiertexte(string nomfichier) {
+	deepCopierVector(tab);// on copie tout les individu dans le tableau de suspect
 
-	ifstream fichier(nomfichier);//declaration du fichier en mode lecture et ouverture du fichier 
-
-	if (fichier.fail())
-		throw exception("le fichier n'a pas reussi à être ouvert");
-	else {
-
-		//si le fichier est un fichier de personnes --on peut manipuler cette partie de sorte les varaivle fichier de relation
-		if (nomfichier == "Individus.txt") {
-			string couleur_cheveux, couleur_yeux;
-
-			string genie;
-
-			//char genie[4];///on pourrait creer un tableau de char soit char genie[2]--mais cela génére un bug pour une raison que j,ignore alors j,AI PRÉFERER GARDER STRING
-
-			string nom;
-
-			while (!ws(fichier).eof()) {//tant qu'il reste autre chose que des espaces
-
-				fichier >> nom;
-				fichier >> couleur_cheveux;
-				fichier >> couleur_yeux;
-				fichier >> genie;
-
-				//creer un individu avec les caractéristiques ci dessus
-				Individu* individu = new Individu(nom, couleur_cheveux, couleur_yeux, genie);
-				tableauSuspect.push_back(individu);
-			}
-
-			fichier.close(); //si le fichier est un fichier de personnes
-		}
-
-		//si le fichier est un fichier de relation<iostream>
-	}
-
-
-	return tableauSuspect;
 
 }
+
+
+	/*
+		nom: deepCopierVector
+		paramètre: vector<Invidu*>&
+		type retour : void
+		fonction: effectue une deep copie d'un vecteur
+
+		*/
+	void  Agent::deepCopierVector(vector<Individu*>&vector) {
+
+
+		for (Individu* item : vector) {
+
+			Individu* individuTemp = new Individu(*item);
+			tableauSuspect.push_back(individuTemp);//mise à jour du vector
+		}
+
+	};
+
+ ///------------ voir ici en cas de erreur d'exécution 
+
 
 /*
 nom : incrementerCount
@@ -95,21 +86,35 @@ void Agent::IdentifierIndividus(char reponse, string input, string caracteristiq
 			//convertion du string input en string
 			auto debut = tableauSuspect.begin();
 			auto fin = tableauSuspect.end();
+<<<<<<< HEAD
+			
+			tableauSuspect.erase(remove_if(debut, fin, Predicat(caracteristique, input)), fin);
+
+=======
 				auto it = remove_if(debut, fin, Predicat(caracteristique, input));
 				tableauSuspect.erase(it, fin);// --------------------si ça n'execute pas regarder ici
 				individuMystere1.setCouleurCheveux(input);
 				individuMystere2.setCouleurCheveux(input);
+>>>>>>> fc9f10546ca531d7a5fc6c31ec9460c97b62d2f7
 		}
 
 		if (caracteristique == "yeux") {
 
 			auto debut = tableauSuspect.begin();
 			auto fin = tableauSuspect.end();
+<<<<<<< HEAD
+			
+			tableauSuspect.erase(remove_if(debut, fin, Predicat(caracteristique, input)), fin);// --------------------si ça n'execute pas regarder ici
+											  //tableauSuspect.erase(remove_if(debut, fin, predicat_yeux(*individu, input)), fin);// --------------------si ça n'execute pas regarder ici
+			
+
+=======
 				auto it = remove_if(debut, fin, Predicat(caracteristique, input));
 				tableauSuspect.erase(it, fin);// --------------------si ça n'execute pas regarder ici
 											  //tableauSuspect.erase(remove_if(debut, fin, predicat_yeux(*individu, input)), fin);// --------------------si ça n'execute pas regarder ici
 				individuMystere1.setCouleurYeux(input);
 				individuMystere2.setCouleurYeux(input);
+>>>>>>> fc9f10546ca531d7a5fc6c31ec9460c97b62d2f7
 
 
 		}
@@ -118,10 +123,16 @@ void Agent::IdentifierIndividus(char reponse, string input, string caracteristiq
 
 			auto debut = tableauSuspect.begin();
 			auto fin = tableauSuspect.end();
+<<<<<<< HEAD
+			
+				tableauSuspect.erase(remove_if(debut, fin, Predicat(caracteristique, input)), fin);// --------------------si ça n'execute pas regarder ici
+			
+=======
 				auto it = remove_if(debut, fin, Predicat(caracteristique, input));
 				tableauSuspect.erase(it, fin);// --------------------si ça n'execute pas regarder ici
 				individuMystere1.setGenie(input);
 				individuMystere2.setGenie(input);
+>>>>>>> fc9f10546ca531d7a5fc6c31ec9460c97b62d2f7
 		}
 
 		deviner=Deviner();
@@ -338,6 +349,10 @@ void Agent::QuestionCheveux(char input, Agent agent) {
 		}
 		break;
 		case 'B':
+<<<<<<< HEAD
+			{char rep1 = PoserQuestion("B", "cheveux", "blond", agent);
+			if (rep1 == 'o') {
+=======
 		{char rep1 = PoserQuestion("B", "cheveux", "blond", agent);
 		if (rep1 == 'o') {
 			CheveuxTrouver = true;
@@ -348,11 +363,28 @@ void Agent::QuestionCheveux(char input, Agent agent) {
 		else if (rep1=='u'){
 			uOption.push_back('B');
 			if (uOption.size() == 2) {
+>>>>>>> fc9f10546ca531d7a5fc6c31ec9460c97b62d2f7
 				CheveuxTrouver = true;
 			}
-			else {
+			else if (rep1 == 'n') {
 				input = 'R';
 			}
+<<<<<<< HEAD
+			else {
+				uOption.push_back('B');
+				if (uOption.size() == 2) {
+					CheveuxTrouver = true;
+				}
+				else {
+					input = 'R';
+				}
+			}
+		}
+		break;
+		case 'M':
+			{char rep2 = PoserQuestion("M", "cheveux", "marron", agent);
+			if (rep2 == 'o') {
+=======
 		}
 		else {
 			input = 'B';
@@ -370,11 +402,37 @@ void Agent::QuestionCheveux(char input, Agent agent) {
 		else if (rep2=='u'){
 			uOption.push_back('M');
 			if (uOption.size() == 2) {
+>>>>>>> fc9f10546ca531d7a5fc6c31ec9460c97b62d2f7
+				CheveuxTrouver = true;
+			}
+			else if (rep2 == 'n') {
+				input = 'B';
+			}
+<<<<<<< HEAD
+			else {
+				uOption.push_back('M');
+				if (uOption.size() == 2) {
+					CheveuxTrouver = true;
+				}
+				else {
+					input = 'B';
+				}
+			}
+		}
+		break;
+		case 'R':
+			{char rep3 = PoserQuestion("R", "cheveux", "roux", agent);
+			if (rep3 == 'o') {
 				CheveuxTrouver = true;
 			}
 			else {
-				input = 'B';
+				uOption.push_back('R');
+				if (uOption.size() == 2) {
+					CheveuxTrouver = true;
+				}
+				CheveuxTrouver = true;
 			}
+=======
 		}
 		else {
 			input = 'M';
@@ -396,6 +454,7 @@ void Agent::QuestionCheveux(char input, Agent agent) {
 		else {
 			input = 'R';
 		}
+>>>>>>> fc9f10546ca531d7a5fc6c31ec9460c97b62d2f7
 		}
 		break;
 		}

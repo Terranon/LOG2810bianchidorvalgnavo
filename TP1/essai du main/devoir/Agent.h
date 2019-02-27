@@ -1,13 +1,18 @@
-
+#pragma once
 #ifndef AGENT_H
 #define AGENT_H
 
 #include <iostream>
 #include <string>
 #include <vector>
+
+
+
+
 #include "individu.h"
 #include"foncteur.h"
-#include "reseauSociaux.h"
+
+
 
 using namespace std;
 class Agent {
@@ -16,8 +21,24 @@ class Agent {
 
 public:
 
-	Agent();
+	
+	    Agent(vector<Individu*>tab);
+		
 
+		void IdentifierIndividus( char reponse, string input, string caracteristique);
+		void incrementerCount();
+		void Deviner();
+		char PoserQuestion(string input, string caracteristique, string type, Agent agent);
+		void QuestionCheveux(char input, Agent agent);
+		void QuestionYeux(char input, Agent agent);
+		void QuestionGenie(char input, Agent agent);
+		void  deepCopierVector(vector<Individu*>&vector);
+
+	
+
+<<<<<<< HEAD
+	
+=======
 	vector<Individu*> lirefichiertexte(string nomfichier);
 	void IdentifierIndividus(char reponse, string input, string caracteristique);
 	void incrementerCount();
@@ -28,6 +49,7 @@ public:
 	void QuestionGenie(char input, Agent agent);
 	void affichage();
 	void Corriger();
+>>>>>>> fc9f10546ca531d7a5fc6c31ec9460c97b62d2f7
 
 private:
 	int questionCount;

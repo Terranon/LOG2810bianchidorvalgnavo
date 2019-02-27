@@ -1,19 +1,9 @@
 ﻿  Agent.cpp
-c:\users\serge\desktop\git de tout les projet de cette session\log2810\log2810bianchidorvalgnavo\tp1\essai du main\devoir\fonctions.h(165): warning C4101: 'e' : variable locale non référencée
-c:\users\serge\desktop\git de tout les projet de cette session\log2810\log2810bianchidorvalgnavo\tp1\essai du main\devoir\fonctions.h(227): warning C4018: '<' : incompatibilité signed/unsigned
-c:\users\serge\desktop\git de tout les projet de cette session\log2810\log2810bianchidorvalgnavo\tp1\essai du main\devoir\agent.cpp(175): warning C4018: '<' : incompatibilité signed/unsigned
-c:\users\serge\desktop\git de tout les projet de cette session\log2810\log2810bianchidorvalgnavo\tp1\essai du main\devoir\agent.cpp(192): warning C4018: '<' : incompatibilité signed/unsigned
-  main.cpp
-c:\users\serge\desktop\git de tout les projet de cette session\log2810\log2810bianchidorvalgnavo\tp1\essai du main\devoir\fonctions.h(165): warning C4101: 'e' : variable locale non référencée
-c:\users\serge\desktop\git de tout les projet de cette session\log2810\log2810bianchidorvalgnavo\tp1\essai du main\devoir\fonctions.h(227): warning C4018: '<' : incompatibilité signed/unsigned
-  Génération de code en cours...
-c:\users\serge\desktop\git de tout les projet de cette session\log2810\log2810bianchidorvalgnavo\tp1\essai du main\devoir\foncteur.h(32): warning C4715: 'Predicat::operator()' : les chemins de contrôle ne retournent pas tous une valeur
-c:\users\serge\desktop\git de tout les projet de cette session\log2810\log2810bianchidorvalgnavo\tp1\essai du main\devoir\foncteur.h(71): warning C4715: 'PredicatU::operator()' : les chemins de contrôle ne retournent pas tous une valeur
-c:\users\serge\desktop\git de tout les projet de cette session\log2810\log2810bianchidorvalgnavo\tp1\essai du main\devoir\foncteur.h(110): warning C4715: 'PredicatN::operator()' : les chemins de contrôle ne retournent pas tous une valeur
-main.obj : error LNK2005: "void __cdecl afficherReseauSocial(void)" (?afficherReseauSocial@@YAXXZ) déjà défini(e) dans Agent.obj
-main.obj : error LNK2005: "void __cdecl afficherSousGraph(class std::map<struct std::pair<class Individu *,class Individu *>,int,struct std::less<struct std::pair<class Individu *,class Individu *> >,class std::allocator<struct std::pair<struct std::pair<class Individu *,class Individu *> const ,int> > >)" (?afficherSousGraph@@YAXV?$map@U?$pair@PAVIndividu@@PAV1@@std@@HU?$less@U?$pair@PAVIndividu@@PAV1@@std@@@2@V?$allocator@U?$pair@$$CBU?$pair@PAVIndividu@@PAV1@@std@@H@std@@@2@@std@@@Z) déjà défini(e) dans Agent.obj
-main.obj : error LNK2005: "void __cdecl creerReseauSocial(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >)" (?creerReseauSocial@@YAXV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@0@Z) déjà défini(e) dans Agent.obj
-main.obj : error LNK2005: "void __cdecl deepCopierVector(class std::vector<class Individu *,class std::allocator<class Individu *> > &)" (?deepCopierVector@@YAXAAV?$vector@PAVIndividu@@V?$allocator@PAVIndividu@@@std@@@std@@@Z) déjà défini(e) dans Agent.obj
-main.obj : error LNK2005: "void __cdecl lirefichiertexte(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >)" (?lirefichiertexte@@YAXV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z) déjà défini(e) dans Agent.obj
-main.obj : error LNK2005: "char __cdecl selectionneroption(void)" (?selectionneroption@@YADXZ) déjà défini(e) dans Agent.obj
-C:\Users\serge\Desktop\git de tout les projet de cette session\log2810\LOG2810bianchidorvalgnavo\TP1\essai du main\Debug\devoir.exe : fatal error LNK1169: un ou plusieurs symboles définis à différentes reprises ont été rencontrés
+c:\users\serge\desktop\git de tout les projet de cette session\log2810\log2810bianchidorvalgnavo\tp1\essai du main\devoir\agent.cpp(198): warning C4018: '<' : incompatibilité signed/unsigned
+c:\users\serge\desktop\git de tout les projet de cette session\log2810\log2810bianchidorvalgnavo\tp1\essai du main\devoir\agent.cpp(213): warning C4018: '<' : incompatibilité signed/unsigned
+c:\users\serge\desktop\git de tout les projet de cette session\log2810\log2810bianchidorvalgnavo\tp1\essai du main\devoir\agent.cpp(407): warning C4305: 'argument' : troncation de 'int' à 'char'
+c:\users\serge\desktop\git de tout les projet de cette session\log2810\log2810bianchidorvalgnavo\tp1\essai du main\devoir\agent.cpp(407): warning C4309: 'argument' : troncation de valeur de constante
+c:\users\serge\desktop\git de tout les projet de cette session\log2810\log2810bianchidorvalgnavo\tp1\essai du main\devoir\foncteur.h(37): warning C4715: 'Predicat::operator()' : les chemins de contrôle ne retournent pas tous une valeur
+c:\users\serge\desktop\git de tout les projet de cette session\log2810\log2810bianchidorvalgnavo\tp1\essai du main\devoir\foncteur.h(115): warning C4715: 'PredicatN::operator()' : les chemins de contrôle ne retournent pas tous une valeur
+c:\users\serge\desktop\git de tout les projet de cette session\log2810\log2810bianchidorvalgnavo\tp1\essai du main\devoir\foncteur.h(76): warning C4715: 'PredicatU::operator()' : les chemins de contrôle ne retournent pas tous une valeur
+  devoir.vcxproj -> C:\Users\serge\Desktop\git de tout les projet de cette session\log2810\LOG2810bianchidorvalgnavo\TP1\essai du main\Debug\devoir.exe
