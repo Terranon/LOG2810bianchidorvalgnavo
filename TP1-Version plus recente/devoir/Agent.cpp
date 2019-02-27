@@ -7,6 +7,7 @@
 #include <fstream>
 #include "individu.h"
 #include <vector>
+#include "Jeu.h"
 
 using namespace std;
 
@@ -19,12 +20,13 @@ Agent::Agent() {
 
 	questionCount = 0;
 }
-Agent::Agent(vector<Individu*>tab) {
+Agent::Agent(vector<Individu*> tab) {
 
 	
 	questionCount = 0;
 
 	deepCopierVector(tab);// on copie tout les individu dans le tableau de suspect
+	deepCopierVectorIndividus(tab);//on copie tout les individus dans le tableau  individus qui ne sera pas modifiés
 	
 	Individu individuMystere1(" ", " ", " ", " ");
 	Individu individuMystere2(" ", " ", " ", " ");
@@ -40,9 +42,9 @@ Agent::Agent(vector<Individu*>tab) {
 Agent::~Agent() {};
 
 
-void Agent::setTable(vector<Individu*>tab) {
-	deepCopierVector(tab);// on copie tout les individu dans le tableau de suspect
-
+void Agent::setTable(vector<Individu*>&acopier) {
+	deepCopierVector(acopier);// on copie tout les individu dans le tableau de suspect
+	deepCopierVectorIndividus(acopier);
 }
 	/*
 		nom: deepCopierVector
@@ -52,10 +54,10 @@ void Agent::setTable(vector<Individu*>tab) {
 
 	*/
 
-	void  Agent::deepCopierVector(vector<Individu*>&vector) {
+	void  Agent::deepCopierVector(vector<Individu*>&acopier) {//vector est le tableau a copier et le tableau est le tableau quicontient les valeurs copiés
 
 
-		for (Individu* item : vector) {
+		for (Individu* item : acopier) {
 
 			Individu* individuTemp = new Individu(*item);
 			tableauSuspect.push_back(individuTemp);//mise à jour du vector
@@ -63,7 +65,16 @@ void Agent::setTable(vector<Individu*>tab) {
 
 	};
 
+	void  Agent::deepCopierVectorIndividus(vector<Individu*>&acopier) {//vector est le tableau a copier et le tableau est le tableau quicontient les valeurs copiés
 
+
+		for (Individu* item : acopier) {
+
+			Individu* individuTemp = new Individu(*item);
+			tableauIndividus.push_back(individuTemp);//mise à jour du vector
+		}
+
+	};
 
 
 /*
@@ -79,6 +90,10 @@ void Agent::incrementerCount() {
 	questionCount++;
 
 
+}
+
+vector<Individu*>Agent::gettableauSuspect(){
+	return tableauSuspect;
 }
 
 
@@ -196,27 +211,38 @@ void Agent::ReduireListeSuspects(char reponse, string input, string caracteristi
 };
 
 bool Agent::verifierCorrection(string nom1, string nom2) {
-	ifstream fichier("Individus.txt");
-	if (fichier.fail()) {
-		throw exception("le fichier n'a pas reussi à être ouvert");
-	}
-	else {
-		string nom;
-		int count=0;
+	//ifstream fichier("Individus.txt");
+	//if (fichier.fail()) {
+	//	throw exception("le fichier n'a pas reussi à être ouvert");
+	//}
+	//else {
+	//	string couleur_cheveux, couleur_yeux;
+	//	string genie;
+	//	string nom;
 
-		while (getline(fichier, nom)) {//tant qu'il reste autre chose que des espaces
+	//	while (!ws(fichier).eof()) {//tant qu'il reste autre chose que des espaces
 
-			if (nom1.compare(nom) == 0 || nom2.compare(nom)==0){
-				count++;
-			}
+	//		fichier >> nom;
+	//		fichier >> couleur_cheveux;
+	//		fichier >> couleur_yeux;
+	//		fichier >> genie;
+
+	//		tableauIndividus.push_back(nom);
+	//	}
+	//}
+
+	int count = 0;
+	for (int i = 0; i < tableauIndividus.size(); i++) {
+		if (nom1 == tableauIndividus[i]->getNom() || nom2 == tableauIndividus[i]->getNom()) {
+			count++;
 		}
+	}
 		if (count == 2) {
 			return true;
 		}
 		else {
 			return false;
 		}
-	}
 }
 
 void Agent::Corriger() {
@@ -234,18 +260,17 @@ void Agent::Corriger() {
 		cout << "Entrer les nom des deux individus mysteres" << endl;
 		string nomMystere1 , nomMystere2;
 		cin >> nomMystere1 >> nomMystere2; // sauvegarder les noms dans une variable plus tard 
-		if (verifierCorrection(nomMystere1, nomMystere2)) {
-			if (nomMystere1 != mystereGuess[0].getNom() && nomMystere1 != mystereGuess[1].getNom()) {
-				mystereNonDeviner.push_back(nomMystere1);
-			}
-			if (nomMystere2 != mystereGuess[0].getNom() && nomMystere2 != mystereGuess[1].getNom()) {
-				mystereNonDeviner.push_back(nomMystere2);
-			}
-		}
-		else {
+		while (verifierCorrection(nomMystere1, nomMystere2)==false) {
 			cout << ("Les noms des deux individus mysteres entres ne sont pas dans la liste d individus") << endl;
 			cin >> nomMystere1 >> nomMystere2;
 		}
+		if (nomMystere1 != mystereGuess[0].getNom() && nomMystere1 != mystereGuess[1].getNom()) {
+			mystereNonDeviner.push_back(nomMystere1);
+		}
+		if (nomMystere2 != mystereGuess[0].getNom() && nomMystere2 != mystereGuess[1].getNom()) {
+			mystereNonDeviner.push_back(nomMystere2);
+		}
+
 		mystereVrai.push_back(nomMystere1);
 		mystereVrai.push_back(nomMystere2);
 	}
