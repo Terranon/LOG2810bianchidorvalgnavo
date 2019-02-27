@@ -3,7 +3,7 @@
 using namespace std;
 
 Chemin::Chemin(Jeu& jeu) {
-	deepCopierVector(jeu.gettableauIndividu());
+	deepCopier(jeu.gettableauIndividu());
 }
 
 Chemin::~Chemin() {
@@ -26,35 +26,39 @@ void Chemin::deepCopier(vector <Individu*> tableauIndividu) {
 	setSousGraph(deepCopyOfVector);
 }
 
-void Chemin::enleverArcsUnCharacteristique(Individu* individuMystere1, Individu* individuMystere2, string characteristique) {
-	auto sousGraphIt = sousGraph_.begin();
-	for (sousGraphIt; sousGraphIt != sousGraph_.end(); sousGraphIt++) {
-		if (sousGraphIt->second != 0) {
-			if (sousGraphIt->first.first != individuMystere1 || sousGraphIt->first.first != individuMystere2
-				|| sousGraphIt->first.second != individuMystere1 || sousGraphIt->first.second != individuMystere2) {
-				if (sousGraphIt->first.first->getCouleurCheveux() == characteristique) {
-					if (sousGraphIt->first.second->getCouleurCheveux() == characteristique) {
-						sousGraphIt->second = 0;
+
+
+void Chemin::enleverArcsIndesirables(Individu* individuMystere1, Individu* individuMystere2,
+	string couleursCheveux, string couleursYeux, string genie) {
+
+	// cheveux indesirables
+	for (int i = 0; i < sousGraph_.size(); i++) {
+		auto itRelations = sousGraph_[i]->getDonneesRelation().begin();
+		for (itRelations; itRelations != sousGraph_[i]->getDonneesRelation().end(); itRelations++) {
+			if (itRelations->second != 0) {
+				if (sousGraph_[i] != individuMystere1 || sousGraph_[i] != individuMystere2
+					|| itRelations->first != individuMystere1 || itRelations->first != individuMystere2) {
+					// cheveux indesirables
+					if (sousGraph_[i]->getCouleurCheveux() == couleursCheveux
+						&& itRelations->first->getCouleurCheveux() == couleursCheveux) {
+						itRelations->second = 0;
+					}
+					// yeux indesirables
+					if (sousGraph_[i]->getCouleurYeux() == couleursYeux
+						&& itRelations->first->getCouleurYeux() == couleursYeux) {
+						itRelations->second = 0;
+					}
+					// genie indesirables
+					if (sousGraph_[i]->getGenie() == genie
+						&& itRelations->first->getGenie() == genie) {
+						itRelations->second = 0;
 					}
 				}
 			}
 		}
 	}
 }
-
-void Chemin::enleverArcsIndesirables(Individu* individuMystere1, Individu* individuMystere2,
-	string couleursCheveux, string couleursYeux, string genie) {
-
-	// cheveux indesirables
-	enleverArcsUnCharacteristique(individuMystere1, individuMystere2, couleursCheveux);
-
-	// yeux indesirables
-	enleverArcsUnCharacteristique(individuMystere1, individuMystere2, couleursYeux);
-
-	// genie indesirables
-	enleverArcsUnCharacteristique(individuMystere1, individuMystere2, genie);
-}
-
+/*
 pair<pair<Individu*, Individu*>, int> Chemin::trouverProchainePaire(Individu* individuPresent, Individu* pasCetIndividu) {
 	map<Individu*, int> relationsDUnIndividu = individuPresent->getDonneesRelation();
 	auto itRelations = relationsDUnIndividu.begin();
@@ -127,4 +131,4 @@ void Chemin::afficherSousGraph(map<pair<Individu*, Individu*>, int> unSousGraph)
 		cout << "(" << mapIt->first.first->getNom() << "," << mapIt->first.second->getNom() << ","
 			<< "(" << mapIt->second << ")" << ")" << endl;
 	}
-}
+}*/
