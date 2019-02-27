@@ -196,20 +196,21 @@ void Agent::ReduireListeSuspects(char reponse, string input, string caracteristi
 };
 
 bool Agent::verifierCorrection(string nom1, string nom2) {
-	ifstream fichier("Individu.txt");
-	if (fichier.fail())
+	ifstream fichier("Individus.txt");
+	if (fichier.fail()) {
 		throw exception("le fichier n'a pas reussi à être ouvert");
+	}
 	else {
 		string nom;
-		int offset;
+		int count=0;
 
 		while (getline(fichier, nom)) {//tant qu'il reste autre chose que des espaces
 
 			if (nom1.compare(nom) == 0 || nom2.compare(nom)==0){
-				offset++;
+				count++;
 			}
 		}
-		if (offset == 2) {
+		if (count == 2) {
 			return true;
 		}
 		else {
