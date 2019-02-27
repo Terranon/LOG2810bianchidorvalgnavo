@@ -18,12 +18,15 @@ Individu::Individu(string nom, string couleurCheveux, string couleurYeux, string
 
 }
 
-Individu::Individu(const Individu& individu) :
-	couleurYeux_(individu.getCouleurYeux()),
-	couleurCheveux_(individu.getCouleurCheveux()),
-	genie_(individu.getGenie()),
-	nom_(individu.getNom()) {
-
+Individu::Individu(Individu* individu) :
+	couleurYeux_(individu->getCouleurYeux()),
+	couleurCheveux_(individu->getCouleurCheveux()),
+	genie_(individu->getGenie()),
+	nom_(individu->getNom()) {
+	auto itRelations = individu->getDonneesRelation().begin();
+	for (itRelations; itRelations != individu->getDonneesRelation().end(); itRelations++) {
+		Individu* nouvelIndividu = new Individu(*itRelations->first);
+	}
 }
 
 string Individu::getCouleurYeux() const {

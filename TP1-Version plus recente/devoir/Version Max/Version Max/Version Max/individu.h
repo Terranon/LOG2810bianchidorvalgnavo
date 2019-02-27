@@ -12,7 +12,7 @@ using namespace std;
 class Individu {
 public:
 	Individu(string nom = "", string cheveux = " ", string couleurYeux = " ", string genie = "");
-	Individu(const Individu& individu);
+	Individu(Individu* individu);
 
 	string getCouleurYeux()const;
 	string getCouleurCheveux()const;

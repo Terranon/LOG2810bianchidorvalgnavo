@@ -7,6 +7,7 @@
 
 #include "Jeu.h"
 
+#include "chemin.h"
 using namespace std;
 
 ///créer une classe partie??
@@ -80,11 +81,16 @@ int main() {
 
 
 
+
+
 		}
 		if (option == 'd') {
 
 			jeu.afficherResultat();
-
+			Chemin chemin(jeu);
+			chemin.enleverArcsIndesirables(jeu.gettableauIndividu()[0],jeu.gettableauIndividu()[1],"N", "B", "GE");
+			
+			system("pause");
 
 		}
 		if (option == 'e')

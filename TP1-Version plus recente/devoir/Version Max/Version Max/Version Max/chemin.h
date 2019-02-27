@@ -18,8 +18,7 @@ public:
 
 	void deepCopier(vector <Individu*> tableauIndividu);
 
-	void enleverArcsUnCharacteristique(Individu* individuMystere1, Individu* individuMystere2, string characteristique);
-	void enleverArcsIndesirables(Individu* individuMystere1, Individu* individuMystere2, string couleursCheveux, string couleursYeux, string genie);
+	void enleverArcsIndesirables(Individu* individuMystere1, Individu* individuMystere2,string couleursCheveux, string couleursYeux, string genie);
 	/*
 	pair<pair<Individu*, Individu*>, int> trouverProchainePaire(Individu* individuPresent, Individu* pasCetIndividu);
 	map<pair<Individu*, Individu*>, int> trouverChaineContacts(Individu* individu1, Individu* individu2);
