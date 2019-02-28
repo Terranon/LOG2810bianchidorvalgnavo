@@ -25,8 +25,8 @@ Agent::Agent(vector<Individu*> tab) {
 	
 	questionCount = 0;
 
-	deepCopierVector(tab);// on copie tout les individu dans le tableau de suspect
-	deepCopierVectorIndividus(tab);//on copie tout les individus dans le tableau  individus qui ne sera pas modifiés
+	deepCopierVector(tab, tableauSuspect);// on copie tout les individu dans le tableau de suspect
+	deepCopierVector(tab, tableauIndividus);//on copie tout les individus dans le tableau  individus qui ne sera pas modifiés
 	
 	Individu individuMystere1(" ", " ", " ", " ");
 	Individu individuMystere2(" ", " ", " ", " ");
@@ -43,8 +43,8 @@ Agent::~Agent() {};
 
 
 void Agent::setTable(vector<Individu*>&acopier) {
-	deepCopierVector(acopier);// on copie tout les individu dans le tableau de suspect
-	deepCopierVectorIndividus(acopier);
+	deepCopierVector(acopier, tableauSuspect);// on copie tout les individu dans le tableau de suspect
+	deepCopierVector(acopier, tableauIndividus);
 }
 	/*
 		nom: deepCopierVector
@@ -54,27 +54,27 @@ void Agent::setTable(vector<Individu*>&acopier) {
 
 	*/
 
-	void  Agent::deepCopierVector(vector<Individu*>&acopier) {//vector est le tableau a copier et le tableau est le tableau quicontient les valeurs copiés
+	void  Agent::deepCopierVector(vector<Individu*>&acopier, vector <Individu*>& tableau) {//vector est le tableau a copier et le tableau est le tableau quicontient les valeurs copiés
 
 
 		for (Individu* item : acopier) {
 
 			Individu* individuTemp = new Individu(*item);
-			tableauSuspect.push_back(individuTemp);//mise à jour du vector
+			tableau.push_back(individuTemp);//mise à jour du vector
 		}
 
 	};
 
-	void  Agent::deepCopierVectorIndividus(vector<Individu*>&acopier) {//vector est le tableau a copier et le tableau est le tableau quicontient les valeurs copiés
+	//void  Agent::deepCopierVectorIndividus(vector<Individu*>&acopier) {//vector est le tableau a copier et le tableau est le tableau quicontient les valeurs copiés
 
 
-		for (Individu* item : acopier) {
+	//	for (Individu* item : acopier) {
 
-			Individu* individuTemp = new Individu(*item);
-			tableauIndividus.push_back(individuTemp);//mise à jour du vector
-		}
+	//		Individu* individuTemp = new Individu(*item);
+	//		tableauIndividus.push_back(individuTemp);//mise à jour du vector
+	//	}
 
-	};
+	//};
 
 
 /*
@@ -91,11 +91,6 @@ void Agent::incrementerCount() {
 
 
 }
-
-vector<Individu*>Agent::gettableauSuspect(){
-	return tableauSuspect;
-}
-
 
 
 
@@ -211,25 +206,6 @@ void Agent::ReduireListeSuspects(char reponse, string input, string caracteristi
 };
 
 bool Agent::verifierCorrection(string nom1, string nom2) {
-	//ifstream fichier("Individus.txt");
-	//if (fichier.fail()) {
-	//	throw exception("le fichier n'a pas reussi à être ouvert");
-	//}
-	//else {
-	//	string couleur_cheveux, couleur_yeux;
-	//	string genie;
-	//	string nom;
-
-	//	while (!ws(fichier).eof()) {//tant qu'il reste autre chose que des espaces
-
-	//		fichier >> nom;
-	//		fichier >> couleur_cheveux;
-	//		fichier >> couleur_yeux;
-	//		fichier >> genie;
-
-	//		tableauIndividus.push_back(nom);
-	//	}
-	//}
 
 	int count = 0;
 	for (int i = 0; i < tableauIndividus.size(); i++) {
