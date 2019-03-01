@@ -65,6 +65,7 @@ bool Chemin::aEteTraiter(Individu* unIndividu) {
 			aEteTraiter = true;
 		}
 	}
+	return aEteTraiter;
 }
 bool Chemin::aUnCheminFixe(Individu* unIndividu) {
 	bool aUnCheminFixe = false;
@@ -118,6 +119,13 @@ pair<vector<Individu*>, int> Chemin::trouverChaineContacts(Individu* individu1, 
 						cheminsFixe_[getPosDansCheminFixe(itRelations->first)] = make_pair(unChemin,longueurDuCheminLePlusCourt);
 					}
 				}
+				else {
+					unChemin = cheminsFixe_[getPosDansCheminFixe(sousGraph_[prochainIndividuATraiter])].first;
+					unChemin.push_back(itRelations->first);
+					longueurDuCheminLePlusCourt = cheminsFixe_[prochainIndividuATraiter].second + itRelations->second;
+					cheminsFixe_.push_back(make_pair(unChemin, longueurDuCheminLePlusCourt));
+				}
+				prochainIndividuATraiter = getPosDansSousGraph(itRelations->first);
 			}
 		}
 	}
