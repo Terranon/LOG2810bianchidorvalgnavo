@@ -34,9 +34,9 @@ public:
 		void QuestionGenie(char input);
 		void affichage();
 		void Corriger();
-		void  deepCopierVector(vector<Individu*>&acopier);
+		void  deepCopierVector(vector<Individu*>&acopier, vector <Individu*>& tableau);
 		bool verifierCorrection(string nom1, string nom2);
-		void  deepCopierVectorIndividus(vector<Individu*>&acopier);
+		//void  deepCopierVectorIndividus(vector<Individu*>&acopier);
 
 	
 

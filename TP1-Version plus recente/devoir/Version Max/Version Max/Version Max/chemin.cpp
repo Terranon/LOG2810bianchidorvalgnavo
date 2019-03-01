@@ -58,6 +58,20 @@ void Chemin::enleverArcsIndesirables(Individu* individuMystere1, Individu* indiv
 		}
 	}
 }
+
+void Chemin::trouverChaineContacts() {
+	// TODO
+	/*1. trouver point de depart (individu mystere1)
+	2. rajouter a individu traite
+	3. fixer chemin (a,0)
+	4. trouver tout individu en relation avec a
+	5. calculer chemin de (a,x)
+	6. verifier si il exist (a,...,x) plus court dans chemin fixer
+	6a. si oui rejeter nouveau chemin
+	6.b sinon remplacer dans chemin fixer
+	7. iterer jusqua' (a,...,z)
+	8. retourner (a,...,z)*/
+}
 /*
 pair<pair<Individu*, Individu*>, int> Chemin::trouverProchainePaire(Individu* individuPresent, Individu* pasCetIndividu) {
 	map<Individu*, int> relationsDUnIndividu = individuPresent->getDonneesRelation();
