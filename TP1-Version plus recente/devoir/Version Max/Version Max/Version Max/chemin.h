@@ -19,6 +19,12 @@ public:
 	void deepCopier(vector <Individu*> tableauIndividu);
 
 	void enleverArcsIndesirables(Individu* individuMystere1, Individu* individuMystere2,string couleursCheveux, string couleursYeux, string genie);
+	
+	bool aEteTraiter(Individu* unIndividu);
+	bool aUnCheminFixe(Individu* unIndividu);
+	int getPosDansCheminFixe(Individu* unIndividu);
+	int getPosDansSousGraph(Individu* unIndividu);
+	pair<vector<Individu*>, int> trouverChaineContacts(Individu* individu1, Individu* individu2);
 	/*
 	pair<pair<Individu*, Individu*>, int> trouverProchainePaire(Individu* individuPresent, Individu* pasCetIndividu);
 	map<pair<Individu*, Individu*>, int> trouverChaineContacts(Individu* individu1, Individu* individu2);
@@ -28,7 +34,6 @@ public:
 private:
 	vector<Individu*> sousGraph_;
 	vector<Individu*> individuTraite_;
-	vector<pair<vector<Individu*>, int>> cheminsFixe;
-	vector<pair<vector<Individu*>, int>> cheminsConnus;
+	vector<pair<vector<Individu*>, int>> cheminsFixe_;
 };
 #endif

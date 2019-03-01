@@ -58,20 +58,74 @@ void Chemin::enleverArcsIndesirables(Individu* individuMystere1, Individu* indiv
 		}
 	}
 }
-
-void Chemin::trouverChaineContacts() {
-	// TODO
-	/*1. trouver point de depart (individu mystere1)
-	2. rajouter a individu traite
-	3. fixer chemin (a,0)
-	4. trouver tout individu en relation avec a
-	5. calculer chemin de (a,x)
-	6. verifier si il exist (a,...,x) plus court dans chemin fixer
-	6a. si oui rejeter nouveau chemin
-	6.b sinon remplacer dans chemin fixer
-	7. iterer jusqua' (a,...,z)
-	8. retourner (a,...,z)*/
+bool Chemin::aEteTraiter(Individu* unIndividu) {
+	bool aEteTraiter = false;
+	for (int i = 0; i < individuTraite_.size(); i++) {
+		if (unIndividu == individuTraite_[i]) {
+			aEteTraiter = true;
+		}
+	}
 }
+bool Chemin::aUnCheminFixe(Individu* unIndividu) {
+	bool aUnCheminFixe = false;
+	for (int i = 0; i < cheminsFixe_.size(); i++) {
+		int dernierIndividuSurChemin = cheminsFixe_[i].first.size() - 1;
+		if (unIndividu == cheminsFixe_[i].first[dernierIndividuSurChemin]) {
+			aUnCheminFixe = true;
+		}
+	}
+	return aUnCheminFixe;
+}
+
+int Chemin::getPosDansCheminFixe(Individu* unIndividu) {
+	int i = 0;
+	for (i; i < cheminsFixe_.size(); i++) {
+		int dernierIndividuSurChemin = cheminsFixe_[i].first.size() - 1;
+		if (unIndividu == cheminsFixe_[i].first[dernierIndividuSurChemin]) {
+			break;
+		}
+	}
+	return i;
+}
+
+int Chemin::getPosDansSousGraph(Individu* unIndividu) {
+	int i = 0;
+	for (i; i < sousGraph_.size(); i++) {
+		if (unIndividu == sousGraph_[i]) {
+			break;
+		}
+	}
+	return i;
+}
+
+pair<vector<Individu*>, int> Chemin::trouverChaineContacts(Individu* individu1, Individu* individu2) {
+
+	vector<Individu*> unChemin;
+	int longueurDuCheminLePlusCourt = 0;
+	int prochainIndividuATraiter = getPosDansSousGraph(individu1);
+
+	// trouver tout les chemins connecte au prochain individu a traiter
+	while (!aEteTraiter(individu2)) {
+		if (!aEteTraiter(sousGraph_[prochainIndividuATraiter])) {
+			individuTraite_.push_back(sousGraph_[prochainIndividuATraiter]);
+			auto itRelations = sousGraph_[prochainIndividuATraiter]->getDonneesRelation().begin();
+			for (itRelations; itRelations != sousGraph_[prochainIndividuATraiter]->getDonneesRelation().end(); itRelations++) {
+				if (aUnCheminFixe(itRelations->first)) {
+					if (cheminsFixe_[prochainIndividuATraiter].second + itRelations->second < cheminsFixe_[getPosDansCheminFixe(itRelations->first)].second) {
+						unChemin = cheminsFixe_[getPosDansCheminFixe(sousGraph_[prochainIndividuATraiter])].first;
+						unChemin.push_back(itRelations->first);
+						longueurDuCheminLePlusCourt = cheminsFixe_[prochainIndividuATraiter].second + itRelations->second;
+						cheminsFixe_[getPosDansCheminFixe(itRelations->first)] = make_pair(unChemin,longueurDuCheminLePlusCourt);
+					}
+				}
+			}
+		}
+	}
+	return cheminsFixe_[getPosDansCheminFixe(individu2)];
+}
+
+
+
 /*
 pair<pair<Individu*, Individu*>, int> Chemin::trouverProchainePaire(Individu* individuPresent, Individu* pasCetIndividu) {
 	map<Individu*, int> relationsDUnIndividu = individuPresent->getDonneesRelation();
