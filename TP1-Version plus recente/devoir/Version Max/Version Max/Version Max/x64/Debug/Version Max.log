@@ -1,4 +1,7 @@
 ﻿  chemin.cpp
 c:\users\maximilien bianchi\documents\log2810bianchidorvalgnavo\tp1-version plus recente\devoir\version max\version max\version max\chemin.cpp(73): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
 c:\users\maximilien bianchi\documents\log2810bianchidorvalgnavo\tp1-version plus recente\devoir\version max\version max\version max\chemin.cpp(84): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  Generating Code...
+  Skipping... (no relevant changes detected)
+  main.cpp
   Version Max.vcxproj -> C:\Users\Maximilien Bianchi\Documents\LOG2810bianchidorvalgnavo\TP1-Version plus recente\devoir\Version Max\Version Max\x64\Debug\Version Max.exe

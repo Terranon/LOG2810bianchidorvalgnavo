@@ -104,32 +104,46 @@ pair<vector<Individu*>, int> Chemin::trouverChaineContacts(Individu* individu1, 
 	vector<Individu*> unChemin;
 	int longueurDuCheminLePlusCourt = 0;
 	int prochainIndividuATraiter = getPosDansSousGraph(individu1);
-
+	int nombreDIterationsVide = 0;
 	// trouver tout les chemins connecte au prochain individu a traiter
 	while (!aEteTraiter(individu2)) {
 		if (!aEteTraiter(sousGraph_[prochainIndividuATraiter])) {
 			individuTraite_.push_back(sousGraph_[prochainIndividuATraiter]);
 			auto itRelations = sousGraph_[prochainIndividuATraiter]->getDonneesRelation().begin();
 			for (itRelations; itRelations != sousGraph_[prochainIndividuATraiter]->getDonneesRelation().end(); itRelations++) {
-				if (aUnCheminFixe(itRelations->first)) {
-					if (cheminsFixe_[prochainIndividuATraiter].second + itRelations->second < cheminsFixe_[getPosDansCheminFixe(itRelations->first)].second) {
+				if (itRelations->second != 0) {
+					if (aUnCheminFixe(itRelations->first)) {
+						if (cheminsFixe_[prochainIndividuATraiter].second + itRelations->second < cheminsFixe_[getPosDansCheminFixe(itRelations->first)].second) {
+							unChemin = cheminsFixe_[getPosDansCheminFixe(sousGraph_[prochainIndividuATraiter])].first;
+							unChemin.push_back(itRelations->first);
+							longueurDuCheminLePlusCourt = cheminsFixe_[prochainIndividuATraiter].second + itRelations->second;
+							cheminsFixe_[getPosDansCheminFixe(itRelations->first)] = make_pair(unChemin, longueurDuCheminLePlusCourt);
+						}
+					}
+					else {
 						unChemin = cheminsFixe_[getPosDansCheminFixe(sousGraph_[prochainIndividuATraiter])].first;
 						unChemin.push_back(itRelations->first);
 						longueurDuCheminLePlusCourt = cheminsFixe_[prochainIndividuATraiter].second + itRelations->second;
-						cheminsFixe_[getPosDansCheminFixe(itRelations->first)] = make_pair(unChemin,longueurDuCheminLePlusCourt);
+						cheminsFixe_.push_back(make_pair(unChemin, longueurDuCheminLePlusCourt));
 					}
+					prochainIndividuATraiter = getPosDansSousGraph(itRelations->first);
 				}
-				else {
-					unChemin = cheminsFixe_[getPosDansCheminFixe(sousGraph_[prochainIndividuATraiter])].first;
-					unChemin.push_back(itRelations->first);
-					longueurDuCheminLePlusCourt = cheminsFixe_[prochainIndividuATraiter].second + itRelations->second;
-					cheminsFixe_.push_back(make_pair(unChemin, longueurDuCheminLePlusCourt));
-				}
-				prochainIndividuATraiter = getPosDansSousGraph(itRelations->first);
 			}
 		}
+		else {
+			nombreDIterationsVide++;
+		}
+		if (nombreDIterationsVide >= 4*sousGraph_.size()) {
+			break;
+		}
 	}
-	return cheminsFixe_[getPosDansCheminFixe(individu2)];
+	if (aUnCheminFixe(individu2)) {
+		return cheminsFixe_[getPosDansCheminFixe(individu2)];
+	}
+	else {
+		return cheminsFixe_[0];
+	}
+	
 }
 
 
