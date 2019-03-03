@@ -1,0 +1,16 @@
+﻿  Agent.cpp
+c:\users\serge\desktop\versionsopnie\devoir\tp1\project1\project1\agent.cpp(196): warning C4018: '<' : incompatibilité signed/unsigned
+c:\users\serge\desktop\versionsopnie\devoir\tp1\project1\project1\agent.cpp(215): warning C4018: '<' : incompatibilité signed/unsigned
+c:\users\serge\desktop\versionsopnie\devoir\tp1\project1\project1\agent.cpp(236): warning C4018: '<' : incompatibilité signed/unsigned
+c:\users\serge\desktop\versionsopnie\devoir\tp1\project1\project1\agent.cpp(273): warning C4018: '<' : incompatibilité signed/unsigned
+c:\users\serge\desktop\versionsopnie\devoir\tp1\project1\project1\agent.cpp(281): warning C4018: '<' : incompatibilité signed/unsigned
+c:\users\serge\desktop\versionsopnie\devoir\tp1\project1\project1\agent.cpp(288): warning C4018: '<' : incompatibilité signed/unsigned
+c:\users\serge\desktop\versionsopnie\devoir\tp1\project1\project1\agent.cpp(304): warning C4018: '<' : incompatibilité signed/unsigned
+c:\users\serge\desktop\versionsopnie\devoir\tp1\project1\project1\agent.cpp(316): warning C4018: '<' : incompatibilité signed/unsigned
+c:\users\serge\desktop\versionsopnie\devoir\tp1\project1\project1\agent.cpp(321): warning C4018: '<' : incompatibilité signed/unsigned
+c:\users\serge\desktop\versionsopnie\devoir\tp1\project1\project1\agent.cpp(578): warning C4305: 'argument' : troncation de 'int' à 'char'
+c:\users\serge\desktop\versionsopnie\devoir\tp1\project1\project1\agent.cpp(578): warning C4309: 'argument' : troncation de valeur de constante
+c:\users\serge\desktop\versionsopnie\devoir\tp1\project1\project1\foncteur.h(37): warning C4715: 'Predicat::operator()' : les chemins de contrôle ne retournent pas tous une valeur
+c:\users\serge\desktop\versionsopnie\devoir\tp1\project1\project1\foncteur.h(77): warning C4715: 'PredicatU::operator()' : les chemins de contrôle ne retournent pas tous une valeur
+c:\users\serge\desktop\versionsopnie\devoir\tp1\project1\project1\foncteur.h(116): warning C4715: 'PredicatN::operator()' : les chemins de contrôle ne retournent pas tous une valeur
+  Project1.vcxproj -> C:\Users\serge\Desktop\versionsopnie\devoir\TP1\Project1\Debug\Project1.exe
