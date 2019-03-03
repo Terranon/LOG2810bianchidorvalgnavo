@@ -17,6 +17,8 @@ public:
 	vector<Individu*>gettableauIndividu();
 	void resetAgent() { // on le reinitialise par defaut
 
+						//on delete les parametre de l'ancien agent pour éviter les fuite de mémoire ? 
+
 		Agent agentnouveau;
 		agent = agentnouveau;
 

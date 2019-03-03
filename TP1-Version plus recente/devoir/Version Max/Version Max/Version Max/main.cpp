@@ -6,13 +6,12 @@
 #include "Agent.h"
 
 #include "Jeu.h"
+
 #include "chemin.h"
 
 using namespace std;
 
-///créer une classe partie??
 
-///mettre les fonctions . h dans un fichiers et mettre également les classes individus dans un fichier
 char selectionneroption() {
 	char option;
 	cout << "(a) Creer le reseau social " << endl << "(b) Afficher le reseau social" << endl << "(c) Jouer a Qui est-ce?" << endl << "(d) Afficher le resultat" << endl << "(e) Quitter" << endl;
@@ -20,7 +19,7 @@ char selectionneroption() {
 	do {
 		cout << "Choissisez une option valide a l'aide de la lettre: e pour quitter par exemple " << endl;
 		cin >> option;
-		/// vérifier toutees les combinaisons possibles que pourrait faire l'employer . le mieux serait de faire un bloc catch
+
 
 	} while (option != 'a' && option != 'b' && option != 'c' && option != 'd' && option != 'e');
 
@@ -43,23 +42,23 @@ int main() {
 
 		if (option == 'a') { ///on peut utiliser des cases ici ou alors utiliser du polymorphisme option.faireoperation comportant des variables de selection afin d'ÉVITER LE IF OU LE CASE POUVANT ETRE DOTE DE BOOL OPTION VALIDER QUI SERA UNE VARIABLE PARTAGER PAR TOUTES LES CLASSES OPTIONS
 
-			cout << "Entrez le nom du premier fichier : ";
+			cout << "Entrez le nom du premier fichier (Individus.txt) : ";
 
 			cin >> nomfichier1;
-			cout << "Entrez le nom du deuxieme fichier : ";
+			cout << "Entrez le nom du deuxieme fichier (Relations.txt) : ";
 			cin >> nomfichier2;
 
-			//creerReseauSocial(nomfichier1,nomfichier2);
+
 			jeu.creerReseauSocial(nomfichier1, nomfichier2);
 
 			conditionA = true;
 
 		}
-		if (option == 'b') {  //si l'option a  avait déja été sélectionner et l'option b 
+		if (option == 'b') {
 
 			if (conditionA)
 
-				jeu.afficherReseauSocial(); //afficherReseauSocial();
+				jeu.afficherReseauSocial();
 
 			else
 				cout << "L'option A doit avoir ete selectionner avant l'option B" << endl;
@@ -68,14 +67,18 @@ int main() {
 		if (option == 'c') {
 
 			if (conditionA) {
+
 				if (jeu.getnombrepartie() >= 1) {
 					jeu.resetAgent();
 				}
-				Agent & agent = jeu.getAgent();
 
-				agent.setTable(jeu.gettableauIndividu());
+				Agent & agent = jeu.getAgent();
+				vector<Individu*>table = jeu.gettableauIndividu();
+				agent.setTable(table);
+
+
+				agent.demarrerjeu();
 				jeu.incrementer();
-				agent.QuestionCheveux('N');
 				conditionC = true;
 			}
 			else
@@ -92,9 +95,6 @@ int main() {
 				Individu* individuMystere1 = new Individu(agent.getIndividuMystere1());
 				Individu* individuMystere2 = new Individu(agent.getIndividuMystere2());
 				chemin.trouverChaineContacts(individuMystere1, individuMystere2);
-
-				system("pause");
-
 			}
 			else {
 				cout << "L'option C doit avoir ete selectionner avant l'option d" << endl;
@@ -111,8 +111,3 @@ int main() {
 
 }
 
-// a faire creer une classe individu et completer les fonctions lirefichier qui devront crer un individu et le mettre dans un tableau d'individu 
-
-// chaque classe individu a  un nom , des caracteristiques , et un tableau de voisins (qui sont des classes derivée d'individu qui ont une variable relation en plus  )
-
-//on part du fait que les fichiers de relations et de ... sont correctement rentré

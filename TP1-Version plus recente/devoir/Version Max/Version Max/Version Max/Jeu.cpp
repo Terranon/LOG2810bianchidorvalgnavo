@@ -4,16 +4,11 @@
 
 Jeu::Jeu() {
 
-	Agent();//appel d'agent par defaut.
+	Agent();
 	resultat = false;
 	nombre_partie = 0;
 }
 
-//void Jeu::copierAgent(Agent* agent) {
-//
-//	 
-//
-//};
 
 
 vector<Individu*>Jeu::gettableauIndividu() {
@@ -22,7 +17,7 @@ vector<Individu*>Jeu::gettableauIndividu() {
 
 char Jeu::selectionneroption() {
 	char option;
-	cout << "(a) Créer le reseau social " << endl << "(b) Afficher le reseau social" << endl << "(c) Jouer à Qui est-ce?" << endl << "(d) Afficher le resultat" << endl << "(e) Quitter" << endl;
+	cout << "(a) Creer le reseau social " << endl << "(b) Afficher le reseau social" << endl << "(c) Jouer a Qui est-ce?" << endl << "(d) Afficher le resultat" << endl << "(e) Quitter" << endl;
 
 	do {
 		cout << "Choissisez une option valide à l'aide de la lettre: e pour quitter par exemple " << endl;
@@ -214,7 +209,7 @@ void Jeu::afficherReseauSocial() {
 
 	for (Individu* individu : tableIndividus_) {
 
-		//pour chaque individu de ma tableIndividu  ---->  afficher l'individu et son voisin 
+		//pour chaque individu de  tableIndividu  ---->  afficher l'individu et son voisin 
 
 
 

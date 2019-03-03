@@ -25,9 +25,9 @@ Agent::Agent(vector<Individu*> tab) {
 
 	questionCount = 0;
 
-	deepCopierVector(tab, tableauSuspect);// on copie tout les individu dans le tableau de suspect
-	deepCopierVector(tab, tableauIndividus);//on copie tout les individus dans le tableau  individus qui ne sera pas modifiés
-
+	//deepCopierVector(tab, tableauSuspect);// on copie tout les individu dans le tableau de suspect
+	//deepCopierVector(tab, tableauIndividus);//on copie tout les individus dans le tableau  individus qui ne sera pas modifiés
+	setTable(tab);
 	Individu individuMystere1(" ", " ", " ", " ");
 	Individu individuMystere2(" ", " ", " ", " ");
 	vector<string> characteristic;
@@ -65,16 +65,7 @@ void  Agent::deepCopierVector(vector<Individu*>&acopier, vector <Individu*>& tab
 
 };
 
-//void  Agent::deepCopierVectorIndividus(vector<Individu*>&acopier) {//vector est le tableau a copier et le tableau est le tableau quicontient les valeurs copiés
 
-
-//	for (Individu* item : acopier) {
-
-//		Individu* individuTemp = new Individu(*item);
-//		tableauIndividus.push_back(individuTemp);//mise à jour du vector
-//	}
-
-//};
 
 
 /*
@@ -93,9 +84,24 @@ void Agent::incrementerCount() {
 }
 
 
+void Agent::demarrerjeu() {
+
+
+	cout << " Pour repondre aux questions qui suivent ,veuillez entrez 'o' pour oui pour les deux, 'n' pour non pour les deux , 's' pour afficher la liste de suspects , 'u' pour oui pour un seul individu " << endl;
+	trouverCheveux('N');
+
+
+};
+
+/*
+nom : ReduireListeSuspects
+retour : void
+type parametre : char,string,string
+fonction : elimine les individus de la liste de suspect en fonction de la réponse et des caracteristiques
+
+*/
 
 void Agent::ReduireListeSuspects(char reponse, string input, string caracteristique) {
-	//caracteristiques : cheveux , yeux et génie  //input c'est le type particulier soit de cheveux, de yeux , de génie 
 
 	switch (reponse) {
 	case 'o':
@@ -125,7 +131,7 @@ void Agent::ReduireListeSuspects(char reponse, string input, string caracteristi
 
 		}
 
-		deviner = Deviner();
+		deviner = devinerIndividusMysteres();
 
 
 	}
@@ -162,7 +168,7 @@ void Agent::ReduireListeSuspects(char reponse, string input, string caracteristi
 				characteristic.clear();		//remettre le tableau de caracteristiques a 0
 
 			}
-			deviner = Deviner();
+			deviner = devinerIndividusMysteres();
 
 		}
 
@@ -178,9 +184,8 @@ void Agent::ReduireListeSuspects(char reponse, string input, string caracteristi
 		auto debut = tableauSuspect.begin();
 		auto fin = tableauSuspect.end();
 
-		tableauSuspect.erase(remove_if(debut, fin, PredicatN(caracteristique, input)), fin);// --------------------si ça n'execute pas regarder ici
-
-		deviner = Deviner();
+		tableauSuspect.erase(remove_if(debut, fin, PredicatN(caracteristique, input)), fin);
+		deviner = devinerIndividusMysteres();
 
 
 	}
@@ -195,8 +200,7 @@ void Agent::ReduireListeSuspects(char reponse, string input, string caracteristi
 	default:
 	{
 		cout << "invalid input" << endl;
-		//char rep;
-		//cin >> rep;
+
 
 
 	}
@@ -205,7 +209,7 @@ void Agent::ReduireListeSuspects(char reponse, string input, string caracteristi
 	}
 };
 
-bool Agent::verifierCorrection(string nom1, string nom2) {
+bool Agent::validerCorrection(string nom1, string nom2) {
 
 	int count = 0;
 	for (int i = 0; i < tableauIndividus.size(); i++) {
@@ -225,34 +229,44 @@ void Agent::Corriger() {
 
 	cout << "Est ce correct?" << endl;
 	char answer;
-	cin >> answer;  // faire une gestion de mauvaise réponse 
-	if (answer == 'o') {
-		for (int i = 0; i < mystereGuess.size(); i++) {
-			mystereVrai.push_back(mystereGuess[i]);
-		}
-	}
+	do {
 
-	if (answer == 'n' || answer == 'u') {
-		cout << "Entrer les nom des deux individus mysteres" << endl;
-		string nomMystere1, nomMystere2;
-		cin >> nomMystere1 >> nomMystere2; // sauvegarder les noms dans une variable plus tard 
-		while (verifierCorrection(nomMystere1, nomMystere2) == false) {
-			cout << ("Les noms des deux individus mysteres entres ne sont pas dans la liste d individus") << endl;
-			cin >> nomMystere1 >> nomMystere2;
-		}
-		if (nomMystere1 != mystereGuess[0].getNom() && nomMystere1 != mystereGuess[1].getNom()) {
-			mystereNonDeviner.push_back(nomMystere1);
-		}
-		if (nomMystere2 != mystereGuess[0].getNom() && nomMystere2 != mystereGuess[1].getNom()) {
-			mystereNonDeviner.push_back(nomMystere2);
+		cin >> answer;  // faire une gestion de mauvaise réponse 
+		if (answer == 'o') {
+			for (int i = 0; i < mystereGuess.size(); i++) {
+				mystereVrai.push_back(mystereGuess[i]);
+			}
 		}
 
-		mystereVrai.push_back(nomMystere1);
-		mystereVrai.push_back(nomMystere2);
-	}
+		if (answer == 'n' || answer == 'u') {
+			cout << "Entrer les nom des deux individus mysteres" << endl;
+			string nomMystere1, nomMystere2;
+			cin >> nomMystere1 >> nomMystere2; // sauvegarder les noms dans une variable plus tard 
+			while (validerCorrection(nomMystere1, nomMystere2) == false) {
+				cout << ("veuillez entrez des noms d'individus présent dans la liste") << endl;
+				cin >> nomMystere1 >> nomMystere2;
+			}
+			if (nomMystere1 != mystereGuess[0].getNom() && nomMystere1 != mystereGuess[1].getNom()) {
+				mystereNonDeviner.push_back(nomMystere1);
+			}
+			if (nomMystere2 != mystereGuess[0].getNom() && nomMystere2 != mystereGuess[1].getNom()) {
+				mystereNonDeviner.push_back(nomMystere2);
+			}
+
+			mystereVrai.push_back(nomMystere1);
+			mystereVrai.push_back(nomMystere2);
+		}
+
+		if (!(answer == 'o' || answer == 'n' || answer == 'u')) {
+			cout << "invalid input!" << "Entrer 'o' pour oui, 'n' pour non ou 'u' pour un seul des individus identifies " << endl;
+
+
+		}
+	} while (!(answer == 'o' || answer == 'n' || answer == 'u'));//si answer n'est pas un caracter valide rester dans la boucle infini
+
 }
 
-bool Agent::Deviner() {
+bool Agent::devinerIndividusMysteres() {
 	bool arretQuestions = false;
 	if (tableauSuspect.size() == 2) { // si il reste deux individus dans le tableau 
 		cout << "Les individus mystere sont: " << endl;
@@ -314,9 +328,8 @@ void Agent::affichage() {
 	cout << endl;
 }
 
-char Agent::PoserQuestion(string input, string caracteristique, string type) {//---------------------------------------------------------reduire a un seul if
-
-	cout << "Est ce que les individus ont les " << caracteristique << " " << type << "?" << endl;
+char Agent::PoserQuestion(string input, string caracteristique, string type) {
+	cout << "Les individus ont ils  '" << type << "' pour caracteristique de type " << caracteristique << "?" << endl;
 	incrementerCount();//incrementer le compteur de question
 	char rpnse;
 	cin >> rpnse;
@@ -324,7 +337,7 @@ char Agent::PoserQuestion(string input, string caracteristique, string type) {//
 	return rpnse;
 }
 
-void Agent::QuestionCheveux(char input) {//traiterreponse
+void Agent::trouverCheveux(char input) {
 	bool CheveuxTrouver = false;
 	vector<char> uOption;
 	while (CheveuxTrouver == false) {
@@ -338,7 +351,7 @@ void Agent::QuestionCheveux(char input) {//traiterreponse
 			else if (rep == 'n') {
 				input = 'B';
 			}
-			else if (rep == 'u') {//on peut abreger ?
+			else if (rep == 'u') {
 				uOption.push_back('N');
 
 				//ajout de la condition pour sortir 
@@ -421,10 +434,10 @@ void Agent::QuestionCheveux(char input) {//traiterreponse
 		}
 	}
 
-	QuestionYeux('N');//on pose à l'agent une question au sujet des yeux une fois les cheveux trouvés
+	trouverYeux('N');//on pose à l'agent une question au sujet des yeux une fois les cheveux trouvés
 }
 
-void Agent::QuestionYeux(char input) {
+void Agent::trouverYeux(char input) {
 	vector<char> uOption;
 	bool YeuxTrouver = false;
 	while (YeuxTrouver == false) {
@@ -527,7 +540,8 @@ void Agent::QuestionYeux(char input) {
 				if (uOption.size() == 2) {
 					YeuxTrouver = true;
 				}
-				else//il faut un else --------------------------------------------------------------------------------------------------------->
+
+				else
 					input = 'G';
 			}
 			else {
@@ -561,10 +575,10 @@ void Agent::QuestionYeux(char input) {
 			return;
 		}
 	}
-	QuestionGenie('GE');//on pose à l'agent une question au suet du génie une fois les yeux trouvé
+	trouverGenie('GE');//on pose à l'agent une question au suet du génie une fois les yeux trouvé
 }
 
-void Agent::QuestionGenie(char input) {
+void Agent::trouverGenie(char input) {
 	vector<char> uOption;
 	bool GenieTrouver = false;
 	while (GenieTrouver == false) {
@@ -758,7 +772,7 @@ void Agent::QuestionGenie(char input) {
 				GenieTrouver = true;
 			}
 			else {
-				input = 'R';// l'etat qui suit devrait etre l'état du debut sinon boucle infini
+				input = 'R';
 			}
 		}
 		break;
@@ -768,11 +782,16 @@ void Agent::QuestionGenie(char input) {
 		}
 	}
 }
+
 Individu Agent::getIndividuMystere1() {
-	return individuMystere1;
+	
+
+	for (int i = 0; i < tableauIndividus.size(); i++) {
+		if myst
+	}
+	return mystereVrai[0];
 }
 Individu Agent::getIndividuMystere2() {
-	return individuMystere2;
+	return mystereVrai[1];
 }
 
-// idee mettre les caratyeristiques particuliere dans des vector et les parcourir...

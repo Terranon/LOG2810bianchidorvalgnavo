@@ -27,20 +27,19 @@ public:
 	void setTable(vector<Individu*>&acopier);
 	void ReduireListeSuspects(char reponse, string input, string caracteristique);
 	void incrementerCount();
-	bool Deviner();
+	bool devinerIndividusMysteres();
 	char PoserQuestion(string input, string caracteristique, string type);
-	void QuestionCheveux(char input);
-	void QuestionYeux(char input);
-	void QuestionGenie(char input);
+	void trouverCheveux(char input);
+	void trouverYeux(char input);
+	void trouverGenie(char input);
+	void demarrerjeu();
 	void affichage();
 	void Corriger();
 	void  deepCopierVector(vector<Individu*>&acopier, vector <Individu*>& tableau);
-	bool verifierCorrection(string nom1, string nom2);
+	bool validerCorrection(string nom1, string nom2);
 
 	Individu getIndividuMystere1();
 	Individu getIndividuMystere2();
-	//void  deepCopierVectorIndividus(vector<Individu*>&acopier);
-
 
 
 private:
