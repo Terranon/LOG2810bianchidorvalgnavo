@@ -7,6 +7,7 @@
 #include <fstream>
 #include "individu.h"
 #include <vector>
+#include "Jeu.h"
 
 using namespace std;
 
@@ -19,12 +20,13 @@ Agent::Agent() {
 
 	questionCount = 0;
 }
-Agent::Agent(vector<Individu*>tab) {
+Agent::Agent(vector<Individu*> tab) {
 
 
 	questionCount = 0;
 
-	deepCopierVector(tab);// on copie tout les individu dans le tableau de suspect
+	deepCopierVector(tab, tableauSuspect);// on copie tout les individu dans le tableau de suspect
+	deepCopierVector(tab, tableauIndividus);//on copie tout les individus dans le tableau  individus qui ne sera pas modifiés
 
 	Individu individuMystere1(" ", " ", " ", " ");
 	Individu individuMystere2(" ", " ", " ", " ");
@@ -40,9 +42,9 @@ Agent::Agent(vector<Individu*>tab) {
 Agent::~Agent() {};
 
 
-void Agent::setTable(vector<Individu*>tab) {
-	deepCopierVector(tab);// on copie tout les individu dans le tableau de suspect
-
+void Agent::setTable(vector<Individu*>&acopier) {
+	deepCopierVector(acopier, tableauSuspect);// on copie tout les individu dans le tableau de suspect
+	deepCopierVector(acopier, tableauIndividus);
 }
 /*
 nom: deepCopierVector
@@ -52,18 +54,27 @@ fonction: effectue une deep copie d'un vecteur
 
 */
 
-void  Agent::deepCopierVector(vector<Individu*>&vector) {
+void  Agent::deepCopierVector(vector<Individu*>&acopier, vector <Individu*>& tableau) {//vector est le tableau a copier et le tableau est le tableau quicontient les valeurs copiés
 
 
-	for (Individu* item : vector) {
+	for (Individu* item : acopier) {
 
 		Individu* individuTemp = new Individu(*item);
-		tableauSuspect.push_back(individuTemp);//mise à jour du vector
+		tableau.push_back(individuTemp);//mise à jour du vector
 	}
 
 };
 
+//void  Agent::deepCopierVectorIndividus(vector<Individu*>&acopier) {//vector est le tableau a copier et le tableau est le tableau quicontient les valeurs copiés
 
+
+//	for (Individu* item : acopier) {
+
+//		Individu* individuTemp = new Individu(*item);
+//		tableauIndividus.push_back(individuTemp);//mise à jour du vector
+//	}
+
+//};
 
 
 /*
@@ -80,7 +91,6 @@ void Agent::incrementerCount() {
 
 
 }
-
 
 
 
@@ -195,6 +205,22 @@ void Agent::ReduireListeSuspects(char reponse, string input, string caracteristi
 	}
 };
 
+bool Agent::verifierCorrection(string nom1, string nom2) {
+
+	int count = 0;
+	for (int i = 0; i < tableauIndividus.size(); i++) {
+		if (nom1 == tableauIndividus[i]->getNom() || nom2 == tableauIndividus[i]->getNom()) {
+			count++;
+		}
+	}
+	if (count == 2) {
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+
 void Agent::Corriger() {
 
 	cout << "Est ce correct?" << endl;
@@ -210,12 +236,17 @@ void Agent::Corriger() {
 		cout << "Entrer les nom des deux individus mysteres" << endl;
 		string nomMystere1, nomMystere2;
 		cin >> nomMystere1 >> nomMystere2; // sauvegarder les noms dans une variable plus tard 
+		while (verifierCorrection(nomMystere1, nomMystere2) == false) {
+			cout << ("Les noms des deux individus mysteres entres ne sont pas dans la liste d individus") << endl;
+			cin >> nomMystere1 >> nomMystere2;
+		}
 		if (nomMystere1 != mystereGuess[0].getNom() && nomMystere1 != mystereGuess[1].getNom()) {
 			mystereNonDeviner.push_back(nomMystere1);
 		}
 		if (nomMystere2 != mystereGuess[0].getNom() && nomMystere2 != mystereGuess[1].getNom()) {
 			mystereNonDeviner.push_back(nomMystere2);
 		}
+
 		mystereVrai.push_back(nomMystere1);
 		mystereVrai.push_back(nomMystere2);
 	}
@@ -736,6 +767,12 @@ void Agent::QuestionGenie(char input) {
 			return;
 		}
 	}
+}
+Individu Agent::getIndividuMystere1() {
+	return individuMystere1;
+}
+Individu Agent::getIndividuMystere2() {
+	return individuMystere2;
 }
 
 // idee mettre les caratyeristiques particuliere dans des vector et les parcourir...

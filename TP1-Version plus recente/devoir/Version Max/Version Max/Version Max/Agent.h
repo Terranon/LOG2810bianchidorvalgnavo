@@ -22,10 +22,9 @@ class Agent {
 public:
 
 	Agent();
-	Agent(vector<Individu*>tab);
+	Agent(vector<Individu*> tab);
 	~Agent();
-	void setTable(vector<Individu*>tab);
-
+	void setTable(vector<Individu*>&acopier);
 	void ReduireListeSuspects(char reponse, string input, string caracteristique);
 	void incrementerCount();
 	bool Deviner();
@@ -35,10 +34,12 @@ public:
 	void QuestionGenie(char input);
 	void affichage();
 	void Corriger();
+	void  deepCopierVector(vector<Individu*>&acopier, vector <Individu*>& tableau);
+	bool verifierCorrection(string nom1, string nom2);
 
-	void  deepCopierVector(vector<Individu*>&vector);
-
-
+	Individu getIndividuMystere1();
+	Individu getIndividuMystere2();
+	//void  deepCopierVectorIndividus(vector<Individu*>&acopier);
 
 
 
@@ -46,7 +47,9 @@ private:
 	int questionCount;
 
 	bool deviner;
+
 	vector <Individu*> tableauSuspect;
+	vector<Individu*> tableauIndividus;
 	vector<string> characteristic;
 	vector<string> characteristicGenie;
 	vector<string> characteristicYeux;

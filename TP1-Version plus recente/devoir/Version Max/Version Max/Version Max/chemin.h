@@ -25,11 +25,9 @@ public:
 	int getPosDansCheminFixe(Individu* unIndividu);
 	int getPosDansSousGraph(Individu* unIndividu);
 	pair<vector<Individu*>, int> trouverChaineContacts(Individu* individu1, Individu* individu2);
-	/*
-	pair<pair<Individu*, Individu*>, int> trouverProchainePaire(Individu* individuPresent, Individu* pasCetIndividu);
-	map<pair<Individu*, Individu*>, int> trouverChaineContacts(Individu* individu1, Individu* individu2);
-	void afficherSousGraph(map<pair<Individu*, Individu*>, int> sousGraph);
-	*/
+
+	void afficherLeMeilleureChemin(pair<vector<Individu*>, int> leMeilleurChemin);
+
 
 private:
 	vector<Individu*> sousGraph_;

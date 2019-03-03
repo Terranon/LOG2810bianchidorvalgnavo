@@ -14,7 +14,7 @@ public:
 	Jeu();
 
 	//void copierAgent(Agent* agent);
-	vector<Individu*>gettableauIndividu() const;
+	vector<Individu*>gettableauIndividu();
 	void resetAgent() { // on le reinitialise par defaut
 
 		Agent agentnouveau;

@@ -16,7 +16,7 @@ Jeu::Jeu() {
 //};
 
 
-vector<Individu*>Jeu::gettableauIndividu() const {
+vector<Individu*>Jeu::gettableauIndividu() {
 	return tableIndividus_;
 }
 
