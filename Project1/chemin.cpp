@@ -33,6 +33,9 @@ void Chemin::deepCopier(vector <Individu*> tableauIndividu) {
 void Chemin::enleverArcsIndesirables(Individu* individuMystere1, Individu* individuMystere2,
 	string couleursCheveux, string couleursYeux, string genie) {
 
+	cheveuxIndesirable_ = couleursCheveux;
+	yeuxIndesirable_ = couleursYeux;
+	genieIndesirable_ = genie;
 	// cheveux indesirables
 	for (int i = 0; i < sousGraph_.size(); i++) {
 		auto itRelations = sousGraph_[i]->getDonneesRelation().begin();
@@ -172,79 +175,19 @@ void Chemin::afficherLeMeilleureChemin(pair<vector<Individu*>, int> leMeilleurCh
 	}
 }
 
-
-
-/*
-pair<pair<Individu*, Individu*>, int> Chemin::trouverProchainePaire(Individu* individuPresent, Individu* pasCetIndividu) {
-	map<Individu*, int> relationsDUnIndividu = individuPresent->getDonneesRelation();
-	auto itRelations = relationsDUnIndividu.begin();
-	int uneRelation;
-	int meilleurRelation = itRelations->second; // attrapper la premiere relation
-	Individu* prochainIndividu = new Individu(*itRelations->first); // savoir c'est qui
-	for (itRelations; itRelations != individuPresent->getDonneesRelation().end(); itRelations++) {
-		if (itRelations->first->getNom() != pasCetIndividu->getNom()) { // eviter individu indesirables
-			uneRelation = itRelations->second;
-			if (uneRelation < meilleurRelation && uneRelation != 0) { // prendre la meilleur relation
-				meilleurRelation = uneRelation;
-				prochainIndividu = new Individu(*itRelations->first);
-			}
+void Chemin::afficherSousGraph() {
+	cout << "Le Sous Graph est: " << endl;
+	for (int i = 0; i < sousGraph_.size(); i++) {
+		auto it = sousGraph_[i]->getDonneesRelation().begin();
+		for (it; it != sousGraph_[i]->getDonneesRelation().end(); it++) {
+			cout << "(" << sousGraph_[i]->getNom() << ", " << it->first->getNom() << " (" << it->second << "))" << endl;
 		}
 	}
-	return make_pair(make_pair(individuPresent, prochainIndividu), meilleurRelation);
 }
 
-map<pair<Individu*, Individu*>, int> Chemin::trouverChaineContacts(Individu* individu1, Individu* individu2) {
-	// trouver la meilleur relation d'Individu1 qui est la prochaine paire
-
-	// la pair creer consiste de:
-	// clef:
-	// l'individu entre en parametre dans la fonction trouver prochainePaire,
-	// l'individu qui a la meilleur relation
-	// valeur:
-	// la valeur de leur relation
-	pair<pair<Individu*, Individu*>, int> prochainePaire = trouverProchainePaire(individu1, NULL);
-	// Un vecteur contenant tout les individus qui sont des "bad nodes"
-	vector<Individu*> pasCesIndividus;
-
-	// verifier si la relation dans le sous graph a ete elimine
-	while (sousGraph_.at(prochainePaire.first) == 0) {
-		Individu* pasCetIndividu = prochainePaire.first.second;
-		vector<Individu*> pasCesIndividus;
-		pasCesIndividus.push_back(pasCetIndividu);
-		prochainePaire = trouverProchainePaire(individu1, pasCetIndividu);
-	}
-
-	
-
-	map<pair<Individu*, Individu*>, int> chemin;
-	chemin.insert(prochainePaire);
-
-	if (prochainePaire.first.second->getNom() != individu2->getNom()) {
-		while (true) {
-
-		}
-		auto cheminIt = chemin.begin();
-		for (cheminIt; cheminIt != chemin.end(); cheminIt++) {
-			prochainePaire = trouverProchainePaire(cheminIt->first.second, NULL);
-			while (sousGraph_.at(prochainePaire.first) == 0) {
-				Individu* indesirable = prochainePaire.first.second;
-				prochainePaire = trouverProchainePaire(individu1, indesirable);
-			}
-			if (prochainePaire.first.second->getNom() != individu2->getNom()) {
-				chemin[prochainePaire.first] = prochainePaire.second;
-			}
-			else {
-				cheminIt = chemin.end();
-			}
-		}
-	}
-	return chemin;
+void Chemin::afficherLesTroisIndesirables() {
+	cout << "Les trois caracteristiques indesirables sont: " << endl;
+	cout << "Cheveux: " << cheveuxIndesirable_ << endl;
+	cout << "Yeux: " << yeuxIndesirable_ << endl;
+	cout << "Genie: " << genieIndesirable_ << endl;
 }
-
-void Chemin::afficherSousGraph(map<pair<Individu*, Individu*>, int> unSousGraph) {
-	auto mapIt = unSousGraph.begin();
-	for (mapIt; mapIt != unSousGraph.end(); mapIt++) {
-		cout << "(" << mapIt->first.first->getNom() << "," << mapIt->first.second->getNom() << ","
-			<< "(" << mapIt->second << ")" << ")" << endl;
-	}
-}*/

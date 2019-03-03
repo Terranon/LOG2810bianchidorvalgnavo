@@ -26,6 +26,8 @@ public:
 	int getPosDansSousGraph(Individu* unIndividu);
 	pair<vector<Individu*>, int> trouverChaineContacts(Individu* individu1, Individu* individu2);
 
+	void afficherSousGraph();
+	void afficherLesTroisIndesirables();
 	void afficherLeMeilleureChemin(pair<vector<Individu*>, int> leMeilleurChemin);
 
 
@@ -33,5 +35,8 @@ private:
 	vector<Individu*> sousGraph_;
 	vector<Individu*> individuTraite_;
 	vector<pair<vector<Individu*>, int>> cheminsFixe_;
+	string cheveuxIndesirable_;
+	string yeuxIndesirable_;
+	string genieIndesirable_;
 };
 #endif
