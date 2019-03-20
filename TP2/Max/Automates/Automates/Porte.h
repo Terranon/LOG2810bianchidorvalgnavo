@@ -4,6 +4,7 @@
 #include <string>
 #include <vector>
 #include <map>
+#include <fstream>
 
 using namespace std;
 
@@ -13,13 +14,14 @@ public:
 	~Porte();
 
 	void genererAutomate();
+	void lireFichier(string nomDuFichier);
 	bool validerPorte(string motDePasse);
 	bool getEstGouffre();
 
 private:
 	string nom_;
 	//  etat courant --------input---prochain etat
-	map<string, vector<pair<string, string>>> regles_;
+	map<char, vector<pair<char, char>>> regles_;
 	// nom D'une Porte---mot de passe---validiter(true == valide, false == non-valide)
 	vector<pair<string, pair<string, bool>>> portesConnectes_;
 	bool estGouffre_;
