@@ -13,14 +13,14 @@ public:
 	Porte(fstream& porte);
 	~Porte();
 
-	void genererAutomate();
-	void lireFichier(string nomDuFichier);
+	void genererAutomate(string nomDuFichier);
 	bool validerPorte(string motDePasse);
+	void verifierSiGouffre();
 	bool getEstGouffre();
 
 private:
 	string nom_;
-	//  etat courant --------input---prochain etat
+	//  etat courant ----input---prochain etat
 	map<char, vector<pair<char, char>>> regles_;
 	// nom D'une Porte---mot de passe---validiter(true == valide, false == non-valide)
 	vector<pair<string, pair<string, bool>>> portesConnectes_;

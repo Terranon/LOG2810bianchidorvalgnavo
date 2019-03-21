@@ -10,7 +10,7 @@ int main() {
 	Porte porte(fichier);
 	string nomfichier;
 	cin >> nomfichier;
-	porte.lireFichier(nomfichier);
+	porte.genererAutomate(nomfichier);
 
 
 
