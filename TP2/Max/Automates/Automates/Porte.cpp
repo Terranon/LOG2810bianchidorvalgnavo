@@ -50,13 +50,7 @@ void Porte::genererAutomate(string nomDuFichier) {
 					entreEtProchainEtat = make_pair(' ', ' ');
 				}
 				else if (lesReglesDivises[j].size() == 2) {
-					if (isupper(lesReglesDivises[j][1])) {
-						entreEtProchainEtat = make_pair(' ', lesReglesDivises[j][1]);
-					}
-					else {
-						entreEtProchainEtat = make_pair(lesReglesDivises[j][1], ' ');
-					}
-
+					entreEtProchainEtat = make_pair(lesReglesDivises[j][1], ' ');
 				}
 				else {
 					entreEtProchainEtat = make_pair(lesReglesDivises[j][1], lesReglesDivises[j][2]);
@@ -70,12 +64,7 @@ void Porte::genererAutomate(string nomDuFichier) {
 					entreEtProchainEtat = make_pair(' ', ' ');
 				}
 				else if (lesReglesDivises[j].size() == 2) {
-					if (isupper(lesReglesDivises[j][1])) {
-						entreEtProchainEtat = make_pair(' ', lesReglesDivises[j][1]);
-					}
-					else {
-						entreEtProchainEtat = make_pair(lesReglesDivises[j][1], ' ');
-					}
+					entreEtProchainEtat = make_pair(lesReglesDivises[j][1], ' ');
 				}
 				else {
 					entreEtProchainEtat = make_pair(lesReglesDivises[j][1], lesReglesDivises[j][2]);
@@ -98,6 +87,7 @@ void Porte::genererAutomate(string nomDuFichier) {
 			}
 			else {
 				int i = 0;
+				// mot de passe
 				for (i; i < motDePasseEtPorte.size(); i++) {
 					if (motDePasseEtPorte[i] != ' ') {
 						motDePasse += motDePasseEtPorte[i];
@@ -106,9 +96,11 @@ void Porte::genererAutomate(string nomDuFichier) {
 						break;
 					}
 				}
+				// sauter des espaces
 				while (motDePasseEtPorte[i] == ' ') {
 					i++;
 				}
+				// nomDePorte
 				for (int j = i; j < motDePasseEtPorte.size(); j++) {
 					if (motDePasseEtPorte[j] != ' ') {
 						nomDePorte += motDePasseEtPorte[j];
@@ -124,27 +116,29 @@ void Porte::genererAutomate(string nomDuFichier) {
 	}
 }
 bool Porte::validerPorte(string motDePasse) {
-	bool estValide = true; 
 	char prochainEtat = 'S';
+	int taillemotdepassevalide = 0;
 	for (int i = 0; i < motDePasse.size(); i++) {
-		if (prochainEtat == ' ') {
-			estValide == false;
-			break;
-		}
+
 		for (int j = 0; j < regles_.at(prochainEtat).size(); j++) {
 			if (motDePasse[i] == regles_.at(prochainEtat)[j].first) {
 				prochainEtat = regles_.at(prochainEtat)[j].second;
+				taillemotdepassevalide++;
 				break;
 			}
-			else {
-				estValide = false;
+
+		}
+
+		if (prochainEtat == ' ') {
+			if (motDePasse.size() != taillemotdepassevalide || motDePasse[i] != motDePasse[motDePasse.size() - 1]) {//si le mot qui constitue l'automate est different du mot de passe
+				return false;
 			}
+
+			return true;
 		}
-		if (estValide == false) {
-			break;
-		}
+
 	}
-	return estValide;
+	return false;
 }
 
 void Porte::verifierSiGouffre() {
@@ -159,4 +153,39 @@ void Porte::verifierSiGouffre() {
 
 bool Porte::getEstGouffre() {
 	return estGouffre_;
+}
+
+//bool Porte::affronterBoss(vector<Porte*> chemin) {
+//	for (int i = 0; i < getPorteConnecter().size(); i++) {
+//		if (chemin[]->getPorteConnecter().first)
+//	}
+//}
+
+vector<pair<string, pair<string, bool>>> Porte::getPorteConnecter() {
+	return portesConnectes_;
+}
+
+
+void Porte::afficherPorte() {
+	cout << "a. " << nom_ << endl;
+	cout << "b. ";
+	for (int i = 0; i < portesConnectes_.size(); i++) {
+		string valide = "";
+		if (portesConnectes_[i].second.second) {
+			valide = "valide";
+		}
+		else {
+			valide = "non valide";
+		}
+		cout << "{ " << portesConnectes_[i].second.first << ", " << portesConnectes_[i].first
+			<< ", " << valide << " }" << endl;
+	}
+	string gouffre = "";
+	if (getEstGouffre()) {
+		gouffre = "Cette porte n'est pas un gouffre";
+	}
+	else {
+		gouffre = "Cette porte est un gouffre";
+	}
+	cout << "c. " << gouffre << endl;
 }

@@ -26,13 +26,14 @@ void Agent::ouvrirPorte(string Porte1) {
 
 }
 string Agent::deciderProchainePorte() {
-	for (int i = 0; i < porteCourante_.getPorteConnecter().size(); i++) {
-		if (porteCourante_.getPorteConnecter()[i].second.second) {
+	for (int i = 0; i < porteCourante_->getPorteConnecter().size(); i++) {
+		if (porteCourante_->getPorteConnecter()[i].second.second) {
 			for (int j = 0; j < tableauDeProbaValide_.size(); j++) {
 
 			}
 		}
 	}
+	return "";
 }
 void Agent::afficherLeCheminParcouru() {
 	chemin_.size();

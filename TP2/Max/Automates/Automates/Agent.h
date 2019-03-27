@@ -23,7 +23,7 @@ private:
 	//Une Porte---Nombre de fois franchi --- Pourcentage de succes
 	vector<pair<Porte*, pair<int, int>>> tableauDeProbaValide_; // pour aider a la decision de la prochaine porte a prendre
 	Porte* porteCourante_;
-	Boss* boss_;
+//	Boss* boss_;
 	vector<Porte*> chemin_;
 };
 #endif

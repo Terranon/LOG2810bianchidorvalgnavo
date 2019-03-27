@@ -5,6 +5,7 @@
 #include <vector>
 #include <map>
 #include <fstream>
+#include <iostream>
 
 using namespace std;
 
@@ -17,6 +18,9 @@ public:
 	bool validerPorte(string motDePasse);
 	void verifierSiGouffre();
 	bool getEstGouffre();
+	bool affronterBoss(vector<Porte*> chemin);
+	vector<pair<string, pair<string, bool>>> getPorteConnecter();
+	void afficherPorte();
 
 private:
 	string nom_;
