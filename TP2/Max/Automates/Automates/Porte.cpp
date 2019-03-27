@@ -1,7 +1,7 @@
 #include "Porte.h"
 
-Porte::Porte(fstream& porte) {
-
+Porte::Porte(string porte) {
+	genererAutomate(porte);
 }
 Porte::~Porte() {
 

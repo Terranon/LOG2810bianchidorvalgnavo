@@ -6,4 +6,8 @@ c:\users\maximilien bianchi\documents\log2810bianchidorvalgnavo\tp2\max\automate
 c:\users\maximilien bianchi\documents\log2810bianchidorvalgnavo\tp2\max\automates\automates\porte.cpp(129): warning C4018: '<': signed/unsigned mismatch
 c:\users\maximilien bianchi\documents\log2810bianchidorvalgnavo\tp2\max\automates\automates\porte.cpp(131): warning C4553: '==': operator has no effect; did you intend '='?
 c:\users\maximilien bianchi\documents\log2810bianchidorvalgnavo\tp2\max\automates\automates\porte.cpp(134): warning C4018: '<': signed/unsigned mismatch
+c:\users\maximilien bianchi\documents\log2810bianchidorvalgnavo\tp2\max\automates\automates\porte.cpp(152): warning C4018: '<': signed/unsigned mismatch
+  Generating Code...
+  Skipping... (no relevant changes detected)
+  main.cpp
   Automates.vcxproj -> C:\Users\Maximilien Bianchi\Documents\LOG2810bianchidorvalgnavo\TP2\Max\Automates\Debug\Automates.exe

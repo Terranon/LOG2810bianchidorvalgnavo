@@ -10,7 +10,7 @@ using namespace std;
 
 class Porte {
 public:
-	Porte(fstream& porte);
+	Porte(string porte);
 	~Porte();
 
 	void genererAutomate(string nomDuFichier);

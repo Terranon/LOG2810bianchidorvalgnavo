@@ -116,9 +116,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Agent.h" />
+    <ClInclude Include="Boss.h" />
     <ClInclude Include="Porte.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Agent.cpp" />
+    <ClCompile Include="Boss.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Porte.cpp" />
   </ItemGroup>
