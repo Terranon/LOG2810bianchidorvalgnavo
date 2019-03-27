@@ -1,7 +1,7 @@
 #include "Porte.h"
 
-Porte::Porte(fstream& porte) {
-	
+Porte::Porte(string porte) {
+	genererAutomate(porte);
 }
 Porte::~Porte() {
 
@@ -161,10 +161,49 @@ bool Porte::getEstGouffre() {
 	return estGouffre_;
 }
 
-bool Porte::affronterBoss(vector<Porte*> chemin) {
-	for (int i = 0; i < getPorteConnecter().size(); i++) {
-		if(chemin[]->getPorteConnecter().first)
+void Porte::lireFichierBoss(string nomFichier){
+
+	ifstream fichier(nomFichier + ".txt");//declaration du fichier en mode lecture et ouverture du fichier 
+
+	if (fichier.fail())
+		throw exception("le fichier n'a pas reussi à être ouvert");
+	else {
+		string seriePorte;
+		while (fichier.peek() == ' ' || fichier.peek() == '\n') { //attention 
+			fichier.ignore(1);
+		}
+		getline(fichier, seriePorte, 'B');//copier la premiere ligne
+
+		string porte="";
+		for (int i = 0; i < seriePorte.size(); i++) {
+			if (isalpha(seriePorte[i])|| isdigit(seriePorte[i])) {
+				porte += seriePorte[i];
+			}
+			else {
+				if (!porte.empty()) {
+					portesBoss.push_back(porte);
+					porte = "";
+				}
+			}
+		}
 	}
+};
+
+
+void Porte::affronterBoss(vector<Porte*> chemin) {
+	bossVaincu = true;
+	lireFichierBoss("Boss");
+	for (int i = 0; i < getPorteConnecter().size(); i++) {
+		if (chemin[i]->getPorteConnecter().first != portesBoss[i]) {
+			bossVaincu = false;
+			break;
+		}
+
+	}
+}
+
+bool Porte::getBossVaincu() {
+	return bossVaincu;
 }
 
 vector<pair<string, pair<string, bool>>> Porte::getPorteConnecter() {
@@ -194,4 +233,20 @@ void Porte::afficherPorte(){
 		gouffre = "Cette porte est un gouffre";
 	}
 	cout << "c. " << gouffre << endl;
+}
+
+map<char, vector<pair<char, char>>> Porte::getRegle() {
+	return regles_;
+}
+
+
+void Porte::afficherBoss() {
+	string victoire = "";
+	if (getBossVaincu) {
+		victoire = "L'agent vainc le boss";
+	}
+	else {
+		victoire = "Le Boss vainc l'agent. Retour à la Porte1";
+	}
+	cout << "c. " << victoire << endl;
 }
