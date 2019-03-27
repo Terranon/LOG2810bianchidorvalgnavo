@@ -2,10 +2,16 @@
 
 Porte::Porte(string porte) {
 	genererAutomate(porte);
+	nom_=porte;
 }
 Porte::~Porte() {
 
 }
+
+string Porte::getNom() {
+	return nom_;
+}
+
 
 void Porte::genererAutomate(string nomDuFichier) {
 
@@ -164,7 +170,7 @@ bool Porte::getEstGouffre() {
 void Porte::lireFichierBoss(string nomFichier){
 
 	ifstream fichier(nomFichier + ".txt");//declaration du fichier en mode lecture et ouverture du fichier 
-
+	nom_ = nomFichier;
 	if (fichier.fail())
 		throw exception("le fichier n'a pas reussi à être ouvert");
 	else {
@@ -193,12 +199,13 @@ void Porte::lireFichierBoss(string nomFichier){
 void Porte::affronterBoss(vector<Porte*> chemin) {
 	bossVaincu = true;
 	lireFichierBoss("Boss");
-	for (int i = 0; i < getPorteConnecter().size(); i++) {
-		if (chemin[i]->getPorteConnecter().first != portesBoss[i]) {
+	int j = chemin.size() - 2;
+	for (int i = portesBoss.size(); i> 0; i--) {
+		if (chemin[j]->getNom() != portesBoss[i]) {
 			bossVaincu = false;
 			break;
 		}
-
+		j--;
 	}
 }
 
@@ -206,13 +213,14 @@ bool Porte::getBossVaincu() {
 	return bossVaincu;
 }
 
-vector<pair<string, pair<string, bool>>> Porte::getPorteConnecter() {
+
+vector<pair<string, pair<string, bool>>> Porte::getPortesConnecter(){
 	return portesConnectes_;
 }
 	
 
 void Porte::afficherPorte(){
-	cout << "a. " << nom_ << endl;
+	
 	cout << "b. ";
 	for (int i = 0; i < portesConnectes_.size(); i++) {
 		string valide = "";
@@ -235,12 +243,95 @@ void Porte::afficherPorte(){
 	cout << "c. " << gouffre << endl;
 }
 
-map<char, vector<pair<char, char>>> Porte::getRegle() {
+map<char, vector<pair<char, char>>> Porte::getRegles() {
 	return regles_;
 }
 
+string Porte::getMotDePasseBoss(vector<Porte*> chemin) {
+	string motDePasse = "";
+	int i = chemin.size() - 2;
+	for (i; i >= 0; i--) {
+		if (portesBoss[0] == chemin[i]->getNom()) {
+			break;
+		}
+	}
+	for (i; i < chemin.size() - 1; i++) {
+		for (int j = 0; j < chemin[i]->getPortesConnecter().size(); j++) {
+			if (chemin[i + 1]->getNom() == chemin[i]->getPortesConnecter()[j].first) {
+				motDePasse += chemin[i]->getPortesConnecter()[j].second.first;
+			}
+		}
+	}
+	return motDePasse;
+}
+string Porte::getSyntaxBoss(vector<Porte*> chemin) {
+	map<string, vector<pair<char, string>>> reglesEnString;
+	vector<pair<char, string>> coteDroit;
+	int i = chemin.size() - 2;
+	for (i; i >= 0; i--) {
+		if (portesBoss[0] == chemin[i]->getNom()) {
+			break;
+		}
+	}
 
-void Porte::afficherBoss() {
+	for (i; i < chemin.size() - 1; i++) {
+		auto it = chemin[i]->getRegles().begin();
+		int ordre = 0;//ordre de la porte
+		for (it; it != chemin[i]->getRegles().end(); it++) {
+			for (int j = 0; i < it->second.size(); j++) {
+				string prochainEtat;
+				if (it->second[j].second == ' ') {
+					if (it->second[j].first == trouverDerniereCharDeMotDePasse(chemin,i)) {
+						prochainEtat.push_back('S');
+						prochainEtat += (ordre+1);
+					}
+				}
+				else {
+					prochainEtat.push_back(it->second[j].second);
+					prochainEtat += ordre;
+				}
+				pair<char, string> entreEtProchainEtat = make_pair(it->second[j].first, prochainEtat);
+				coteDroit.push_back(entreEtProchainEtat);
+				
+			}
+			string etatCourant;
+			etatCourant.push_back(it->first);
+			etatCourant += ordre;
+			reglesEnString.insert(make_pair(etatCourant, coteDroit));
+			ordre++;
+		}
+	}
+}
+
+char Porte::trouverDerniereCharDeMotDePasse(vector<Porte*> chemin, int index) {
+	string motDePasse;
+	
+	for (int j = 0; j < chemin[index]->getPortesConnecter().size(); j++) {
+		if (chemin[index + 1]->getNom() == chemin[index]->getPortesConnecter()[j].first) {
+			motDePasse += chemin[index]->getPortesConnecter()[j].second.first;
+		}
+	}
+	char lastChar = motDePasse[motDePasse.size() - 1];
+	return lastChar;
+}
+
+
+void Porte::afficherBoss(vector<Porte*> chemin) {
+	cout << "a. ";
+	for (int k = 0; k < portesBoss.size(); k++) {
+		cout << portesBoss[k] << " ";
+	}
+	cout << endl;
+
+	cout << "b. " << getMotDePasseBoss(chemin) << " P = { ";
+	if (bossVaincu) {
+		cout << getSyntaxBoss;
+	}
+	else {
+		cout << "...";
+	}
+	cout << " }" << endl;
+	
 	string victoire = "";
 	if (getBossVaincu) {
 		victoire = "L'agent vainc le boss";
