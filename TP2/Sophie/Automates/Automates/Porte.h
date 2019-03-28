@@ -27,7 +27,8 @@ public:
 	void afficherPorte();
 	void afficherBoss(vector<Porte*> chemin);
 	string getMotDePasseBoss(vector<Porte*> chemin);
-	string getSyntaxBoss();
+	string getSyntaxBoss(vector<Porte*> chemin);
+	char trouverDerniereCharDeMotDePasse(vector<Porte*> chemin, int index);
 
 private:
 	string nom_;

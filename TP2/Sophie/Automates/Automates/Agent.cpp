@@ -14,7 +14,7 @@ void Agent::afficherLeCheminParcouru() {
 	for (int i = 0; i < chemin_.size(); i++) {
 		if (chemin_[i]->getNom() == "Boss") {
 			
-			chemin_[i]->afficherBoss();
+			chemin_[i]->afficherBoss(chemin_);
 		}
 		else {
 			cout << "Evenement Porte" << endl;
