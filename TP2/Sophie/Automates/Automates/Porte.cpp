@@ -301,6 +301,18 @@ string Porte::getSyntaxBoss(vector<Porte*> chemin) {
 			ordre++;
 		}
 	}
+	string s="";
+	auto it = reglesEnString.begin();
+	for (it; it != reglesEnString.end(); it++) {
+		for (int j = 0; i < it->second.size(); j++) {
+			s += it->first;
+			s += " -> ";
+			s += it->second[j].first;
+			s += it->second[j].second;
+			s += " ";
+		}
+	}
+	return s;
 }
 
 char Porte::trouverDerniereCharDeMotDePasse(vector<Porte*> chemin, int index) {
@@ -325,7 +337,7 @@ void Porte::afficherBoss(vector<Porte*> chemin) {
 
 	cout << "b. " << getMotDePasseBoss(chemin) << " P = { "; // affiche le mot de passe concatoner 
 	if (bossVaincu) {
-		cout << getSyntaxBoss; // affiche les regles pour se rendre au boss
+		cout << getSyntaxBoss(chemin); // affiche les regles pour se rendre au boss
 	}
 	else {
 		cout << "...";
@@ -333,7 +345,7 @@ void Porte::afficherBoss(vector<Porte*> chemin) {
 	cout << " }" << endl;
 	
 	string victoire = "";
-	if (getBossVaincu) {
+	if (getBossVaincu()) {
 		victoire = "L'agent vainc le boss"; // affiche la phrase selon si l'agent vainc le boss au non
 	}
 	else {
