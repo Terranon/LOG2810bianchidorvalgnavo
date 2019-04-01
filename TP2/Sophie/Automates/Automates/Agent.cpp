@@ -6,20 +6,18 @@ Agent::Agent() {
 Agent::~Agent() {
 }
 
-void Agent::ouvrirPorte(string Porte1) {
-	
-}
 
-void Agent::afficherLeCheminParcouru() {
+void Agent::afficherLeCheminParcouru(vector <Porte*> chemin_) {
 	for (int i = 0; i < chemin_.size(); i++) {
 		if (chemin_[i]->getNom() == "Boss") {
-			
-			cout << chemin_[i]->afficherBoss(chemin_);
+			cout << "Evenement Boss" << endl;
+			chemin_[i]->affronterBoss(chemin_);
+			chemin_[i]->afficherBoss(chemin_);
 		}
 		else {
 			cout << "Evenement Porte" << endl;
 			cout << "a. " << chemin_[i]->getNom() << endl;
-			cout << chemin_[i]->afficherPorte() << endl;
+			chemin_[i]->afficherPorte();
 		}
 	}		
 }

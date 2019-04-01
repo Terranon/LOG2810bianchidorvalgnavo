@@ -19,7 +19,7 @@ public:
 	void verifierSiGouffre();
 	bool getEstGouffre();
 	string getNom();
-	map<char, vector<pair<char, char>>> getRegles();
+	map<char, vector<pair<char, char>>>& getRegles();
 	void lireFichierBoss(string nomFichier);
 	void affronterBoss(vector<Porte*> chemin);
 	bool getBossVaincu();

@@ -130,27 +130,29 @@ void Porte::genererAutomate(string nomDuFichier) {
 	}
 }
 bool Porte::validerPorte(string motDePasse) {
-	bool estValide = true; 
 	char prochainEtat = 'S';
+	int taillemotdepassevalide = 0;
 	for (int i = 0; i < motDePasse.size(); i++) {
-		if (prochainEtat == ' ') {
-			estValide == false;
-			break;
-		}
+
 		for (int j = 0; j < regles_.at(prochainEtat).size(); j++) {
 			if (motDePasse[i] == regles_.at(prochainEtat)[j].first) {
 				prochainEtat = regles_.at(prochainEtat)[j].second;
+				taillemotdepassevalide++;
 				break;
 			}
-			else {
-				estValide = false;
+
+		}
+
+		if (prochainEtat == ' ') {
+			if (motDePasse.size() != taillemotdepassevalide || motDePasse[i] != motDePasse[motDePasse.size() - 1]) {//si le mot qui constitue l'automate est different du mot de passe
+				return false;
 			}
+
+			return true;
 		}
-		if (estValide == false) {
-			break;
-		}
+
 	}
-	return estValide;
+	return false;
 }
 
 void Porte::verifierSiGouffre() {
@@ -200,7 +202,7 @@ void Porte::affronterBoss(vector<Porte*> chemin) {
 	bossVaincu = true;
 	lireFichierBoss("Boss");
 	int j = chemin.size() - 2; // recule l<index dans chemin pour arriver au debut du chemin courant dans la liste (porte 1)
-	for (int i = portesBoss.size(); i> 0; i--) { 
+	for (int i = portesBoss.size()-1; i> 0; i--) { 
 		if (chemin[j]->getNom() != portesBoss[i]) {//compare les nom de porte dans le vecteur portesBosse avec le chemin
 			bossVaincu = false;
 			break;
@@ -231,19 +233,20 @@ void Porte::afficherPorte(){
 			valide = "non valide";
 		}
 		cout << "{ " << portesConnectes_[i].second.first << ", "<< portesConnectes_[i].first //affiche mot de passe, nom de la porte et la validiter
-			<< ", " << valide <<" } " << endl;// {{efeddaa , Porte6 , valide} {...}
+			<< ", " << valide <<" } ";// {{efeddaa , Porte6 , valide} {...}
 	}
+	cout << endl;
 	string gouffre = "";
 	if (getEstGouffre()) { // affiche different phrase selon si le boss est vaincu
-		gouffre = "Cette porte n'est pas un gouffre";
+		gouffre = "Cette porte est un gouffre";
 	}
 	else {
-		gouffre = "Cette porte est un gouffre";
+		gouffre = "Cette porte n'est pas un gouffre";
 	}
 	cout << "c. " << gouffre << endl;
 }
 
-map<char, vector<pair<char, char>>> Porte::getRegles() {
+map<char, vector<pair<char, char>>>& Porte::getRegles(){
 	return regles_;
 }
 
@@ -257,7 +260,7 @@ string Porte::getMotDePasseBoss(vector<Porte*> chemin) {
 	}
 	for (i; i < chemin.size() - 1; i++) {
 		for (int j = 0; j < chemin[i]->getPortesConnecter().size(); j++) {
-			if (chemin[i + 1]->getNom() == chemin[i]->getPortesConnecter()[j].first) {//prend la porte qui suit dans le boss et compare son nom avec le nom de la porte dans porte connecter
+			if (chemin[i + 1]->getNom() == chemin[i]->getPortesConnecter()[j].first && chemin[i]->getPortesConnecter()[j].second.first!=" ") {//prend la porte qui suit dans le boss et compare son nom avec le nom de la porte dans porte connecter
 				motDePasse += chemin[i]->getPortesConnecter()[j].second.first;// ajoute le mot de passe de la porte au mot de passe, concatonne les mot de passe
 			}
 		}
@@ -276,9 +279,10 @@ string Porte::getSyntaxBoss(vector<Porte*> chemin) {
 
 	for (i; i < chemin.size() - 1; i++) {
 		auto it = chemin[i]->getRegles().begin();
-		int ordre = 0;//ordre de la porte
-		for (it; it != chemin[i]->getRegles().end(); it++) {
-			for (int j = 0; i < it->second.size(); j++) {
+		char ordre = '0';//ordre de la porte
+		//map<char, vector<pair<char, char>>>::iterator it;
+		for (it; it != (chemin[i]->getRegles()).end(); it++) {
+			for (int j = 0; j < it->second.size(); j++) {
 				string prochainEtat;
 				if (it->second[j].second == ' ') { // lorsque l'etat suivant est vide
 					if (it->second[j].first == trouverDerniereCharDeMotDePasse(chemin,i)) {// le input est egale au dernier char du mot de passe dela porte qui suit
@@ -304,12 +308,12 @@ string Porte::getSyntaxBoss(vector<Porte*> chemin) {
 	string s="";
 	auto it = reglesEnString.begin();
 	for (it; it != reglesEnString.end(); it++) {
-		for (int j = 0; i < it->second.size(); j++) {
+		for (int j = 0; j < it->second.size(); j++) {
 			s += it->first;
 			s += " -> ";
 			s += it->second[j].first;
 			s += it->second[j].second;
-			s += " ";
+			s += "; ";
 		}
 	}
 	return s;
@@ -336,7 +340,7 @@ void Porte::afficherBoss(vector<Porte*> chemin) {
 	cout << endl;
 
 	cout << "b. " << getMotDePasseBoss(chemin) << " P = { "; // affiche le mot de passe concatoner 
-	if (bossVaincu) {
+	if (getBossVaincu()) {
 		cout << getSyntaxBoss(chemin); // affiche les regles pour se rendre au boss
 	}
 	else {
