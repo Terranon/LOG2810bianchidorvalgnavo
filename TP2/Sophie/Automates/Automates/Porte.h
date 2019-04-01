@@ -18,13 +18,17 @@ public:
 	bool validerPorte(string motDePasse);
 	void verifierSiGouffre();
 	bool getEstGouffre();
-	map<char, vector<pair<char, char>>> getRegle();
+	string getNom();
+	map<char, vector<pair<char, char>>>& getRegles();
 	void lireFichierBoss(string nomFichier);
 	void affronterBoss(vector<Porte*> chemin);
 	bool getBossVaincu();
-	vector<pair<string, pair<string, bool>>> getPorteConnecter();
+	vector<pair<string, pair<string, bool>>> getPortesConnecter();
 	void afficherPorte();
-	void afficherBoss();
+	void afficherBoss(vector<Porte*> chemin);
+	string getMotDePasseBoss(vector<Porte*> chemin);
+	string getSyntaxBoss(vector<Porte*> chemin);
+	char trouverDerniereCharDeMotDePasse(vector<Porte*> chemin, int index);
 
 private:
 	string nom_;
