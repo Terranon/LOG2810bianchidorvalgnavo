@@ -1,8 +1,7 @@
 #include "Agent.h"
 
 Agent::Agent() {
-	ouvrirPorte("Porte1");
-	parcourirLabyrinthe();
+	
 }
 Agent::~Agent() {
 	porteCourante_ = nullptr;
